@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package manager.addresses.v1;
+
+// Native imports
+import "manager/common/v1/common.proto";
+
+// The AddressesService is responsible for managing addresses in the system.
+// Might be clever thing to restrict access to this, allowing only cli tool to edit locally.
+service AddressesService {
+	// GetAddressesList retrieves a list of addresses.
+	rpc GetAddressesList(GetAddressesListRequest) returns (GetAddressesListResponse);
+}
+
+message Address {
+	string address = 1;
+	common.v1.AddressStatus status = 2;
+	optional AdditionalInfo additional_info = 3;
+}
+
+message AdditionalInfo {
+	optional TronInfo tron_info = 1;
+}
+
+message TronInfo {
+	string total_energy_limit = 1;
+	string total_net_limit = 2;
+	string max_available_energy = 3;
+	string max_available_net = 4;
+	string max_available_acquired_energy = 5;
+	string max_available_acquired_net = 6;
+}
+
+message GetAddressesListRequest {
+	bool include_additional_info = 1;
+}
+
+message GetAddressesListResponse {
+	repeated Address addresses = 1;
+}

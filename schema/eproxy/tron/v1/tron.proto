@@ -1,0 +1,43 @@
+syntax = "proto3";
+package eproxy.tron.v1;
+
+// Deprecated: Use v2 instead
+option deprecated = true;
+
+
+import "google/api/field_behavior.proto";
+
+// TronService is the service for Tron explorer.
+service TronService {
+  rpc GetResources(GetResourcesRequest) returns (GetResourcesResponse);
+}
+
+/* 
+
+  GetResources
+
+*/
+
+message GetResourcesRequest {
+  string address = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetResourcesResponse {
+  int64 free_net_used = 1;
+  int64 free_net_limit = 2;
+  int64 net_used = 3;
+  int64 net_limit = 4;
+  map<string, int64> asset_net_used = 5;
+  map<string, int64> asset_net_limit = 6;
+  int64 total_net_limit = 7;
+  int64 total_net_weight = 8;
+  int64 total_tron_power_weight = 9;
+  int64 tron_power_used = 10;
+  int64 tron_power_limit = 11;
+  int64 energy_used = 13;
+  int64 energy_limit = 14;
+  int64 total_energy_limit = 15;
+  int64 total_energy_weight = 16;
+  int64 storage_used = 21;
+  int64 storage_limit = 22;
+}

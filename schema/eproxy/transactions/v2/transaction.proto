@@ -1,0 +1,40 @@
+syntax = "proto3";
+package eproxy.transactions.v2;
+
+import "eproxy/transactions/v2/monero.proto";
+import "eproxy/transactions/v2/evm.proto";
+import "eproxy/transactions/v2/tron.proto";
+import "eproxy/transactions/v2/btc_like.proto";
+import "eproxy/transactions/v2/event.proto";
+import "google/protobuf/timestamp.proto";
+
+message AdditionalData {
+  optional TronAdditionalDataFull tron = 1;
+  optional EVMAdditionalDataFull evm = 2;
+  optional BitcoinLikeAdditionalDataFull btclike = 3;
+  optional MoneroAdditionalDataFull monero = 4;
+}
+
+message Error {
+  string message = 1;
+  optional string code = 2;
+  optional string detail = 3;
+}
+
+message Transaction {
+  string hash = 1;
+  uint64 block_height = 2;
+  uint64 confirmations = 3;
+  optional string address_from = 4;
+  optional string address_to = 5;
+  string amount = 6;
+  string fee = 7;
+  optional string asset_identifier = 8;
+  uint32 index = 9;
+  bool in_mempool = 10;
+  string status = 11;
+  optional Error error = 12;
+  repeated Event events = 13;
+  optional AdditionalData additional_data = 14;
+  google.protobuf.Timestamp created_at = 15;
+}

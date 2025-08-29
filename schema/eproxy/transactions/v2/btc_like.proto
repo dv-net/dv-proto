@@ -1,0 +1,13 @@
+syntax = "proto3";
+package eproxy.transactions.v2;
+
+message BitcoinLikeAdditionalDataFull {
+  string hex = 1;
+  string hash = 2;
+  uint32 size = 3;
+  uint32 v_size = 4;
+  uint32 weight = 5;
+  uint32 version = 6;
+  uint32 lock_time = 7;
+  bool is_coinbase = 8;
+}

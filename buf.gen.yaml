@@ -1,0 +1,59 @@
+version: v2
+managed:
+  enabled: true
+  disable:
+    - file_option: go_package
+      module: buf.build/googleapis/googleapis
+    - file_option: go_package
+      module: buf.build/grpc-ecosystem/grpc-gateway
+  override:
+    - file_option: go_package_prefix
+      value: github.com/dv-net/dv-proto/gen/go
+plugins:
+  # Golang
+  - remote: buf.build/protocolbuffers/go:v1.36.6
+    out: gen/go
+    opt: paths=source_relative
+  - remote: buf.build/connectrpc/go:v1.18.1
+    out: gen/go
+    opt: paths=source_relative
+
+  # Rust
+  - remote: buf.build/community/neoeinstein-prost:v0.4.0
+    out: gen/rust
+    include_imports: true
+    opt:
+      - bytes=.
+      - compile_well_known_types
+      - extern_path=.google.protobuf=::pbjson_types
+      - file_descriptor_set
+  - remote: buf.build/community/neoeinstein-prost-serde:v0.3.1
+    out: gen/rust
+  - remote: buf.build/community/neoeinstein-tonic:v0.4.1
+    out: gen/rust
+    opt:
+      - compile_well_known_types
+      - extern_path=.google.protobuf=::pbjson_types
+
+  # Frontend API
+  - remote: buf.build/bufbuild/es:v2.5.2
+    out: gen/ts
+    opt: target=ts
+    include_imports: true
+
+  # Documentation
+  - remote: buf.build/community/pseudomuto-doc:v1.5.1
+    out: ./
+    opt: markdown,README.md
+
+  - remote: buf.build/grpc-ecosystem/openapiv2:v2.27.1
+    out: ./api
+    opt:
+      - allow_merge=true
+      - merge_file_name=api
+      - generate_unbound_methods=true
+      - include_package_in_tags=false
+      - openapi_naming_strategy=fqn
+      - logtostderr=true
+      - visibility_restriction_selectors=PREVIEW
+      - json_names_for_fields=false

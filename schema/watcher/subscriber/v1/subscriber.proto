@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package watcher.subscriber.v1;
+
+// Deprecated: Use v2 instead
+option deprecated = true;
+
+
+import "eproxy/transactions/v2/transaction.proto";
+import "eproxy/common/v2/common.proto";
+
+option go_package = "api/watcher/subscriber/v1";
+
+// Service which provides subscriber api
+service SubscriberService {
+  // Subscribe mempool transactions
+  rpc SubscribeMempool(SubscribeMempoolRequest) returns (stream SubscribeMempoolResponse);
+}
+
+message SubscribeMempoolRequest {
+  eproxy.common.v2.Blockchain blockchain = 1;
+}
+
+message SubscribeMempoolResponse {
+  oneof msg
+  {
+    eproxy.transactions.v2.Transaction transaction = 1;
+    string ping = 2;
+  }
+}

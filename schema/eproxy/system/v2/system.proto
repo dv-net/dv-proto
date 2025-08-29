@@ -1,0 +1,71 @@
+syntax = "proto3";
+package eproxy.system.v2;
+
+import "google/api/field_behavior.proto";
+import "eproxy/common/v2/common.proto";
+
+// SystemService is the service for SystemInfo.
+service SystemService { rpc Info(InfoRequest) returns (InfoResponse); }
+
+/*
+
+  Info
+
+*/
+
+message AppInfo {
+  string name = 1;
+  string version = 2;
+  string commit = 3;
+}
+
+message BlockchainInfo {
+  uint64 node_last_block_height = 1;
+  uint64 db_last_block_height = 2;
+  uint64 db_min_block_height = 3;
+  uint64 node_diff = 4;
+  uint64 total_parsed_blocks = 5;
+}
+
+message DBInfo {
+  double db_current_size = 1;
+  map<string, uint64> db_items_count = 2;
+}
+
+message SystemInfo {
+  double total_disk_space = 1;
+  double free_disk_space = 2;
+  double total_memory = 3;
+  double free_memory = 4;
+  double service_memory_total_used = 5;
+  double service_memory_current = 6;
+}
+
+message HostInfo {
+  string hostname = 1;
+  string uptime = 2;
+  string boot_time = 3;
+  uint64 procs = 4;
+  string os = 5;
+  string platform = 6;
+  string platform_family = 7;
+  string platform_version = 8;
+  string kernel_version = 9;
+  string kernel_arch = 10;
+  string virtualization_system = 11;
+  string virtualization_role = 12;
+  string host_id = 13;
+}
+
+message InfoRequest {
+  eproxy.common.v2.Blockchain blockchain = 1
+      [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message InfoResponse {
+  AppInfo app_info = 1;
+  BlockchainInfo blockchain_info = 2;
+  DBInfo db_info = 3;
+  SystemInfo system_info = 4;
+  HostInfo host_info = 5;
+}

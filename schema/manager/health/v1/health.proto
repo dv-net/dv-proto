@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package manager.health.v1;
+
+enum HealthStatus {
+	HEALTH_STATUS_UNSPECIFIED = 0;
+	HEALTH_STATUS_SERVING = 1;
+	HEALTH_STATUS_NOT_SERVING = 2;
+	HEALTH_STATUS_DISABLED = 3;
+	HEALTH_STATUS_UNKNOWN = 4;
+}
+
+enum ServiceType {
+	SERVICE_TYPE_UNSPECIFIED = 0;
+	SERVICE_TYPE_DELEGATOR = 1;
+	SERVICE_TYPE_ACTIVATOR = 2;
+	SERVICE_TYPE_TRON = 3;
+}
+
+// The HealthService is responsible for managing the health status of services in the system.
+service HealthService {
+	// GetHealthStatus retrieves the health status of the service.
+	rpc GetHealthStatus(GetHealthStatusRequest) returns (GetHealthStatusResponse);
+}
+
+/* 
+ * GetHealthStatusRequest checks health of specified service.
+ * @param service_type - type of service to check the health status of.
+*/
+message GetHealthStatusRequest {
+	// The type of service to check the health status of.
+	ServiceType service_type = 1;
+}
+
+/* 
+ * GetHealthStatusResponse retrieves the health status of the service.
+ * @param service_type - the type of service.
+ * @param health_status - the health status of the service.
+*/
+message GetHealthStatusResponse {
+	// The type of service.
+	ServiceType service_type = 1;
+	// The health status of the service.
+	HealthStatus health_status = 2;
+}
+

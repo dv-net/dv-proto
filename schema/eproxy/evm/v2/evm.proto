@@ -1,0 +1,19 @@
+syntax = "proto3";
+package eproxy.evm.v2;
+
+import "google/api/field_behavior.proto";
+import "eproxy/common/v2/common.proto";
+
+// EVMService is the service for EVM explorers.
+service EVMService {
+	// SuggestGasPrice returns the latest gas fee in Wei.
+	rpc SuggestGasPrice(SuggestGasPriceRequest) returns (SuggestGasPriceResponse);
+}
+
+message SuggestGasPriceRequest {
+	eproxy.common.v2.Blockchain blockchain = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message SuggestGasPriceResponse {
+	string gas_fee_wei = 1;
+}

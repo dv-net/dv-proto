@@ -1,0 +1,21 @@
+syntax = "proto3";
+package eproxy.common.v1;
+
+// Deprecated: Use v2 instead
+option deprecated = true;
+
+
+enum Blockchain {
+  BLOCKCHAIN_UNSPECIFIED = 0;
+  BLOCKCHAIN_BITCOIN = 1;
+  BLOCKCHAIN_TRON = 2;
+  BLOCKCHAIN_ETHEREUM = 3;
+  BLOCKCHAIN_LITECOIN = 4;
+  BLOCKCHAIN_BITCOINCASH = 5;
+  BLOCKCHAIN_BINANCE_SMART_CHAIN = 6;
+}
+
+message Pagination {
+  optional uint64 page = 1;
+  optional uint64 page_size = 2;
+}

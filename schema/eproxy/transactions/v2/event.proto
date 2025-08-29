@@ -1,0 +1,19 @@
+syntax = "proto3";
+package eproxy.transactions.v2;
+
+enum EventType {
+  EVENT_TYPE_UNSPECIFIED = 0;
+  EVENT_TYPE_TRANSFER = 1;
+}
+
+message Event {
+  optional EventType type = 1;
+  optional string original_data = 2;
+  repeated string topics = 3;
+  optional bytes encoded_data = 4;
+  optional string blockchain_uniq_key = 5;
+  optional string asset_identifier = 6;
+  optional string address_from = 7;
+  optional string address_to = 8;
+  optional string value = 9;
+}

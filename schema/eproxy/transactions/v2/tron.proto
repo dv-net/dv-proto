@@ -1,0 +1,26 @@
+syntax = "proto3";
+package eproxy.transactions.v2;
+
+message TronAdditionalData {
+  uint32 contract_type = 1;
+  optional string asset_kind = 2;
+}
+
+message TronAdditionalDataFull {
+  uint32 contract_type = 1;
+  optional string asset_kind = 2;
+  optional string energy_usage = 3;
+  optional string energy_fee = 4;
+  optional string origin_energy_usage = 5;
+  optional string energy_usage_total = 6;
+  optional string net_usage = 7;
+  optional string net_fee = 8;
+  optional string energy_penalty_total = 9;
+  optional string withdraw_amount = 10;
+  optional string unfreeze_amount = 11;
+  optional string withdraw_expire_amount = 12;
+  optional string resource_contract_type = 13;
+  optional string resource_type = 14;
+  optional string resource_value = 15;
+  optional string stacked_trx = 16;
+}

@@ -1,0 +1,50 @@
+syntax = "proto3";
+package eproxy.addresses.v2;
+
+import "google/protobuf/timestamp.proto";
+import "google/api/field_behavior.proto";
+import "eproxy/common/v2/common.proto";
+
+// AddressesService returns wallet information and transactions
+service AddressesService {
+  // Info returns address information by address and blockchain with full
+  // balances list
+  rpc Info(InfoRequest) returns (InfoResponse);
+  // Balance returns balance by address, asset identifier and blockchain
+  rpc Balance(BalanceRequest) returns (BalanceResponse);
+}
+
+message AssetInfo {
+  string asset_identifier = 1;
+  string amount = 2;
+  string name = 3;
+  string symbol = 4;
+}
+
+message Address {
+  string address = 1;
+  repeated AssetInfo assets = 2;
+  uint64 transactions_count = 3;
+  uint64 transfers_count = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp last_activity_at = 6;
+}
+
+// Info request
+message InfoRequest {
+  eproxy.common.v2.Blockchain blockchain = 1
+      [ (google.api.field_behavior) = REQUIRED ];
+  string address = 2 [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message InfoResponse { Address item = 1; }
+
+// Info balance
+message BalanceRequest {
+  eproxy.common.v2.Blockchain blockchain = 1
+      [ (google.api.field_behavior) = REQUIRED ];
+  string address = 2 [ (google.api.field_behavior) = REQUIRED ];
+  string asset_identifier = 3 [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message BalanceResponse { string amount = 1; }

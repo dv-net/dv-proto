@@ -1,0 +1,670 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Order Management Service",
+    "version": "2.0"
+  },
+  "tags": [
+    {
+      "name": "OrderService"
+    },
+    {
+      "name": "AddressesService"
+    },
+    {
+      "name": "HealthService"
+    }
+  ],
+  "host": "https://delegate.dv.net",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/manager.addresses.v1.AddressesService/GetAddressesList": {
+      "post": {
+        "summary": "GetAddressesList retrieves a list of addresses.",
+        "operationId": "AddressesService_GetAddressesList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/manager.addresses.v1.GetAddressesListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/manager.addresses.v1.GetAddressesListRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AddressesService"
+        ]
+      }
+    },
+    "/manager.health.v1.HealthService/GetHealthStatus": {
+      "post": {
+        "summary": "GetHealthStatus retrieves the health status of the service.",
+        "operationId": "HealthService_GetHealthStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/manager.health.v1.GetHealthStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "GetHealthStatusRequest checks health of specified service.\n@param service_type - type of service to check the health status of.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/manager.health.v1.GetHealthStatusRequest"
+            }
+          }
+        ],
+        "tags": [
+          "HealthService"
+        ]
+      }
+    },
+    "/manager.order.v1.OrderService/BatchCreateOrder": {
+      "post": {
+        "summary": "Creates multiple orders with the specified order types.",
+        "operationId": "OrderService_BatchCreateOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/manager.order.v1.BatchCreateOrderResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "BatchCreateOrderRequest submits multiple orders as batch, returning a list of successful orders.\nFailure of one order in the batch prevents creation of the entire batch.\n@param orders - list of orders to create.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/manager.order.v1.BatchCreateOrderRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrderService"
+        ]
+      }
+    },
+    "/manager.order.v1.OrderService/CancelOrder": {
+      "post": {
+        "summary": "CancelOrder cancels an existing order.",
+        "operationId": "OrderService_CancelOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/manager.order.v1.CancelOrderResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "CancelOrderRequest cancels an existing order.\n@param order_id - string of the order to cancel.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/manager.order.v1.CancelOrderRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrderService"
+        ]
+      }
+    },
+    "/manager.order.v1.OrderService/CreateOrder": {
+      "post": {
+        "summary": "CreateOrder creates a new order with the specified order type.",
+        "operationId": "OrderService_CreateOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/manager.order.v1.CreateOrderResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "CreateOrderRequest creates an order.\n@param order_type - type of order to create.\n@param resource_type - type of resource for the order.\n@param duration - duration of the order.\n@param address - address receiving the resource or where the action is being performed.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/manager.order.v1.CreateOrderRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrderService"
+        ]
+      }
+    },
+    "/manager.order.v1.OrderService/GetOrder": {
+      "post": {
+        "summary": "GetOrder retrieves an order by its ID.",
+        "operationId": "OrderService_GetOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/manager.order.v1.GetOrderResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "GetOrderRequest retrieves an order by its ID.\n@param order_id - UUID of the order to retrieve.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/manager.order.v1.GetOrderRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrderService"
+        ]
+      }
+    },
+    "/manager.order.v1.OrderService/ListOrders": {
+      "post": {
+        "summary": "ListOrders retrieves a list of orders based on the specified criteria.",
+        "operationId": "OrderService_ListOrders",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/manager.order.v1.ListOrdersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "ListOrdersRequest retrieves a list of orders based on the specified criteria.\n@param order_type - type of order to filter by.\n@param status - status of the order to filter by.\n@param executor_address - address of the executor to filter by.\n@param target_address - address of the target to filter by.\n@param page - page number to return (1-based indexing).\n@param page_size - number of orders to return per page.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/manager.order.v1.ListOrdersRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrderService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    },
+    "manager.addresses.v1.AdditionalInfo": {
+      "type": "object",
+      "properties": {
+        "tron_info": {
+          "$ref": "#/definitions/manager.addresses.v1.TronInfo"
+        }
+      }
+    },
+    "manager.addresses.v1.Address": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/manager.common.v1.AddressStatus"
+        },
+        "additional_info": {
+          "$ref": "#/definitions/manager.addresses.v1.AdditionalInfo"
+        }
+      }
+    },
+    "manager.addresses.v1.GetAddressesListRequest": {
+      "type": "object",
+      "properties": {
+        "include_additional_info": {
+          "type": "boolean"
+        }
+      }
+    },
+    "manager.addresses.v1.GetAddressesListResponse": {
+      "type": "object",
+      "properties": {
+        "addresses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/manager.addresses.v1.Address"
+          }
+        }
+      }
+    },
+    "manager.addresses.v1.TronInfo": {
+      "type": "object",
+      "properties": {
+        "total_energy_limit": {
+          "type": "string"
+        },
+        "total_net_limit": {
+          "type": "string"
+        },
+        "max_available_energy": {
+          "type": "string"
+        },
+        "max_available_net": {
+          "type": "string"
+        },
+        "max_available_acquired_energy": {
+          "type": "string"
+        },
+        "max_available_acquired_net": {
+          "type": "string"
+        }
+      }
+    },
+    "manager.common.v1.AddressStatus": {
+      "type": "string",
+      "enum": [
+        "ADDRESS_STATUS_UNSPECIFIED",
+        "ADDRESS_STATUS_DISABLED",
+        "ADDRESS_STATUS_ENABLED"
+      ],
+      "default": "ADDRESS_STATUS_UNSPECIFIED"
+    },
+    "manager.common.v1.OrderStatus": {
+      "type": "string",
+      "enum": [
+        "ORDER_STATUS_UNSPECIFIED",
+        "ORDER_STATUS_PENDING",
+        "ORDER_STATUS_IN_PROGRESS",
+        "ORDER_STATUS_FULFILLED",
+        "ORDER_STATUS_COMPLETED",
+        "ORDER_STATUS_FAILED",
+        "ORDER_STATUS_CANCELLED"
+      ],
+      "default": "ORDER_STATUS_UNSPECIFIED"
+    },
+    "manager.common.v1.OrderType": {
+      "type": "string",
+      "enum": [
+        "ORDER_TYPE_UNSPECIFIED",
+        "ORDER_TYPE_TRON_ENERGY_DELEGATION",
+        "ORDER_TYPE_TRON_BANDWIDTH_DELEGATION",
+        "ORDER_TYPE_TRON_ADDRESS_ACTIVATION"
+      ],
+      "default": "ORDER_TYPE_UNSPECIFIED"
+    },
+    "manager.common.v1.Pagination": {
+      "type": "object",
+      "properties": {
+        "total_count": {
+          "type": "string",
+          "format": "int64"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "last_page": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "manager.common.v1.ResourceKind": {
+      "type": "string",
+      "enum": [
+        "RESOURCE_KIND_UNSPECIFIED",
+        "RESOURCE_KIND_DELEGATION",
+        "RESOURCE_KIND_CONTRACT_EXECUTION",
+        "RESOURCE_KIND_TRANSACTION_EXECUTION"
+      ],
+      "default": "RESOURCE_KIND_UNSPECIFIED"
+    },
+    "manager.common.v1.ResourceType": {
+      "type": "string",
+      "enum": [
+        "RESOURCE_TYPE_UNSPECIFIED",
+        "RESOURCE_TYPE_TRON_BANDWIDTH",
+        "RESOURCE_TYPE_TRON_ENERGY"
+      ],
+      "default": "RESOURCE_TYPE_UNSPECIFIED"
+    },
+    "manager.health.v1.GetHealthStatusRequest": {
+      "type": "object",
+      "properties": {
+        "service_type": {
+          "$ref": "#/definitions/manager.health.v1.ServiceType",
+          "description": "The type of service to check the health status of."
+        }
+      },
+      "description": "GetHealthStatusRequest checks health of specified service.\n@param service_type - type of service to check the health status of."
+    },
+    "manager.health.v1.GetHealthStatusResponse": {
+      "type": "object",
+      "properties": {
+        "service_type": {
+          "$ref": "#/definitions/manager.health.v1.ServiceType",
+          "description": "The type of service."
+        },
+        "health_status": {
+          "$ref": "#/definitions/manager.health.v1.HealthStatus",
+          "description": "The health status of the service."
+        }
+      },
+      "description": "GetHealthStatusResponse retrieves the health status of the service.\n@param service_type - the type of service.\n@param health_status - the health status of the service."
+    },
+    "manager.health.v1.HealthStatus": {
+      "type": "string",
+      "enum": [
+        "HEALTH_STATUS_UNSPECIFIED",
+        "HEALTH_STATUS_SERVING",
+        "HEALTH_STATUS_NOT_SERVING",
+        "HEALTH_STATUS_DISABLED",
+        "HEALTH_STATUS_UNKNOWN"
+      ],
+      "default": "HEALTH_STATUS_UNSPECIFIED"
+    },
+    "manager.health.v1.ServiceType": {
+      "type": "string",
+      "enum": [
+        "SERVICE_TYPE_UNSPECIFIED",
+        "SERVICE_TYPE_DELEGATOR",
+        "SERVICE_TYPE_ACTIVATOR",
+        "SERVICE_TYPE_TRON"
+      ],
+      "default": "SERVICE_TYPE_UNSPECIFIED"
+    },
+    "manager.order.v1.BatchCreateOrderRequest": {
+      "type": "object",
+      "properties": {
+        "orders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/manager.order.v1.CreateOrderRequest"
+          }
+        }
+      },
+      "description": "BatchCreateOrderRequest submits multiple orders as batch, returning a list of successful orders.\nFailure of one order in the batch prevents creation of the entire batch.\n@param orders - list of orders to create."
+    },
+    "manager.order.v1.BatchCreateOrderResponse": {
+      "type": "object",
+      "properties": {
+        "orders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/manager.order.v1.Order"
+          }
+        }
+      },
+      "description": "BatchCreateOrderResponse returns a list of successful orders.\n@param orders - list of orders created."
+    },
+    "manager.order.v1.CancelOrderRequest": {
+      "type": "object",
+      "properties": {
+        "order_id": {
+          "type": "string"
+        }
+      },
+      "description": "CancelOrderRequest cancels an existing order.\n@param order_id - string of the order to cancel."
+    },
+    "manager.order.v1.CancelOrderResponse": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "$ref": "#/definitions/manager.order.v1.Order"
+        }
+      },
+      "description": "CancelOrderResponse cancels an existing order.\n@param order - mutated order object."
+    },
+    "manager.order.v1.CreateOrderRequest": {
+      "type": "object",
+      "properties": {
+        "order_type": {
+          "$ref": "#/definitions/manager.common.v1.OrderType"
+        },
+        "amount": {
+          "type": "string",
+          "format": "int64"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      },
+      "description": "CreateOrderRequest creates an order.\n@param order_type - type of order to create.\n@param resource_type - type of resource for the order.\n@param duration - duration of the order.\n@param address - address receiving the resource or where the action is being performed."
+    },
+    "manager.order.v1.CreateOrderResponse": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "$ref": "#/definitions/manager.order.v1.Order"
+        }
+      },
+      "description": "CreateOrderResponse represents the response for a created order.\n@param order - the created order object.\n@param executor - the executor of the order."
+    },
+    "manager.order.v1.GetOrderRequest": {
+      "type": "object",
+      "properties": {
+        "order_id": {
+          "type": "string"
+        }
+      },
+      "description": "GetOrderRequest retrieves an order by its ID.\n@param order_id - UUID of the order to retrieve."
+    },
+    "manager.order.v1.GetOrderResponse": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "$ref": "#/definitions/manager.order.v1.Order"
+        }
+      },
+      "description": "GetOrderResponse retrieves an order by its ID.\n@param order - the order object."
+    },
+    "manager.order.v1.ListOrdersRequest": {
+      "type": "object",
+      "properties": {
+        "order_type": {
+          "$ref": "#/definitions/manager.common.v1.OrderType"
+        },
+        "status": {
+          "$ref": "#/definitions/manager.common.v1.OrderStatus"
+        },
+        "executor_address": {
+          "type": "string"
+        },
+        "target_address": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "order_id": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "ListOrdersRequest retrieves a list of orders based on the specified criteria.\n@param order_type - type of order to filter by.\n@param status - status of the order to filter by.\n@param executor_address - address of the executor to filter by.\n@param target_address - address of the target to filter by.\n@param page - page number to return (1-based indexing).\n@param page_size - number of orders to return per page."
+    },
+    "manager.order.v1.ListOrdersResponse": {
+      "type": "object",
+      "properties": {
+        "orders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/manager.order.v1.Order"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/manager.common.v1.Pagination"
+        }
+      },
+      "description": "ListOrdersResponse retrieves a list of orders based on the specified criteria.\n@param orders - list of orders matching the criteria.\n@param total_count - total number of orders matching the criteria.\n@param page - current page number.\n@param page_size - number of orders per page.\n@param last_page - last page number based on total count and page size."
+    },
+    "manager.order.v1.Order": {
+      "type": "object",
+      "properties": {
+        "order_id": {
+          "type": "string"
+        },
+        "order_type": {
+          "$ref": "#/definitions/manager.common.v1.OrderType"
+        },
+        "order_status": {
+          "$ref": "#/definitions/manager.common.v1.OrderStatus"
+        },
+        "executor_address": {
+          "type": "string"
+        },
+        "target_address": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string",
+          "format": "int64"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reservations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/manager.order.v1.OrderReservation"
+          }
+        }
+      }
+    },
+    "manager.order.v1.OrderReservation": {
+      "type": "object",
+      "properties": {
+        "reservation_amount": {
+          "type": "string",
+          "format": "int64"
+        },
+        "resource_type": {
+          "$ref": "#/definitions/manager.common.v1.ResourceType"
+        },
+        "resource_kind": {
+          "$ref": "#/definitions/manager.common.v1.ResourceKind"
+        }
+      }
+    }
+  }
+}

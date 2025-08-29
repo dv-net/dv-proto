@@ -1,0 +1,69 @@
+syntax = "proto3";
+package eproxy.btclike.v2;
+
+import "google/protobuf/timestamp.proto";
+import "google/api/field_behavior.proto";
+import "eproxy/transactions/v2/transaction.proto";
+import "eproxy/common/v2/common.proto";
+
+// BtcLikeService is the service for BTC LIKE explorer.
+service BtcLikeService {
+  // An unspent transaction output (UTXO) refers to a transaction output that
+  // can be used as input in a new transaction
+  rpc UTXO(UTXORequest) returns (UTXOResponse);
+  // MedianFeePerByteBlock returns median block fee
+  rpc MedianFeePerByteBlock(MedianFeePerByteBlockRequest)
+      returns (MedianFeePerByteBlockResponse);
+  // RemovedBlockList returns removed block info sorted by height
+  rpc RemovedBlockList(RemovedBlockListRequest)
+      returns (RemovedBlockListResponse);
+  // RemovedBlock returns last block number of database
+  rpc RemovedBlock(RemovedBlockRequest) returns (RemovedBlockResponse);
+}
+
+message UTXORequest {
+  string address = 1 [ (google.api.field_behavior) = REQUIRED ];
+  common.v2.Blockchain blockchain = 2
+      [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message UTXOResponse {
+  message Item {
+    string tx_hash = 1;
+    int32 sequence = 2;
+    string amount = 3;
+    string pk_script = 4;
+  }
+  repeated Item items = 1;
+}
+
+message MedianFeePerByteBlockRequest {
+  int64 number = 1;
+  common.v2.Blockchain blockchain = 2
+      [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message MedianFeePerByteBlockResponse { string amount = 1; }
+
+message RemovedBlockInfo {
+  google.protobuf.Timestamp created_at = 1;
+  int64 block_number = 2;
+  string hash = 3;
+  repeated eproxy.transactions.v2.Transaction transactions = 4;
+}
+
+message RemovedBlockListRequest {
+  google.protobuf.Timestamp time_since_incident = 1;
+  common.v2.Blockchain blockchain = 2
+      [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message RemovedBlockListResponse { repeated RemovedBlockInfo blocks = 1; }
+
+message RemovedBlockRequest {
+  int64 number = 1;
+  common.v2.Blockchain blockchain = 2
+      [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message RemovedBlockResponse { RemovedBlockInfo removed_block_info = 1; }

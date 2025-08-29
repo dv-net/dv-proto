@@ -1,0 +1,160 @@
+syntax = "proto3";
+
+package manager.order.v1;
+
+// Required for OpenAPI annotations
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+// Native imports
+import "manager/common/v1/common.proto";
+
+// Third-party imports
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+	info: {
+	  title: "Order Management Service";
+	  version: "2.0";
+	};
+	schemes: HTTPS;
+	host: "https://delegate.dv.net";
+	consumes: "application/json";
+	produces: "application/json";
+  };
+
+// The OrderService is responsible for managing orders in the system.
+service OrderService {
+	// Creates multiple orders with the specified order types.
+	rpc BatchCreateOrder(BatchCreateOrderRequest) returns (BatchCreateOrderResponse);
+	// CreateOrder creates a new order with the specified order type.
+	rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
+	// GetOrder retrieves an order by its ID.
+	rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);
+	// CancelOrder cancels an existing order.
+	rpc CancelOrder(CancelOrderRequest) returns (CancelOrderResponse);
+	// ListOrders retrieves a list of orders based on the specified criteria.
+	rpc ListOrders(ListOrdersRequest) returns (ListOrdersResponse);
+}
+
+message OrderReservation {
+	int64 reservation_amount = 1;
+	common.v1.ResourceType resource_type = 2;
+	common.v1.ResourceKind resource_kind = 3;
+}
+
+message Order {
+	string order_id = 1;
+	common.v1.OrderType order_type = 2;
+	common.v1.OrderStatus order_status = 3;
+	string executor_address = 4;
+	string target_address = 5;
+	optional int64 amount = 6;
+	optional google.protobuf.Duration duration = 7;
+	google.protobuf.Timestamp created_at = 8;
+	repeated OrderReservation reservations = 9;
+}
+
+/* 
+ * BatchCreateOrderRequest submits multiple orders as batch, returning a list of successful orders.
+ * Failure of one order in the batch prevents creation of the entire batch.
+ * @param orders - list of orders to create.
+*/
+message BatchCreateOrderRequest {
+	repeated CreateOrderRequest orders = 1;
+}
+
+/* 
+ * BatchCreateOrderResponse returns a list of successful orders.
+ * @param orders - list of orders created.
+*/
+message BatchCreateOrderResponse {
+	repeated Order orders = 1;
+}
+
+/* 
+ * CreateOrderRequest creates an order.
+ * @param order_type - type of order to create.
+ * @param resource_type - type of resource for the order.
+ * @param duration - duration of the order.
+ * @param address - address receiving the resource or where the action is being performed.
+*/
+message CreateOrderRequest {
+	common.v1.OrderType order_type = 1;	
+	optional int64 amount = 2;
+	optional google.protobuf.Duration duration = 3;
+	string address = 4;
+}
+
+/*
+ * CreateOrderResponse represents the response for a created order.
+ * @param order - the created order object.
+ * @param executor - the executor of the order.
+ */
+message CreateOrderResponse {
+	Order order = 1;
+}
+
+/* 
+ * GetOrderRequest retrieves an order by its ID.
+ * @param order_id - UUID of the order to retrieve.
+*/
+message GetOrderRequest {
+	string order_id = 1;
+}
+
+/* 
+ * GetOrderResponse retrieves an order by its ID.
+ * @param order - the order object.
+*/
+message GetOrderResponse {
+	Order order = 1;
+}
+
+/* 
+ * CancelOrderRequest cancels an existing order.
+ * @param order_id - string of the order to cancel.
+*/
+message CancelOrderRequest {
+	string order_id = 1;
+}
+
+/* 
+ * CancelOrderResponse cancels an existing order.
+ * @param order - mutated order object.
+*/
+message CancelOrderResponse {
+	Order order = 1;
+}
+
+/* 
+ * ListOrdersRequest retrieves a list of orders based on the specified criteria.
+ * @param order_type - type of order to filter by.
+ * @param status - status of the order to filter by.
+ * @param executor_address - address of the executor to filter by.
+ * @param target_address - address of the target to filter by.
+ * @param page - page number to return (1-based indexing).
+ * @param page_size - number of orders to return per page.
+*/
+message ListOrdersRequest {
+	optional common.v1.OrderType order_type = 1;
+	optional common.v1.OrderStatus status = 2;
+	optional string executor_address = 3;
+	optional string target_address = 4;
+	optional int32 page = 5;
+	optional int32 page_size = 6;
+	repeated string order_id = 7;
+}
+
+/* 
+ * ListOrdersResponse retrieves a list of orders based on the specified criteria.
+ * @param orders - list of orders matching the criteria.
+ * @param total_count - total number of orders matching the criteria.
+ * @param page - current page number.
+ * @param page_size - number of orders per page.
+ * @param last_page - last page number based on total count and page size.
+*/
+message ListOrdersResponse {
+	repeated Order orders = 1;
+	common.v1.Pagination pagination = 2;
+}

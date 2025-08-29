@@ -1,0 +1,24 @@
+syntax = "proto3";
+package eproxy.assets.v2;
+
+import "google/api/field_behavior.proto";
+import "eproxy/common/v2/common.proto";
+
+// AssetService work with asset information
+service AssetsService {
+  // Info returns asset information
+  rpc Info(InfoRequest) returns (InfoResponse);
+}
+
+message InfoRequest {
+  eproxy.common.v2.Blockchain blockchain = 1
+      [ (google.api.field_behavior) = REQUIRED ];
+  string identifier = 2 [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message InfoResponse {
+  string name = 1;
+  string symbol = 2;
+  optional uint32 decimals = 3;
+  optional string kind = 4;
+}

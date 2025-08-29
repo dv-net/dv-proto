@@ -1,0 +1,3554 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "eproxy/common/v1/common.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "AddressService"
+    },
+    {
+      "name": "AddressesService"
+    },
+    {
+      "name": "AssetsService"
+    },
+    {
+      "name": "BlocksService"
+    },
+    {
+      "name": "TransactionsService"
+    },
+    {
+      "name": "BtcLikeService"
+    },
+    {
+      "name": "EVMService"
+    },
+    {
+      "name": "SystemService"
+    },
+    {
+      "name": "TronService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/eproxy.addresses.v1.AddressService/Get": {
+      "post": {
+        "summary": "Get returns address information by address and blockchain",
+        "operationId": "AddressService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.addresses.v1.GetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.addresses.v1.GetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AddressService"
+        ]
+      }
+    },
+    "/eproxy.addresses.v1.AddressService/GetBalance": {
+      "post": {
+        "summary": "GetBalance returns balance by address, asset_identifier and blockchain",
+        "operationId": "AddressService_GetBalance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.addresses.v1.GetBalanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.addresses.v1.GetBalanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AddressService"
+        ]
+      }
+    },
+    "/eproxy.addresses.v2.AddressesService/Balance": {
+      "post": {
+        "summary": "Balance returns balance by address, asset identifier and blockchain",
+        "operationId": "AddressesService_Balance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.addresses.v2.BalanceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.addresses.v2.BalanceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AddressesService"
+        ]
+      }
+    },
+    "/eproxy.addresses.v2.AddressesService/Info": {
+      "post": {
+        "summary": "Info returns address information by address and blockchain with full\nbalances list",
+        "operationId": "AddressesService_Info",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.addresses.v2.InfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.addresses.v2.InfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AddressesService"
+        ]
+      }
+    },
+    "/eproxy.assets.v1.AssetsService/AssetInfo": {
+      "post": {
+        "summary": "AssetInfo returns asset information",
+        "operationId": "AssetsService_AssetInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.assets.v1.AssetInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.assets.v1.AssetInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AssetsService"
+        ]
+      }
+    },
+    "/eproxy.assets.v2.AssetsService/Info": {
+      "post": {
+        "summary": "Info returns asset information",
+        "operationId": "AssetsService_Info",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.assets.v2.InfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.assets.v2.InfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AssetsService"
+        ]
+      }
+    },
+    "/eproxy.blocks.v1.BlocksService/Get": {
+      "post": {
+        "summary": "Get returns block info by height and blockchain",
+        "operationId": "BlocksService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v1.GetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v1.GetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BlocksService"
+        ]
+      }
+    },
+    "/eproxy.blocks.v1.BlocksService/LastBlockNumber": {
+      "post": {
+        "summary": "LastBlockNumber returns last block number in blockchain",
+        "operationId": "BlocksService_LastBlockNumber",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v1.LastBlockNumberResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v1.LastBlockNumberRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BlocksService"
+        ]
+      }
+    },
+    "/eproxy.blocks.v1.BlocksService/MinBlockNumber": {
+      "post": {
+        "summary": "MinBlockNumber returns min block number in blockchain",
+        "operationId": "BlocksService_MinBlockNumber",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v1.MinBlockNumberResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v1.MinBlockNumberRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BlocksService"
+        ]
+      }
+    },
+    "/eproxy.blocks.v1.BlocksService/TotalInfo": {
+      "post": {
+        "operationId": "BlocksService_TotalInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v1.TotalInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v1.TotalInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BlocksService"
+        ]
+      }
+    },
+    "/eproxy.blocks.v2.BlocksService/Find": {
+      "post": {
+        "summary": "Find returns block info by height and blockchain",
+        "operationId": "BlocksService_Find",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v2.FindResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v2.FindRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BlocksService"
+        ]
+      }
+    },
+    "/eproxy.blocks.v2.BlocksService/Get": {
+      "post": {
+        "summary": "Get returns block info by height and blockchain",
+        "operationId": "BlocksService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v2.GetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v2.GetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BlocksService"
+        ]
+      }
+    },
+    "/eproxy.blocks.v2.BlocksService/LastBlockHeight": {
+      "post": {
+        "summary": "LastBlockHeight returns last block number from database",
+        "operationId": "BlocksService_LastBlockHeight",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v2.LastBlockHeightResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v2.LastBlockHeightRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BlocksService"
+        ]
+      }
+    },
+    "/eproxy.blocks.v2.BlocksService/MinBlockHeight": {
+      "post": {
+        "summary": "MinBlockHeight returns min block number from database",
+        "operationId": "BlocksService_MinBlockHeight",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v2.MinBlockHeightResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v2.MinBlockHeightRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BlocksService"
+        ]
+      }
+    },
+    "/eproxy.blocks.v2.BlocksService/NodeLastBlockHeight": {
+      "post": {
+        "summary": "NodeLastBlockHeight returns last block number from database",
+        "operationId": "BlocksService_NodeLastBlockHeight",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v2.NodeLastBlockHeightResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v2.NodeLastBlockHeightRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BlocksService"
+        ]
+      }
+    },
+    "/eproxy.blocks.v2.BlocksService/Subscribe": {
+      "post": {
+        "summary": "Subscribe returns stream of the newest blocks in blockchain",
+        "operationId": "BlocksService_Subscribe",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/eproxy.blocks.v2.SubscribeResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of eproxy.blocks.v2.SubscribeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v2.SubscribeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BlocksService"
+        ]
+      }
+    },
+    "/eproxy.blocks.v2.BlocksService/TotalInfo": {
+      "post": {
+        "summary": "TotalInfo returns total info about blocks in blockchains",
+        "operationId": "BlocksService_TotalInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v2.TotalInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.blocks.v2.TotalInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BlocksService"
+        ]
+      }
+    },
+    "/eproxy.btclike.v1.BtcLikeService/MedianFeePerByteBlock": {
+      "post": {
+        "summary": "MedianFeePerByteBlock returns median block fee",
+        "operationId": "BtcLikeService_MedianFeePerByteBlock",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v1.MedianFeePerByteBlockResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v1.MedianFeePerByteBlockRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BtcLikeService"
+        ]
+      }
+    },
+    "/eproxy.btclike.v1.BtcLikeService/RemovedBlock": {
+      "post": {
+        "summary": "RemovedBlock returns last block number of database",
+        "operationId": "BtcLikeService_RemovedBlock",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v1.RemovedBlockResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v1.RemovedBlockRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BtcLikeService"
+        ]
+      }
+    },
+    "/eproxy.btclike.v1.BtcLikeService/RemovedBlockList": {
+      "post": {
+        "summary": "RemovedBlockList returns removed block info sorted by height",
+        "operationId": "BtcLikeService_RemovedBlockList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v1.RemovedBlockListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v1.RemovedBlockListRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BtcLikeService"
+        ]
+      }
+    },
+    "/eproxy.btclike.v1.BtcLikeService/UTXO": {
+      "post": {
+        "summary": "An unspent transaction output (UTXO) refers to a transaction output that can be used as input in a new transaction",
+        "operationId": "BtcLikeService_UTXO",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v1.UTXOResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v1.UTXORequest"
+            }
+          }
+        ],
+        "tags": [
+          "BtcLikeService"
+        ]
+      }
+    },
+    "/eproxy.btclike.v2.BtcLikeService/MedianFeePerByteBlock": {
+      "post": {
+        "summary": "MedianFeePerByteBlock returns median block fee",
+        "operationId": "BtcLikeService_MedianFeePerByteBlock",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v2.MedianFeePerByteBlockResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v2.MedianFeePerByteBlockRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BtcLikeService"
+        ]
+      }
+    },
+    "/eproxy.btclike.v2.BtcLikeService/RemovedBlock": {
+      "post": {
+        "summary": "RemovedBlock returns last block number of database",
+        "operationId": "BtcLikeService_RemovedBlock",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v2.RemovedBlockResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v2.RemovedBlockRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BtcLikeService"
+        ]
+      }
+    },
+    "/eproxy.btclike.v2.BtcLikeService/RemovedBlockList": {
+      "post": {
+        "summary": "RemovedBlockList returns removed block info sorted by height",
+        "operationId": "BtcLikeService_RemovedBlockList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v2.RemovedBlockListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v2.RemovedBlockListRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BtcLikeService"
+        ]
+      }
+    },
+    "/eproxy.btclike.v2.BtcLikeService/UTXO": {
+      "post": {
+        "summary": "An unspent transaction output (UTXO) refers to a transaction output that\ncan be used as input in a new transaction",
+        "operationId": "BtcLikeService_UTXO",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v2.UTXOResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.btclike.v2.UTXORequest"
+            }
+          }
+        ],
+        "tags": [
+          "BtcLikeService"
+        ]
+      }
+    },
+    "/eproxy.evm.v1.EVMService/SuggestGasPrice": {
+      "post": {
+        "summary": "SuggestGasPrice returns the latest gas fee in Wei.",
+        "operationId": "EVMService_SuggestGasPrice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.evm.v1.SuggestGasPriceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.evm.v1.SuggestGasPriceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "EVMService"
+        ]
+      }
+    },
+    "/eproxy.evm.v2.EVMService/SuggestGasPrice": {
+      "post": {
+        "summary": "SuggestGasPrice returns the latest gas fee in Wei.",
+        "operationId": "EVMService_SuggestGasPrice",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.evm.v2.SuggestGasPriceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.evm.v2.SuggestGasPriceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "EVMService"
+        ]
+      }
+    },
+    "/eproxy.system.v2.SystemService/Info": {
+      "post": {
+        "operationId": "SystemService_Info",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.system.v2.InfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.system.v2.InfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SystemService"
+        ]
+      }
+    },
+    "/eproxy.transactions.v1.TransactionsService/Find": {
+      "post": {
+        "summary": "Find returns information about transactions list by hash, address, block\nheight and contract address",
+        "operationId": "TransactionsService_Find",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.transactions.v1.FindResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.transactions.v1.FindRequest"
+            }
+          }
+        ],
+        "tags": [
+          "TransactionsService"
+        ]
+      }
+    },
+    "/eproxy.transactions.v1.TransactionsService/GetInfo": {
+      "post": {
+        "summary": "GetInfo returns data associated with hash on specific blockchain, mixing\ndatabase data with node data.",
+        "operationId": "TransactionsService_GetInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.transactions.v1.GetInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.transactions.v1.GetInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "TransactionsService"
+        ]
+      }
+    },
+    "/eproxy.transactions.v2.TransactionsService/Find": {
+      "post": {
+        "summary": "Find returns information about transactions list by hash, address, block\nheight and contract address",
+        "operationId": "TransactionsService_Find",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.transactions.v2.FindResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.transactions.v2.FindRequest"
+            }
+          }
+        ],
+        "tags": [
+          "TransactionsService"
+        ]
+      }
+    },
+    "/eproxy.transactions.v2.TransactionsService/GetInfo": {
+      "post": {
+        "summary": "GetInfo returns mixed data about TX by hash.",
+        "operationId": "TransactionsService_GetInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.transactions.v2.GetInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.transactions.v2.GetInfoRequest"
+            }
+          }
+        ],
+        "tags": [
+          "TransactionsService"
+        ]
+      }
+    },
+    "/eproxy.transactions.v2.TransactionsService/SuggestTxFee": {
+      "post": {
+        "summary": "SuggestTxFee returns suggested transaction fee for a specific blockchain and identifier.",
+        "operationId": "TransactionsService_SuggestTxFee",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.transactions.v2.SuggestTxFeeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.transactions.v2.SuggestTxFeeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "TransactionsService"
+        ]
+      }
+    },
+    "/eproxy.tron.v1.TronService/GetResources": {
+      "post": {
+        "operationId": "TronService_GetResources",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.tron.v1.GetResourcesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.tron.v1.GetResourcesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "TronService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "eproxy.addresses.v1.Address": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.addresses.v1.AssetInfo"
+          }
+        }
+      }
+    },
+    "eproxy.addresses.v1.AssetInfo": {
+      "type": "object",
+      "properties": {
+        "asset_identifier": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.addresses.v1.GetBalanceRequest": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "asset_identifier": {
+          "type": "string"
+        },
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v1.Blockchain"
+        }
+      },
+      "title": "Get balance",
+      "required": [
+        "address",
+        "blockchain"
+      ]
+    },
+    "eproxy.addresses.v1.GetBalanceResponse": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.addresses.v1.GetRequest": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v1.Blockchain"
+        }
+      },
+      "title": "Get request",
+      "required": [
+        "address",
+        "blockchain"
+      ]
+    },
+    "eproxy.addresses.v1.GetResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/eproxy.addresses.v1.Address"
+        }
+      }
+    },
+    "eproxy.addresses.v2.Address": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.addresses.v2.AssetInfo"
+          }
+        },
+        "transactions_count": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "transfers_count": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "last_activity_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "eproxy.addresses.v2.AssetInfo": {
+      "type": "object",
+      "properties": {
+        "asset_identifier": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.addresses.v2.BalanceRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        },
+        "address": {
+          "type": "string"
+        },
+        "asset_identifier": {
+          "type": "string"
+        }
+      },
+      "title": "Info balance",
+      "required": [
+        "blockchain",
+        "address",
+        "asset_identifier"
+      ]
+    },
+    "eproxy.addresses.v2.BalanceResponse": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.addresses.v2.InfoRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        },
+        "address": {
+          "type": "string"
+        }
+      },
+      "title": "Info request",
+      "required": [
+        "blockchain",
+        "address"
+      ]
+    },
+    "eproxy.addresses.v2.InfoResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/eproxy.addresses.v2.Address"
+        }
+      }
+    },
+    "eproxy.assets.v1.AssetInfoRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v1.Blockchain"
+        },
+        "asset_identifier": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "blockchain",
+        "asset_identifier"
+      ]
+    },
+    "eproxy.assets.v1.AssetInfoResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "decimals": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "eproxy.assets.v2.InfoRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        },
+        "identifier": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "blockchain",
+        "identifier"
+      ]
+    },
+    "eproxy.assets.v2.InfoResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "decimals": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "kind": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.blocks.v1.Block": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "hash": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "eproxy.blocks.v1.GetRequest": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v1.Blockchain"
+        }
+      },
+      "title": "Get request",
+      "required": [
+        "height",
+        "blockchain"
+      ]
+    },
+    "eproxy.blocks.v1.GetResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/eproxy.blocks.v1.Block"
+        }
+      }
+    },
+    "eproxy.blocks.v1.LastBlockNumberRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v1.Blockchain"
+        }
+      },
+      "title": "LastBlockNumber",
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.blocks.v1.LastBlockNumberResponse": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "eproxy.blocks.v1.MinBlockNumberRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v1.Blockchain"
+        }
+      },
+      "title": "MinBlockNumber",
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.blocks.v1.MinBlockNumberResponse": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "eproxy.blocks.v1.TotalInfoRequest": {
+      "type": "object",
+      "title": "TotalInfo"
+    },
+    "eproxy.blocks.v1.TotalInfoResponse": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/eproxy.blocks.v1.TotalInfoResponse.Item"
+          }
+        }
+      }
+    },
+    "eproxy.blocks.v1.TotalInfoResponse.Item": {
+      "type": "object",
+      "properties": {
+        "min": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "max": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "diff": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "eproxy.blocks.v2.Block": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Current block height"
+        },
+        "hash": {
+          "type": "string",
+          "title": "Current block hash"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Block time"
+        },
+        "prev_hash": {
+          "type": "string",
+          "title": "Previous block hash"
+        }
+      }
+    },
+    "eproxy.blocks.v2.FindRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        },
+        "common": {
+          "$ref": "#/definitions/eproxy.common.v2.FindRequestCommon"
+        },
+        "from_block_height": {
+          "type": "string",
+          "format": "uint64"
+        }
+      },
+      "title": "Find request",
+      "required": [
+        "blockchain",
+        "common"
+      ]
+    },
+    "eproxy.blocks.v2.FindResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.blocks.v2.Block"
+          }
+        },
+        "count": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "eproxy.blocks.v2.GetRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        },
+        "height": {
+          "type": "string",
+          "format": "uint64"
+        }
+      },
+      "title": "Get request",
+      "required": [
+        "blockchain",
+        "height"
+      ]
+    },
+    "eproxy.blocks.v2.GetResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/eproxy.blocks.v2.Block"
+        }
+      }
+    },
+    "eproxy.blocks.v2.LastBlockHeightRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        }
+      },
+      "title": "LastBlockHeight",
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.blocks.v2.LastBlockHeightResponse": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "eproxy.blocks.v2.MinBlockHeightRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        }
+      },
+      "title": "MinBlockHeight",
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.blocks.v2.MinBlockHeightResponse": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "eproxy.blocks.v2.NodeLastBlockHeightRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        }
+      },
+      "title": "NodeLastBlockHeight",
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.blocks.v2.NodeLastBlockHeightResponse": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "eproxy.blocks.v2.SubscribeRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        }
+      },
+      "title": "SubscribeRequest",
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.blocks.v2.SubscribeResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/eproxy.blocks.v2.Block"
+        }
+      }
+    },
+    "eproxy.blocks.v2.TotalInfoRequest": {
+      "type": "object",
+      "title": "TotalInfo"
+    },
+    "eproxy.blocks.v2.TotalInfoResponse": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/eproxy.blocks.v2.TotalInfoResponse.Item"
+          }
+        }
+      }
+    },
+    "eproxy.blocks.v2.TotalInfoResponse.Item": {
+      "type": "object",
+      "properties": {
+        "db_min": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "db_max": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "db_diff": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "node_max": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "node_diff": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "eproxy.btclike.v1.MedianFeePerByteBlockRequest": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string",
+          "format": "int64"
+        },
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v1.Blockchain"
+        }
+      },
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.btclike.v1.MedianFeePerByteBlockResponse": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.btclike.v1.RemovedBlockInfo": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "block_number": {
+          "type": "string",
+          "format": "int64"
+        },
+        "hash": {
+          "type": "string"
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.transactions.v1.Transaction"
+          }
+        }
+      }
+    },
+    "eproxy.btclike.v1.RemovedBlockListRequest": {
+      "type": "object",
+      "properties": {
+        "time_since_incident": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v1.Blockchain"
+        }
+      },
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.btclike.v1.RemovedBlockListResponse": {
+      "type": "object",
+      "properties": {
+        "blocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.btclike.v1.RemovedBlockInfo"
+          }
+        }
+      }
+    },
+    "eproxy.btclike.v1.RemovedBlockRequest": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string",
+          "format": "int64"
+        },
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v1.Blockchain"
+        }
+      },
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.btclike.v1.RemovedBlockResponse": {
+      "type": "object",
+      "properties": {
+        "removed_block_info": {
+          "$ref": "#/definitions/eproxy.btclike.v1.RemovedBlockInfo"
+        }
+      }
+    },
+    "eproxy.btclike.v1.UTXORequest": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v1.Blockchain"
+        }
+      },
+      "required": [
+        "address",
+        "blockchain"
+      ]
+    },
+    "eproxy.btclike.v1.UTXOResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.btclike.v1.UTXOResponse.Item"
+          }
+        }
+      }
+    },
+    "eproxy.btclike.v1.UTXOResponse.Item": {
+      "type": "object",
+      "properties": {
+        "tx_hash": {
+          "type": "string"
+        },
+        "sequence": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "pk_script": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.btclike.v2.MedianFeePerByteBlockRequest": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string",
+          "format": "int64"
+        },
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        }
+      },
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.btclike.v2.MedianFeePerByteBlockResponse": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.btclike.v2.RemovedBlockInfo": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "block_number": {
+          "type": "string",
+          "format": "int64"
+        },
+        "hash": {
+          "type": "string"
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.transactions.v2.Transaction"
+          }
+        }
+      }
+    },
+    "eproxy.btclike.v2.RemovedBlockListRequest": {
+      "type": "object",
+      "properties": {
+        "time_since_incident": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        }
+      },
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.btclike.v2.RemovedBlockListResponse": {
+      "type": "object",
+      "properties": {
+        "blocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.btclike.v2.RemovedBlockInfo"
+          }
+        }
+      }
+    },
+    "eproxy.btclike.v2.RemovedBlockRequest": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string",
+          "format": "int64"
+        },
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        }
+      },
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.btclike.v2.RemovedBlockResponse": {
+      "type": "object",
+      "properties": {
+        "removed_block_info": {
+          "$ref": "#/definitions/eproxy.btclike.v2.RemovedBlockInfo"
+        }
+      }
+    },
+    "eproxy.btclike.v2.UTXORequest": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        }
+      },
+      "required": [
+        "address",
+        "blockchain"
+      ]
+    },
+    "eproxy.btclike.v2.UTXOResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.btclike.v2.UTXOResponse.Item"
+          }
+        }
+      }
+    },
+    "eproxy.btclike.v2.UTXOResponse.Item": {
+      "type": "object",
+      "properties": {
+        "tx_hash": {
+          "type": "string"
+        },
+        "sequence": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "pk_script": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.common.v1.Blockchain": {
+      "type": "string",
+      "enum": [
+        "BLOCKCHAIN_UNSPECIFIED",
+        "BLOCKCHAIN_BITCOIN",
+        "BLOCKCHAIN_TRON",
+        "BLOCKCHAIN_ETHEREUM",
+        "BLOCKCHAIN_LITECOIN",
+        "BLOCKCHAIN_BITCOINCASH",
+        "BLOCKCHAIN_BINANCE_SMART_CHAIN"
+      ],
+      "default": "BLOCKCHAIN_UNSPECIFIED"
+    },
+    "eproxy.common.v1.Pagination": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "page_size": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "eproxy.common.v2.Blockchain": {
+      "type": "string",
+      "enum": [
+        "BLOCKCHAIN_UNSPECIFIED",
+        "BLOCKCHAIN_BITCOIN",
+        "BLOCKCHAIN_TRON",
+        "BLOCKCHAIN_ETHEREUM",
+        "BLOCKCHAIN_LITECOIN",
+        "BLOCKCHAIN_BITCOINCASH",
+        "BLOCKCHAIN_BINANCE_SMART_CHAIN",
+        "BLOCKCHAIN_POLYGON",
+        "BLOCKCHAIN_DOGECOIN",
+        "BLOCKCHAIN_SOLANA",
+        "BLOCKCHAIN_ARBITRUM",
+        "BLOCKCHAIN_OPTIMISM",
+        "BLOCKCHAIN_LINEA",
+        "BLOCKCHAIN_MONERO"
+      ],
+      "default": "BLOCKCHAIN_UNSPECIFIED"
+    },
+    "eproxy.common.v2.FindRequestCommon": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "eproxy.evm.v1.SuggestGasPriceRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v1.Blockchain"
+        }
+      },
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.evm.v1.SuggestGasPriceResponse": {
+      "type": "object",
+      "properties": {
+        "gas_fee_wei": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.evm.v2.SuggestGasPriceRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        }
+      },
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.evm.v2.SuggestGasPriceResponse": {
+      "type": "object",
+      "properties": {
+        "gas_fee_wei": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.system.v2.AppInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.system.v2.BlockchainInfo": {
+      "type": "object",
+      "properties": {
+        "node_last_block_height": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "db_last_block_height": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "db_min_block_height": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "node_diff": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "total_parsed_blocks": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "eproxy.system.v2.DBInfo": {
+      "type": "object",
+      "properties": {
+        "db_current_size": {
+          "type": "number",
+          "format": "double"
+        },
+        "db_items_count": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "uint64"
+          }
+        }
+      }
+    },
+    "eproxy.system.v2.HostInfo": {
+      "type": "object",
+      "properties": {
+        "hostname": {
+          "type": "string"
+        },
+        "uptime": {
+          "type": "string"
+        },
+        "boot_time": {
+          "type": "string"
+        },
+        "procs": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "os": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "platform_family": {
+          "type": "string"
+        },
+        "platform_version": {
+          "type": "string"
+        },
+        "kernel_version": {
+          "type": "string"
+        },
+        "kernel_arch": {
+          "type": "string"
+        },
+        "virtualization_system": {
+          "type": "string"
+        },
+        "virtualization_role": {
+          "type": "string"
+        },
+        "host_id": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.system.v2.InfoRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        }
+      },
+      "required": [
+        "blockchain"
+      ]
+    },
+    "eproxy.system.v2.InfoResponse": {
+      "type": "object",
+      "properties": {
+        "app_info": {
+          "$ref": "#/definitions/eproxy.system.v2.AppInfo"
+        },
+        "blockchain_info": {
+          "$ref": "#/definitions/eproxy.system.v2.BlockchainInfo"
+        },
+        "db_info": {
+          "$ref": "#/definitions/eproxy.system.v2.DBInfo"
+        },
+        "system_info": {
+          "$ref": "#/definitions/eproxy.system.v2.SystemInfo"
+        },
+        "host_info": {
+          "$ref": "#/definitions/eproxy.system.v2.HostInfo"
+        }
+      }
+    },
+    "eproxy.system.v2.SystemInfo": {
+      "type": "object",
+      "properties": {
+        "total_disk_space": {
+          "type": "number",
+          "format": "double"
+        },
+        "free_disk_space": {
+          "type": "number",
+          "format": "double"
+        },
+        "total_memory": {
+          "type": "number",
+          "format": "double"
+        },
+        "free_memory": {
+          "type": "number",
+          "format": "double"
+        },
+        "service_memory_total_used": {
+          "type": "number",
+          "format": "double"
+        },
+        "service_memory_current": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "eproxy.transactions.v1.AdditionalDataFull": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "bitcoin_like_data": {
+          "$ref": "#/definitions/eproxy.transactions.v1.AdditionalDataFull.BitcoinLikeData"
+        },
+        "ethereum_data": {
+          "$ref": "#/definitions/eproxy.transactions.v1.AdditionalDataFull.EthereumData"
+        },
+        "tron_data": {
+          "$ref": "#/definitions/eproxy.transactions.v1.AdditionalDataFull.TronData"
+        }
+      }
+    },
+    "eproxy.transactions.v1.AdditionalDataFull.BitcoinLikeData": {
+      "type": "object",
+      "properties": {
+        "hex": {
+          "type": "string"
+        },
+        "hash": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "v_size": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "weight": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "version": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lock_time": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "is_coinbase": {
+          "type": "boolean"
+        }
+      }
+    },
+    "eproxy.transactions.v1.AdditionalDataFull.EthereumData": {
+      "type": "object",
+      "properties": {
+        "chain_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "txn_type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "gas": {
+          "type": "string",
+          "format": "int64"
+        },
+        "gas_price": {
+          "type": "string",
+          "format": "int64"
+        },
+        "gas_used": {
+          "type": "string",
+          "format": "int64"
+        },
+        "max_fee_per_gas": {
+          "type": "string",
+          "format": "int64"
+        },
+        "max_priority_fee_per_gas": {
+          "type": "string",
+          "format": "int64"
+        },
+        "cumulative_gas_used": {
+          "type": "string",
+          "format": "int64"
+        },
+        "effective_gas_price": {
+          "type": "string",
+          "format": "int64"
+        },
+        "nonce": {
+          "type": "string",
+          "format": "int64"
+        },
+        "v": {
+          "type": "string",
+          "format": "byte"
+        },
+        "r": {
+          "type": "string",
+          "format": "byte"
+        },
+        "s": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "eproxy.transactions.v1.AdditionalDataFull.TronData": {
+      "type": "object",
+      "properties": {
+        "energy_usage": {
+          "type": "string"
+        },
+        "energy_fee": {
+          "type": "string"
+        },
+        "origin_energy_usage": {
+          "type": "string"
+        },
+        "energy_usage_total": {
+          "type": "string"
+        },
+        "net_usage": {
+          "type": "string"
+        },
+        "net_fee": {
+          "type": "string"
+        },
+        "energy_penalty_total": {
+          "type": "string"
+        },
+        "withdraw_amount": {
+          "type": "string"
+        },
+        "unfreeze_amount": {
+          "type": "string"
+        },
+        "withdraw_expire_amount": {
+          "type": "string"
+        },
+        "resource_contract_type": {
+          "type": "string"
+        },
+        "resource_type": {
+          "type": "string"
+        },
+        "resource_value": {
+          "type": "string"
+        },
+        "stacked_trx": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.transactions.v1.AddtitionalData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "tron_data": {
+          "$ref": "#/definitions/eproxy.transactions.v1.AddtitionalData.TronData"
+        }
+      }
+    },
+    "eproxy.transactions.v1.AddtitionalData.TronData": {
+      "type": "object",
+      "properties": {
+        "contract_type": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "asset_type": {
+          "type": "string"
+        }
+      },
+      "title": "Unique key for transaction in blockhain for the same hash, like sequence\nfor bitcoin inputs and outputs"
+    },
+    "eproxy.transactions.v1.Event": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "event type: transfer / delegate / reclaim"
+        },
+        "original_data": {
+          "type": "string",
+          "format": "byte"
+        },
+        "encoded_data": {
+          "type": "string",
+          "format": "byte"
+        },
+        "blockchain_uniq_key": {
+          "type": "string"
+        },
+        "asset_identify": {
+          "type": "string"
+        },
+        "address_from": {
+          "type": "string"
+        },
+        "address_to": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.transactions.v1.FindRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v1.Blockchain"
+        },
+        "pagination": {
+          "$ref": "#/definitions/eproxy.common.v1.Pagination"
+        },
+        "search": {
+          "type": "string"
+        },
+        "hash": {
+          "type": "string"
+        },
+        "block_height": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "address": {
+          "type": "string"
+        },
+        "asset_identify": {
+          "type": "string"
+        },
+        "bitcoin_params": {
+          "$ref": "#/definitions/eproxy.transactions.v1.FindRequest.BitcoinParams"
+        },
+        "tron_params": {
+          "$ref": "#/definitions/eproxy.transactions.v1.FindRequest.TronParams"
+        },
+        "litecoin_params": {
+          "$ref": "#/definitions/eproxy.transactions.v1.FindRequest.LitecoinParams"
+        }
+      },
+      "title": "Find request",
+      "required": [
+        "blockchain",
+        "pagination"
+      ]
+    },
+    "eproxy.transactions.v1.FindRequest.BitcoinParams": {
+      "type": "object",
+      "properties": {
+        "filter_by_address": {
+          "type": "boolean"
+        },
+        "filter_by_mempool": {
+          "type": "boolean"
+        }
+      }
+    },
+    "eproxy.transactions.v1.FindRequest.LitecoinParams": {
+      "type": "object",
+      "properties": {
+        "filter_by_address": {
+          "type": "boolean"
+        },
+        "filter_by_mempool": {
+          "type": "boolean"
+        }
+      }
+    },
+    "eproxy.transactions.v1.FindRequest.TronParams": {
+      "type": "object",
+      "properties": {
+        "contract_type": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "is_internal": {
+          "type": "boolean"
+        },
+        "is_include_detail_info": {
+          "type": "boolean"
+        }
+      }
+    },
+    "eproxy.transactions.v1.FindResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.transactions.v1.Transaction"
+          }
+        },
+        "next_page_exists": {
+          "type": "boolean"
+        }
+      }
+    },
+    "eproxy.transactions.v1.GetInfoRequest": {
+      "type": "object",
+      "properties": {
+        "hash": {
+          "type": "string"
+        },
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v1.Blockchain"
+        }
+      },
+      "required": [
+        "hash",
+        "blockchain"
+      ]
+    },
+    "eproxy.transactions.v1.GetInfoResponse": {
+      "type": "object",
+      "properties": {
+        "transaction_info": {
+          "$ref": "#/definitions/eproxy.transactions.v1.TransactionInfo"
+        }
+      }
+    },
+    "eproxy.transactions.v1.Transaction": {
+      "type": "object",
+      "properties": {
+        "hash": {
+          "type": "string"
+        },
+        "block_height": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "confirmations": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "address_from": {
+          "type": "string"
+        },
+        "address_to": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "fee": {
+          "type": "string"
+        },
+        "asset_identify": {
+          "type": "string"
+        },
+        "index": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "additional_data": {
+          "$ref": "#/definitions/eproxy.transactions.v1.AddtitionalData"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.transactions.v1.Event"
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "in_mempool": {
+          "type": "boolean"
+        }
+      }
+    },
+    "eproxy.transactions.v1.TransactionInfo": {
+      "type": "object",
+      "properties": {
+        "hash": {
+          "type": "string"
+        },
+        "block_height": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "confirmations": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "address_from": {
+          "type": "string"
+        },
+        "address_to": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "fee": {
+          "type": "string"
+        },
+        "asset_identify": {
+          "type": "string"
+        },
+        "index": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "additional_data_full": {
+          "$ref": "#/definitions/eproxy.transactions.v1.AdditionalDataFull"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.transactions.v1.Event"
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "in_mempool": {
+          "type": "boolean"
+        }
+      }
+    },
+    "eproxy.transactions.v2.AdditionalData": {
+      "type": "object",
+      "properties": {
+        "tron": {
+          "$ref": "#/definitions/eproxy.transactions.v2.TronAdditionalDataFull"
+        },
+        "evm": {
+          "$ref": "#/definitions/eproxy.transactions.v2.EVMAdditionalDataFull"
+        },
+        "btclike": {
+          "$ref": "#/definitions/eproxy.transactions.v2.BitcoinLikeAdditionalDataFull"
+        },
+        "monero": {
+          "$ref": "#/definitions/eproxy.transactions.v2.MoneroAdditionalDataFull"
+        }
+      }
+    },
+    "eproxy.transactions.v2.BitcoinLikeAdditionalDataFull": {
+      "type": "object",
+      "properties": {
+        "hex": {
+          "type": "string"
+        },
+        "hash": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "v_size": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "weight": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "version": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lock_time": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "is_coinbase": {
+          "type": "boolean"
+        }
+      }
+    },
+    "eproxy.transactions.v2.Bpp": {
+      "type": "object",
+      "properties": {
+        "a": {
+          "type": "string"
+        },
+        "a1": {
+          "type": "string"
+        },
+        "b": {
+          "type": "string"
+        },
+        "r1": {
+          "type": "string"
+        },
+        "s1": {
+          "type": "string"
+        },
+        "d1": {
+          "type": "string"
+        },
+        "l": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "r": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "eproxy.transactions.v2.CLSAGs": {
+      "type": "object",
+      "properties": {
+        "s": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "c1": {
+          "type": "string"
+        },
+        "d": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.transactions.v2.Coinbase": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "eproxy.transactions.v2.EVMAdditionalDataFull": {
+      "type": "object",
+      "properties": {
+        "chain_id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "txn_type": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "gas": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "gas_price": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "gas_used": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "max_fee_per_gas": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "max_priority_fee_per_gas": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "cumulative_gas_used": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "effective_gas_price": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "nonce": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "v": {
+          "type": "string",
+          "format": "byte"
+        },
+        "r": {
+          "type": "string",
+          "format": "byte"
+        },
+        "s": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "eproxy.transactions.v2.EcdhInfo": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.transactions.v2.Error": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.transactions.v2.Event": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/eproxy.transactions.v2.EventType"
+        },
+        "original_data": {
+          "type": "string"
+        },
+        "topics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "encoded_data": {
+          "type": "string",
+          "format": "byte"
+        },
+        "blockchain_uniq_key": {
+          "type": "string"
+        },
+        "asset_identifier": {
+          "type": "string"
+        },
+        "address_from": {
+          "type": "string"
+        },
+        "address_to": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.transactions.v2.EventType": {
+      "type": "string",
+      "enum": [
+        "EVENT_TYPE_UNSPECIFIED",
+        "EVENT_TYPE_TRANSFER"
+      ],
+      "default": "EVENT_TYPE_UNSPECIFIED"
+    },
+    "eproxy.transactions.v2.FindRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        },
+        "common": {
+          "$ref": "#/definitions/eproxy.common.v2.FindRequestCommon"
+        },
+        "search": {
+          "type": "string"
+        },
+        "hash": {
+          "type": "string"
+        },
+        "block_height": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "block_height_offset": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "address": {
+          "type": "string"
+        },
+        "contract_address": {
+          "type": "string"
+        },
+        "contract_type": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "is_include_additional_data": {
+          "type": "boolean"
+        },
+        "tron_params": {
+          "$ref": "#/definitions/eproxy.transactions.v2.FindRequest.TronParams"
+        },
+        "evm_params": {
+          "$ref": "#/definitions/eproxy.transactions.v2.FindRequest.EVMParams"
+        },
+        "bitcoin_like_params": {
+          "$ref": "#/definitions/eproxy.transactions.v2.FindRequest.BitcoinLikeParams"
+        }
+      },
+      "title": "Find request",
+      "required": [
+        "blockchain",
+        "common"
+      ]
+    },
+    "eproxy.transactions.v2.FindRequest.BitcoinLikeParams": {
+      "type": "object",
+      "properties": {
+        "filter_by_address": {
+          "type": "boolean"
+        },
+        "filter_by_mempool": {
+          "type": "boolean"
+        }
+      }
+    },
+    "eproxy.transactions.v2.FindRequest.EVMParams": {
+      "type": "object"
+    },
+    "eproxy.transactions.v2.FindRequest.TronParams": {
+      "type": "object"
+    },
+    "eproxy.transactions.v2.FindResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.transactions.v2.Transaction"
+          }
+        },
+        "next_page_exists": {
+          "type": "boolean"
+        }
+      }
+    },
+    "eproxy.transactions.v2.GetInfoRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        },
+        "hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "blockchain",
+        "hash"
+      ]
+    },
+    "eproxy.transactions.v2.GetInfoResponse": {
+      "type": "object",
+      "properties": {
+        "transaction": {
+          "$ref": "#/definitions/eproxy.transactions.v2.Transaction"
+        }
+      }
+    },
+    "eproxy.transactions.v2.Key": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "format": "int64"
+        },
+        "key_offsets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "k_image": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.transactions.v2.MoneroAdditionalDataFull": {
+      "type": "object",
+      "properties": {
+        "as_hex": {
+          "type": "string"
+        },
+        "block_timestamp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "double_spend_seen": {
+          "type": "boolean"
+        },
+        "output_indices": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "prunable_as_hex": {
+          "type": "string"
+        },
+        "prunable_hash": {
+          "type": "string"
+        },
+        "pruned_as_hex": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/eproxy.transactions.v2.XmrMetadata"
+        }
+      }
+    },
+    "eproxy.transactions.v2.Prunable": {
+      "type": "object",
+      "properties": {
+        "nbp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "bpp": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.transactions.v2.Bpp"
+          }
+        },
+        "clsags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.transactions.v2.CLSAGs"
+          }
+        },
+        "pseudo_outs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "eproxy.transactions.v2.RctSignatures": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "format": "int64"
+        },
+        "txn_fee": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "ecdh_info": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.transactions.v2.EcdhInfo"
+          }
+        },
+        "out_pk": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "eproxy.transactions.v2.SuggestTxFeeRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        },
+        "identifier": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "blockchain",
+        "identifier"
+      ]
+    },
+    "eproxy.transactions.v2.SuggestTxFeeResponse": {
+      "type": "object",
+      "properties": {
+        "fee": {
+          "type": "string"
+        },
+        "tron_data": {
+          "$ref": "#/definitions/eproxy.transactions.v2.SuggestTxFeeResponse.TronFeeData"
+        },
+        "evm_data": {
+          "$ref": "#/definitions/eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData"
+        },
+        "bitcoin_like_data": {
+          "$ref": "#/definitions/eproxy.transactions.v2.SuggestTxFeeResponse.BitcoinLikeFeeData"
+        }
+      }
+    },
+    "eproxy.transactions.v2.SuggestTxFeeResponse.BitcoinLikeFeeData": {
+      "type": "object",
+      "properties": {
+        "fee_rate": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Fee rate in satoshis per byte"
+        },
+        "estimated_size": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Estimated transaction size in bytes"
+        },
+        "priority": {
+          "type": "string",
+          "title": "Priority level: \"low\", \"medium\", \"high\""
+        },
+        "utxo_count": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Number of UTXOs used (affects size calculation)"
+        }
+      }
+    },
+    "eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData": {
+      "type": "object",
+      "title": "EVM-specific fee data fields - empty for now"
+    },
+    "eproxy.transactions.v2.SuggestTxFeeResponse.TronFeeData": {
+      "type": "object",
+      "properties": {
+        "energy_usage": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Energy consumption for the transaction",
+          "title": "TRC20 token transaction costs"
+        },
+        "bandwidth_usage": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Bandwidth consumption for the transaction"
+        },
+        "burn_trx_fee": {
+          "type": "string",
+          "title": "TRX burned as fee (in TRX)"
+        }
+      }
+    },
+    "eproxy.transactions.v2.Target": {
+      "type": "object",
+      "properties": {
+        "tagged_key": {
+          "$ref": "#/definitions/eproxy.transactions.v2.TargetKey"
+        }
+      }
+    },
+    "eproxy.transactions.v2.TargetKey": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "view_tag": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.transactions.v2.Transaction": {
+      "type": "object",
+      "properties": {
+        "hash": {
+          "type": "string"
+        },
+        "block_height": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "confirmations": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "address_from": {
+          "type": "string"
+        },
+        "address_to": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "fee": {
+          "type": "string"
+        },
+        "asset_identifier": {
+          "type": "string"
+        },
+        "index": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "in_mempool": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string"
+        },
+        "error": {
+          "$ref": "#/definitions/eproxy.transactions.v2.Error"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.transactions.v2.Event"
+          }
+        },
+        "additional_data": {
+          "$ref": "#/definitions/eproxy.transactions.v2.AdditionalData"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "eproxy.transactions.v2.TronAdditionalDataFull": {
+      "type": "object",
+      "properties": {
+        "contract_type": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "asset_kind": {
+          "type": "string"
+        },
+        "energy_usage": {
+          "type": "string"
+        },
+        "energy_fee": {
+          "type": "string"
+        },
+        "origin_energy_usage": {
+          "type": "string"
+        },
+        "energy_usage_total": {
+          "type": "string"
+        },
+        "net_usage": {
+          "type": "string"
+        },
+        "net_fee": {
+          "type": "string"
+        },
+        "energy_penalty_total": {
+          "type": "string"
+        },
+        "withdraw_amount": {
+          "type": "string"
+        },
+        "unfreeze_amount": {
+          "type": "string"
+        },
+        "withdraw_expire_amount": {
+          "type": "string"
+        },
+        "resource_contract_type": {
+          "type": "string"
+        },
+        "resource_type": {
+          "type": "string"
+        },
+        "resource_value": {
+          "type": "string"
+        },
+        "stacked_trx": {
+          "type": "string"
+        }
+      }
+    },
+    "eproxy.transactions.v2.Vin": {
+      "type": "object",
+      "properties": {
+        "gen": {
+          "$ref": "#/definitions/eproxy.transactions.v2.Coinbase"
+        },
+        "key": {
+          "$ref": "#/definitions/eproxy.transactions.v2.Key"
+        }
+      }
+    },
+    "eproxy.transactions.v2.Vout": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "format": "int64"
+        },
+        "target": {
+          "$ref": "#/definitions/eproxy.transactions.v2.Target"
+        }
+      }
+    },
+    "eproxy.transactions.v2.XmrMetadata": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "format": "int64"
+        },
+        "unlock_time": {
+          "type": "string",
+          "format": "int64"
+        },
+        "vin": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.transactions.v2.Vin"
+          }
+        },
+        "vout": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.transactions.v2.Vout"
+          }
+        },
+        "extra": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "rct_signatures": {
+          "$ref": "#/definitions/eproxy.transactions.v2.RctSignatures"
+        },
+        "rctsig_prunable": {
+          "$ref": "#/definitions/eproxy.transactions.v2.Prunable"
+        }
+      }
+    },
+    "eproxy.tron.v1.GetResourcesRequest": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "address"
+      ]
+    },
+    "eproxy.tron.v1.GetResourcesResponse": {
+      "type": "object",
+      "properties": {
+        "free_net_used": {
+          "type": "string",
+          "format": "int64"
+        },
+        "free_net_limit": {
+          "type": "string",
+          "format": "int64"
+        },
+        "net_used": {
+          "type": "string",
+          "format": "int64"
+        },
+        "net_limit": {
+          "type": "string",
+          "format": "int64"
+        },
+        "asset_net_used": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "asset_net_limit": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "total_net_limit": {
+          "type": "string",
+          "format": "int64"
+        },
+        "total_net_weight": {
+          "type": "string",
+          "format": "int64"
+        },
+        "total_tron_power_weight": {
+          "type": "string",
+          "format": "int64"
+        },
+        "tron_power_used": {
+          "type": "string",
+          "format": "int64"
+        },
+        "tron_power_limit": {
+          "type": "string",
+          "format": "int64"
+        },
+        "energy_used": {
+          "type": "string",
+          "format": "int64"
+        },
+        "energy_limit": {
+          "type": "string",
+          "format": "int64"
+        },
+        "total_energy_limit": {
+          "type": "string",
+          "format": "int64"
+        },
+        "total_energy_weight": {
+          "type": "string",
+          "format": "int64"
+        },
+        "storage_used": {
+          "type": "string",
+          "format": "int64"
+        },
+        "storage_limit": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    }
+  }
+}

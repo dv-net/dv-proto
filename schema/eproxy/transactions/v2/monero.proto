@@ -1,0 +1,88 @@
+syntax = "proto3";
+package eproxy.transactions.v2;
+
+message MoneroAdditionalDataFull {
+    string as_hex = 1;
+    int64 block_timestamp = 3;
+    bool double_spend_seen = 5;
+    repeated int64 output_indices = 7;
+    string prunable_as_hex = 8;
+    string prunable_hash = 9;
+    string pruned_as_hex = 10;
+    XmrMetadata data = 12;
+}
+
+message RctSignatures {
+    int64    type = 1;
+    uint64   txn_fee = 2;
+    repeated EcdhInfo ecdh_info  = 3;
+    repeated string out_pk = 4;
+}
+
+message EcdhInfo {
+    string amount = 1;
+}
+
+message Prunable {
+    int64 nbp = 1;
+    repeated Bpp    bpp = 2;
+    repeated CLSAGs clsags = 3;
+    repeated string pseudo_outs = 4;
+}
+
+message Bpp {
+    string   a  = 1;
+    string   a1 = 2;
+    string   b  = 3;
+    string   r1 = 4;
+    string   s1 = 5;
+    string   d1 = 6;
+    repeated string l = 7;
+    repeated string r = 8;
+}
+
+message CLSAGs {
+    repeated string s = 1;
+    string   c1 = 2;
+    string   d  = 3;
+}
+
+message Key {
+    int64          amount = 1;
+    repeated int64 key_offsets = 2;
+    string k_image = 3;
+}
+
+message TargetKey {
+    string key = 1;
+    string view_tag = 2;
+}
+
+message Target {
+    TargetKey tagged_key = 1;
+}
+
+message Vout {
+    int64  amount = 1;
+    Target target = 2;
+}
+
+message Vin {
+    optional Coinbase gen = 1;
+    optional Key      key = 2;
+}
+
+message Coinbase {
+    int64  height = 1;
+}
+
+message XmrMetadata {
+    int64           version = 1;
+    int64           unlock_time = 2;
+    repeated Vin    vin = 3;
+    repeated Vout   vout = 4;
+    repeated int64  extra = 5;
+    RctSignatures   rct_signatures = 6;
+    Prunable        rctsig_prunable = 7;
+}
+

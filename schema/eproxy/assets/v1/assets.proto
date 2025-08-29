@@ -1,0 +1,26 @@
+syntax = "proto3";
+package eproxy.assets.v1;
+
+// Deprecated: Use v2 instead
+option deprecated = true;
+
+
+import "google/api/field_behavior.proto";
+import "eproxy/common/v1/common.proto";
+
+// AssetService work with asset information
+service AssetsService {
+  // AssetInfo returns asset information
+  rpc AssetInfo(AssetInfoRequest) returns (AssetInfoResponse);
+}
+
+message AssetInfoRequest {
+  eproxy.common.v1.Blockchain blockchain = 1 [(google.api.field_behavior) = REQUIRED];
+  string asset_identifier = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message AssetInfoResponse {
+  string name = 1;
+  string symbol = 2;
+  optional uint32 decimals = 3;
+}

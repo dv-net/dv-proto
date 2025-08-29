@@ -1,0 +1,24 @@
+syntax = "proto3";
+package eproxy.common.v2;
+
+enum Blockchain {
+  BLOCKCHAIN_UNSPECIFIED = 0;
+  BLOCKCHAIN_BITCOIN = 1;
+  BLOCKCHAIN_TRON = 2;
+  BLOCKCHAIN_ETHEREUM = 3;
+  BLOCKCHAIN_LITECOIN = 4;
+  BLOCKCHAIN_BITCOINCASH = 5;
+  BLOCKCHAIN_BINANCE_SMART_CHAIN = 6;
+  BLOCKCHAIN_POLYGON = 7;
+  BLOCKCHAIN_DOGECOIN = 8;
+  BLOCKCHAIN_SOLANA = 9;
+  BLOCKCHAIN_ARBITRUM = 10;
+  BLOCKCHAIN_OPTIMISM = 11;
+  BLOCKCHAIN_LINEA = 12;
+  BLOCKCHAIN_MONERO = 13;
+}
+
+message FindRequestCommon {
+  optional uint32 page = 1;
+  optional uint32 page_size = 2;
+}

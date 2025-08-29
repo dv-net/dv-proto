@@ -1,0 +1,104 @@
+syntax = "proto3";
+package eproxy.blocks.v2;
+
+import "google/protobuf/timestamp.proto";
+import "google/api/field_behavior.proto";
+import "eproxy/common/v2/common.proto";
+
+// BlocksService returns block info and transactions inside block
+service BlocksService {
+  // Get returns block info by height and blockchain
+  rpc Get(GetRequest) returns (GetResponse);
+  // Find returns block info by height and blockchain
+  rpc Find(FindRequest) returns (FindResponse);
+  // NodeLastBlockHeight returns last block number from database
+  rpc NodeLastBlockHeight(NodeLastBlockHeightRequest)
+      returns (NodeLastBlockHeightResponse);
+  // LastBlockHeight returns last block number from database
+  rpc LastBlockHeight(LastBlockHeightRequest) returns (LastBlockHeightResponse);
+  // MinBlockHeight returns min block number from database
+  rpc MinBlockHeight(MinBlockHeightRequest) returns (MinBlockHeightResponse);
+  // Subscribe returns stream of the newest blocks in blockchain
+  rpc Subscribe(SubscribeRequest) returns (stream SubscribeResponse);
+  // TotalInfo returns total info about blocks in blockchains
+  rpc TotalInfo(TotalInfoRequest) returns (TotalInfoResponse);
+}
+
+message Block {
+  // Current block height
+  uint64 height = 1;
+  // Current block hash
+  string hash = 2;
+  // Block time
+  google.protobuf.Timestamp created_at = 3;
+  // Previous block hash
+  string prev_hash = 4;
+}
+
+// Get request
+message GetRequest {
+  eproxy.common.v2.Blockchain blockchain = 1
+      [ (google.api.field_behavior) = REQUIRED ];
+  uint64 height = 2 [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message GetResponse { Block item = 1; }
+
+// Find request
+message FindRequest {
+  eproxy.common.v2.Blockchain blockchain = 1
+      [ (google.api.field_behavior) = REQUIRED ];
+  eproxy.common.v2.FindRequestCommon common = 2
+      [ (google.api.field_behavior) = REQUIRED ];
+  optional uint64 from_block_height = 3;
+}
+
+message FindResponse {
+  repeated Block items = 1;
+  uint64 count = 2;
+}
+
+// NodeLastBlockHeight
+message NodeLastBlockHeightRequest {
+  eproxy.common.v2.Blockchain blockchain = 1
+      [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message NodeLastBlockHeightResponse { uint64 height = 1; }
+
+// LastBlockHeight
+message LastBlockHeightRequest {
+  eproxy.common.v2.Blockchain blockchain = 1
+      [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message LastBlockHeightResponse { uint64 height = 1; }
+
+// MinBlockHeight
+message MinBlockHeightRequest {
+  eproxy.common.v2.Blockchain blockchain = 1
+      [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message MinBlockHeightResponse { uint64 height = 1; }
+
+// SubscribeRequest
+message SubscribeRequest {
+  eproxy.common.v2.Blockchain blockchain = 1
+      [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message SubscribeResponse { Block item = 1; }
+
+// TotalInfo
+message TotalInfoRequest {}
+message TotalInfoResponse {
+  message Item {
+    uint64 db_min = 1;
+    uint64 db_max = 2;
+    uint64 db_diff = 3;
+    uint64 node_max = 4;
+    uint64 node_diff = 5;
+  }
+  map<string, Item> info = 1;
+}

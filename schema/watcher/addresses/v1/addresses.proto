@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package watcher.addresses.v1;
+
+import "eproxy/common/v2/common.proto";
+
+option go_package = "api/subscriber/addresses/v1";
+
+// Service which interacts with addresses
+service AddressesService {
+  // Update client addresses watch list
+  rpc UpdateWatchList(UpdateWatchListRequest) returns (UpdateWatchListResponse);
+  // Append new addresses to watch list without replace
+  rpc AppendAddressesToWatchList(AppendAddressesToWatchListRequest) returns (AppendAddressesToWatchListResponse);
+}
+
+message UpdateWatchListRequest {
+  repeated Address addresses = 1;
+}
+
+message Address {
+  string value = 1;
+  eproxy.common.v2.Blockchain blockchain = 2;
+}
+
+message UpdateWatchListResponse {
+  repeated Address addresses = 3;
+}
+
+message AppendAddressesToWatchListRequest {
+  repeated Address addresses = 1;
+}
+
+message AppendAddressesToWatchListResponse {
+  repeated Address addresses = 1;
+}

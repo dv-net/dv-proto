@@ -1,0 +1,89 @@
+syntax = "proto3";
+package eproxy.transactions.v2;
+
+import "google/api/field_behavior.proto";
+import "eproxy/common/v2/common.proto";
+import "eproxy/transactions/v2/transaction.proto";
+
+// TransactionsService returns information about transactions by hash and
+// address
+service TransactionsService {
+  // Find returns information about transactions list by hash, address, block
+  // height and contract address
+  rpc Find(FindRequest) returns (FindResponse);
+  // GetInfo returns mixed data about TX by hash.
+  rpc GetInfo(GetInfoRequest) returns (GetInfoResponse);
+  // SuggestTxFee returns suggested transaction fee for a specific blockchain and identifier.
+  rpc SuggestTxFee(SuggestTxFeeRequest) returns (SuggestTxFeeResponse);
+}
+
+message GetInfoRequest {
+  eproxy.common.v2.Blockchain blockchain = 1
+      [ (google.api.field_behavior) = REQUIRED ];
+  string hash = 2 [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message GetInfoResponse { Transaction transaction = 1; }
+
+// Find request
+message FindRequest {
+  eproxy.common.v2.Blockchain blockchain = 1
+      [ (google.api.field_behavior) = REQUIRED ];
+  eproxy.common.v2.FindRequestCommon common = 2
+      [ (google.api.field_behavior) = REQUIRED ];
+  optional string search = 3;
+  optional string hash = 4;
+  optional uint64 block_height = 5;
+  optional uint64 block_height_offset = 6;
+  optional string address = 7;
+  optional string contract_address = 8;
+  optional uint32 contract_type = 9;
+  bool is_include_additional_data = 10;
+  message TronParams {}
+  optional TronParams tron_params = 11;
+  message EVMParams {}
+  optional EVMParams evm_params = 12;
+  message BitcoinLikeParams {
+    optional bool filter_by_address = 1;
+    optional bool filter_by_mempool = 2;
+  }
+  optional BitcoinLikeParams bitcoin_like_params = 13;
+}
+
+message FindResponse {
+  repeated Transaction items = 1;
+  bool next_page_exists = 2;
+}
+
+message SuggestTxFeeRequest {
+    eproxy.common.v2.Blockchain blockchain = 1 [ (google.api.field_behavior) = REQUIRED ];
+    string identifier = 2 [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message SuggestTxFeeResponse {
+    string fee = 1;
+    // Additional blockchain-specific data
+    oneof additional_data {
+        TronFeeData tron_data = 2;
+        EVMFeeData evm_data = 3;
+        BitcoinLikeFeeData bitcoin_like_data = 4;
+    }
+    
+    message TronFeeData {
+        // TRC20 token transaction costs
+        uint64 energy_usage = 1;        // Energy consumption for the transaction
+        uint64 bandwidth_usage = 2;     // Bandwidth consumption for the transaction
+        string burn_trx_fee = 3;        // TRX burned as fee (in TRX)
+    }
+    
+    message EVMFeeData {
+        // EVM-specific fee data fields - empty for now
+    }
+    
+    message BitcoinLikeFeeData {
+        uint64 fee_rate = 1;            // Fee rate in satoshis per byte
+        uint32 estimated_size = 2;      // Estimated transaction size in bytes
+        string priority = 3;            // Priority level: "low", "medium", "high"
+        uint32 utxo_count = 4;          // Number of UTXOs used (affects size calculation)
+    }
+}

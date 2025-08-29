@@ -1,0 +1,67 @@
+syntax = "proto3";
+package eproxy.blocks.v1;
+
+// Deprecated: Use v2 instead
+option deprecated = true;
+
+
+import "google/protobuf/timestamp.proto";
+import "google/api/field_behavior.proto";
+import "eproxy/common/v1/common.proto";
+
+// BlocksService returns block info and transactions inside block 
+service BlocksService {
+  // Get returns block info by height and blockchain
+  rpc Get(GetRequest) returns (GetResponse);
+  // LastBlockNumber returns last block number in blockchain
+  rpc LastBlockNumber(LastBlockNumberRequest) returns (LastBlockNumberResponse);
+  // MinBlockNumber returns min block number in blockchain
+  rpc MinBlockNumber(MinBlockNumberRequest) returns (MinBlockNumberResponse);
+  rpc TotalInfo(TotalInfoRequest) returns (TotalInfoResponse);
+}
+
+message Block {
+  uint64 height = 1;
+  string hash = 2;
+  google.protobuf.Timestamp created_at = 3;
+}
+
+
+// Get request
+message GetRequest {
+  uint64 height = 1 [(google.api.field_behavior) = REQUIRED];
+  eproxy.common.v1.Blockchain blockchain = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetResponse {
+  Block item = 1;
+}
+
+// LastBlockNumber
+message LastBlockNumberRequest {
+  eproxy.common.v1.Blockchain blockchain = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message LastBlockNumberResponse {
+  uint64 height = 1;
+}
+
+// MinBlockNumber
+message MinBlockNumberRequest {
+  eproxy.common.v1.Blockchain blockchain = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message MinBlockNumberResponse {
+  uint64 height = 1;
+}
+
+// TotalInfo
+message TotalInfoRequest {}
+message TotalInfoResponse {
+  message Item {
+    uint64 min =1;
+    uint64 max =2;
+    uint64 diff =3;
+  }
+  map<string,Item> info = 1;
+}
