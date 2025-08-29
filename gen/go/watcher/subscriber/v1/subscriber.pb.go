@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        (unknown)
-// watcher/subscriber/v1/subscriber.proto is a deprecated file.
+// source: watcher/subscriber/v1/subscriber.proto
 
 package subscriberv1
 
@@ -23,11 +23,9 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Deprecated: The entire proto file watcher/subscriber/v1/subscriber.proto is marked as deprecated.
 type SubscribeMempoolRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Deprecated: The entire proto file watcher/subscriber/v1/subscriber.proto is marked as deprecated.
-	Blockchain    v2.Blockchain `protobuf:"varint,1,opt,name=blockchain,proto3,enum=eproxy.common.v2.Blockchain" json:"blockchain,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Blockchain    v2.Blockchain          `protobuf:"varint,1,opt,name=blockchain,proto3,enum=eproxy.common.v2.Blockchain" json:"blockchain,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -62,7 +60,6 @@ func (*SubscribeMempoolRequest) Descriptor() ([]byte, []int) {
 	return file_watcher_subscriber_v1_subscriber_proto_rawDescGZIP(), []int{0}
 }
 
-// Deprecated: The entire proto file watcher/subscriber/v1/subscriber.proto is marked as deprecated.
 func (x *SubscribeMempoolRequest) GetBlockchain() v2.Blockchain {
 	if x != nil {
 		return x.Blockchain
@@ -70,7 +67,6 @@ func (x *SubscribeMempoolRequest) GetBlockchain() v2.Blockchain {
 	return v2.Blockchain(0)
 }
 
-// Deprecated: The entire proto file watcher/subscriber/v1/subscriber.proto is marked as deprecated.
 type SubscribeMempoolResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Types that are valid to be assigned to Msg:
@@ -119,7 +115,6 @@ func (x *SubscribeMempoolResponse) GetMsg() isSubscribeMempoolResponse_Msg {
 	return nil
 }
 
-// Deprecated: The entire proto file watcher/subscriber/v1/subscriber.proto is marked as deprecated.
 func (x *SubscribeMempoolResponse) GetTransaction() *v21.Transaction {
 	if x != nil {
 		if x, ok := x.Msg.(*SubscribeMempoolResponse_Transaction); ok {
@@ -129,7 +124,6 @@ func (x *SubscribeMempoolResponse) GetTransaction() *v21.Transaction {
 	return nil
 }
 
-// Deprecated: The entire proto file watcher/subscriber/v1/subscriber.proto is marked as deprecated.
 func (x *SubscribeMempoolResponse) GetPing() string {
 	if x != nil {
 		if x, ok := x.Msg.(*SubscribeMempoolResponse_Ping); ok {
@@ -144,12 +138,10 @@ type isSubscribeMempoolResponse_Msg interface {
 }
 
 type SubscribeMempoolResponse_Transaction struct {
-	// Deprecated: The entire proto file watcher/subscriber/v1/subscriber.proto is marked as deprecated.
 	Transaction *v21.Transaction `protobuf:"bytes,1,opt,name=transaction,proto3,oneof"`
 }
 
 type SubscribeMempoolResponse_Ping struct {
-	// Deprecated: The entire proto file watcher/subscriber/v1/subscriber.proto is marked as deprecated.
 	Ping string `protobuf:"bytes,2,opt,name=ping,proto3,oneof"`
 }
 
@@ -171,8 +163,8 @@ const file_watcher_subscriber_v1_subscriber_proto_rawDesc = "" +
 	"\x04ping\x18\x02 \x01(\tH\x00R\x04pingB\x05\n" +
 	"\x03msg2\x8a\x01\n" +
 	"\x11SubscriberService\x12u\n" +
-	"\x10SubscribeMempool\x12..watcher.subscriber.v1.SubscribeMempoolRequest\x1a/.watcher.subscriber.v1.SubscribeMempoolResponse0\x01B\xeb\x01\n" +
-	"\x19com.watcher.subscriber.v1B\x0fSubscriberProtoP\x01ZDgithub.com/dv-net/dv-proto/gen/go/watcher/subscriber/v1;subscriberv1\xb8\x01\x01\xa2\x02\x03WSX\xaa\x02\x15Watcher.Subscriber.V1\xca\x02\x15Watcher\\Subscriber\\V1\xe2\x02!Watcher\\Subscriber\\V1\\GPBMetadata\xea\x02\x17Watcher::Subscriber::V1b\x06proto3"
+	"\x10SubscribeMempool\x12..watcher.subscriber.v1.SubscribeMempoolRequest\x1a/.watcher.subscriber.v1.SubscribeMempoolResponse0\x01B\xe8\x01\n" +
+	"\x19com.watcher.subscriber.v1B\x0fSubscriberProtoP\x01ZDgithub.com/dv-net/dv-proto/gen/go/watcher/subscriber/v1;subscriberv1\xa2\x02\x03WSX\xaa\x02\x15Watcher.Subscriber.V1\xca\x02\x15Watcher\\Subscriber\\V1\xe2\x02!Watcher\\Subscriber\\V1\\GPBMetadata\xea\x02\x17Watcher::Subscriber::V1b\x06proto3"
 
 var (
 	file_watcher_subscriber_v1_subscriber_proto_rawDescOnce sync.Once

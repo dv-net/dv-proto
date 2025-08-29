@@ -12,14 +12,12 @@ import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file watcher/subscriber/v1/subscriber.proto.
- * @deprecated
  */
 export const file_watcher_subscriber_v1_subscriber: GenFile = /*@__PURE__*/
-  fileDesc("CiZ3YXRjaGVyL3N1YnNjcmliZXIvdjEvc3Vic2NyaWJlci5wcm90bxIVd2F0Y2hlci5zdWJzY3JpYmVyLnYxIksKF1N1YnNjcmliZU1lbXBvb2xSZXF1ZXN0EjAKCmJsb2NrY2hhaW4YASABKA4yHC5lcHJveHkuY29tbW9uLnYyLkJsb2NrY2hhaW4ibQoYU3Vic2NyaWJlTWVtcG9vbFJlc3BvbnNlEjoKC3RyYW5zYWN0aW9uGAEgASgLMiMuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5UcmFuc2FjdGlvbkgAEg4KBHBpbmcYAiABKAlIAEIFCgNtc2cyigEKEVN1YnNjcmliZXJTZXJ2aWNlEnUKEFN1YnNjcmliZU1lbXBvb2wSLi53YXRjaGVyLnN1YnNjcmliZXIudjEuU3Vic2NyaWJlTWVtcG9vbFJlcXVlc3QaLy53YXRjaGVyLnN1YnNjcmliZXIudjEuU3Vic2NyaWJlTWVtcG9vbFJlc3BvbnNlMAFC6wEKGWNvbS53YXRjaGVyLnN1YnNjcmliZXIudjFCD1N1YnNjcmliZXJQcm90b1ABWkRnaXRodWIuY29tL2R2LW5ldC9kdi1wcm90by9nZW4vZ28vd2F0Y2hlci9zdWJzY3JpYmVyL3YxO3N1YnNjcmliZXJ2MbgBAaICA1dTWKoCFVdhdGNoZXIuU3Vic2NyaWJlci5WMcoCFVdhdGNoZXJcU3Vic2NyaWJlclxWMeICIVdhdGNoZXJcU3Vic2NyaWJlclxWMVxHUEJNZXRhZGF0YeoCF1dhdGNoZXI6OlN1YnNjcmliZXI6OlYxYgZwcm90bzM", [file_eproxy_transactions_v2_transaction, file_eproxy_common_v2_common]);
+  fileDesc("CiZ3YXRjaGVyL3N1YnNjcmliZXIvdjEvc3Vic2NyaWJlci5wcm90bxIVd2F0Y2hlci5zdWJzY3JpYmVyLnYxIksKF1N1YnNjcmliZU1lbXBvb2xSZXF1ZXN0EjAKCmJsb2NrY2hhaW4YASABKA4yHC5lcHJveHkuY29tbW9uLnYyLkJsb2NrY2hhaW4ibQoYU3Vic2NyaWJlTWVtcG9vbFJlc3BvbnNlEjoKC3RyYW5zYWN0aW9uGAEgASgLMiMuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5UcmFuc2FjdGlvbkgAEg4KBHBpbmcYAiABKAlIAEIFCgNtc2cyigEKEVN1YnNjcmliZXJTZXJ2aWNlEnUKEFN1YnNjcmliZU1lbXBvb2wSLi53YXRjaGVyLnN1YnNjcmliZXIudjEuU3Vic2NyaWJlTWVtcG9vbFJlcXVlc3QaLy53YXRjaGVyLnN1YnNjcmliZXIudjEuU3Vic2NyaWJlTWVtcG9vbFJlc3BvbnNlMAFC6AEKGWNvbS53YXRjaGVyLnN1YnNjcmliZXIudjFCD1N1YnNjcmliZXJQcm90b1ABWkRnaXRodWIuY29tL2R2LW5ldC9kdi1wcm90by9nZW4vZ28vd2F0Y2hlci9zdWJzY3JpYmVyL3YxO3N1YnNjcmliZXJ2MaICA1dTWKoCFVdhdGNoZXIuU3Vic2NyaWJlci5WMcoCFVdhdGNoZXJcU3Vic2NyaWJlclxWMeICIVdhdGNoZXJcU3Vic2NyaWJlclxWMVxHUEJNZXRhZGF0YeoCF1dhdGNoZXI6OlN1YnNjcmliZXI6OlYxYgZwcm90bzM", [file_eproxy_transactions_v2_transaction, file_eproxy_common_v2_common]);
 
 /**
  * @generated from message watcher.subscriber.v1.SubscribeMempoolRequest
- * @deprecated
  */
 export type SubscribeMempoolRequest = Message<"watcher.subscriber.v1.SubscribeMempoolRequest"> & {
   /**
@@ -31,19 +29,16 @@ export type SubscribeMempoolRequest = Message<"watcher.subscriber.v1.SubscribeMe
 /**
  * Describes the message watcher.subscriber.v1.SubscribeMempoolRequest.
  * Use `create(SubscribeMempoolRequestSchema)` to create a new message.
- * @deprecated
  */
 export const SubscribeMempoolRequestSchema: GenMessage<SubscribeMempoolRequest> = /*@__PURE__*/
   messageDesc(file_watcher_subscriber_v1_subscriber, 0);
 
 /**
  * @generated from message watcher.subscriber.v1.SubscribeMempoolResponse
- * @deprecated
  */
 export type SubscribeMempoolResponse = Message<"watcher.subscriber.v1.SubscribeMempoolResponse"> & {
   /**
    * @generated from oneof watcher.subscriber.v1.SubscribeMempoolResponse.msg
-   * @deprecated
    */
   msg: {
     /**
@@ -63,7 +58,6 @@ export type SubscribeMempoolResponse = Message<"watcher.subscriber.v1.SubscribeM
 /**
  * Describes the message watcher.subscriber.v1.SubscribeMempoolResponse.
  * Use `create(SubscribeMempoolResponseSchema)` to create a new message.
- * @deprecated
  */
 export const SubscribeMempoolResponseSchema: GenMessage<SubscribeMempoolResponse> = /*@__PURE__*/
   messageDesc(file_watcher_subscriber_v1_subscriber, 1);
@@ -72,7 +66,6 @@ export const SubscribeMempoolResponseSchema: GenMessage<SubscribeMempoolResponse
  * Service which provides subscriber api
  *
  * @generated from service watcher.subscriber.v1.SubscriberService
- * @deprecated
  */
 export const SubscriberService: GenService<{
   /**

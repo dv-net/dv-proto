@@ -2,10 +2,6 @@ syntax = "proto3";
 
 package watcher.subscriber.v1;
 
-// Deprecated: Use v2 instead
-option deprecated = true;
-
-
 import "eproxy/transactions/v2/transaction.proto";
 import "eproxy/common/v2/common.proto";
 
