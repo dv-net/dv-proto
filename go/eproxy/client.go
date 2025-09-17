@@ -9,6 +9,7 @@ import (
 	"github.com/dv-net/dv-proto/gen/go/eproxy/blocks/v2/blocksv2connect"
 	"github.com/dv-net/dv-proto/gen/go/eproxy/btclike/v2/btclikev2connect"
 	"github.com/dv-net/dv-proto/gen/go/eproxy/evm/v2/evmv2connect"
+	"github.com/dv-net/dv-proto/gen/go/eproxy/incidents/v2/incidentsv2connect"
 	"github.com/dv-net/dv-proto/gen/go/eproxy/transactions/v2/transactionsv2connect"
 	"github.com/dv-net/dv-proto/gen/go/eproxy/tron/v1/tronv1connect"
 )
@@ -21,6 +22,7 @@ type Client struct {
 	BTCLikeClient      btclikev2connect.BtcLikeServiceClient
 	TronClient         tronv1connect.TronServiceClient
 	EVMClient          evmv2connect.EVMServiceClient
+	IncidentsClient    incidentsv2connect.IncidentsServiceClient
 }
 
 func NewClient(baseURL string, opts ...Option) (*Client, error) {
@@ -50,6 +52,7 @@ func NewClient(baseURL string, opts ...Option) (*Client, error) {
 		BTCLikeClient:      btclikev2connect.NewBtcLikeServiceClient(o.httpClient, baseURL, o.connectrpcOpts...),
 		TronClient:         tronv1connect.NewTronServiceClient(o.httpClient, baseURL, o.connectrpcOpts...),
 		EVMClient:          evmv2connect.NewEVMServiceClient(o.httpClient, baseURL, o.connectrpcOpts...),
+		IncidentsClient:    incidentsv2connect.NewIncidentsServiceClient(o.httpClient, baseURL, o.connectrpcOpts...),
 	}
 
 	return c, nil
