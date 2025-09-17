@@ -27,6 +27,9 @@
       "name": "EVMService"
     },
     {
+      "name": "IncidentsService"
+    },
+    {
       "name": "SystemService"
     },
     {
@@ -936,6 +939,39 @@
         ],
         "tags": [
           "EVMService"
+        ]
+      }
+    },
+    "/eproxy.incidents.v2.IncidentsService/Find": {
+      "post": {
+        "summary": "Find returns all incidents",
+        "operationId": "IncidentsService_Find",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.incidents.v2.FindResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.incidents.v2.FindRequest"
+            }
+          }
+        ],
+        "tags": [
+          "IncidentsService"
         ]
       }
     },
@@ -2117,6 +2153,76 @@
         }
       }
     },
+    "eproxy.incidents.v2.DataRollback": {
+      "type": "object",
+      "properties": {
+        "revert_to_block_height": {
+          "type": "string",
+          "format": "uint64"
+        }
+      },
+      "title": "DataRollback represents a rollback incident"
+    },
+    "eproxy.incidents.v2.FindRequest": {
+      "type": "object",
+      "properties": {
+        "blockchain": {
+          "$ref": "#/definitions/eproxy.common.v2.Blockchain"
+        },
+        "common": {
+          "$ref": "#/definitions/eproxy.common.v2.FindRequestCommon"
+        }
+      },
+      "title": "FindRequest is the request for Find",
+      "required": [
+        "blockchain",
+        "common"
+      ]
+    },
+    "eproxy.incidents.v2.FindResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/eproxy.incidents.v2.Incident"
+          }
+        },
+        "next_page_exists": {
+          "type": "boolean"
+        }
+      },
+      "title": "FindResponse is the response for Find"
+    },
+    "eproxy.incidents.v2.Incident": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/eproxy.incidents.v2.IncidentType"
+        },
+        "data_rollback": {
+          "$ref": "#/definitions/eproxy.incidents.v2.DataRollback"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "title": "Incident represents an incident"
+    },
+    "eproxy.incidents.v2.IncidentType": {
+      "type": "string",
+      "enum": [
+        "INCIDENT_TYPE_UNSPECIFIED",
+        "INCIDENT_TYPE_ROLLBACK"
+      ],
+      "default": "INCIDENT_TYPE_UNSPECIFIED",
+      "title": "IncidentType represents the type of incident"
+    },
     "eproxy.system.v2.AppInfo": {
       "type": "object",
       "properties": {
@@ -3183,7 +3289,7 @@
           "$ref": "#/definitions/eproxy.transactions.v2.SuggestTxFeeResponse.TronFeeData"
         },
         "evm_data": {
-          "$ref": "#/definitions/eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData"
+          "$ref": "#/definitions/eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesData"
         },
         "bitcoin_like_data": {
           "$ref": "#/definitions/eproxy.transactions.v2.SuggestTxFeeResponse.BitcoinLikeFeeData"
@@ -3216,7 +3322,45 @@
     },
     "eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData": {
       "type": "object",
-      "title": "EVM-specific fee data fields - empty for now"
+      "properties": {
+        "gas_used": {
+          "type": "string",
+          "title": "Estimated gas units for transaction"
+        },
+        "l1_fee": {
+          "type": "string",
+          "title": "L1 data fee component"
+        },
+        "l2_fee": {
+          "type": "string",
+          "title": "L2 execution fee component"
+        }
+      }
+    },
+    "eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesData": {
+      "type": "object",
+      "properties": {
+        "gas_price_wei": {
+          "type": "string",
+          "title": "Effective gas price in Wei"
+        },
+        "base_fee_wei": {
+          "type": "string",
+          "title": "Current base fee in Wei"
+        },
+        "gas_used": {
+          "type": "string",
+          "title": "Estimated gas units for transaction"
+        },
+        "no_token_balance": {
+          "$ref": "#/definitions/eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData",
+          "title": "Fee data when receiver account has no balance"
+        },
+        "has_token_balance": {
+          "$ref": "#/definitions/eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData",
+          "title": "Fee data when receiver account has balance"
+        }
+      }
     },
     "eproxy.transactions.v2.SuggestTxFeeResponse.TronFeeData": {
       "type": "object",

@@ -65,7 +65,7 @@ message SuggestTxFeeResponse {
     // Additional blockchain-specific data
     oneof additional_data {
         TronFeeData tron_data = 2;
-        EVMFeeData evm_data = 3;
+        EVMFeesData evm_data = 3;
         BitcoinLikeFeeData bitcoin_like_data = 4;
     }
     
@@ -76,8 +76,18 @@ message SuggestTxFeeResponse {
         string burn_trx_fee = 3;        // TRX burned as fee (in TRX)
     }
     
+    message EVMFeesData {
+        string gas_price_wei = 1;              // Effective gas price in Wei
+        string base_fee_wei = 2;               // Current base fee in Wei
+        string gas_used = 3;                   // Estimated gas units for transaction
+        EVMFeeData no_token_balance = 4;       // Fee data when receiver account has no balance
+        EVMFeeData has_token_balance = 5;      // Fee data when receiver account has balance
+    }
+
     message EVMFeeData {
-        // EVM-specific fee data fields - empty for now
+      string gas_used = 1;                // Estimated gas units for transaction
+      string l1_fee = 2;                  // L1 data fee component
+      string l2_fee = 3;                  // L2 execution fee component
     }
     
     message BitcoinLikeFeeData {

@@ -432,7 +432,7 @@ func (x *SuggestTxFeeResponse) GetTronData() *SuggestTxFeeResponse_TronFeeData {
 	return nil
 }
 
-func (x *SuggestTxFeeResponse) GetEvmData() *SuggestTxFeeResponse_EVMFeeData {
+func (x *SuggestTxFeeResponse) GetEvmData() *SuggestTxFeeResponse_EVMFeesData {
 	if x != nil {
 		if x, ok := x.AdditionalData.(*SuggestTxFeeResponse_EvmData); ok {
 			return x.EvmData
@@ -459,7 +459,7 @@ type SuggestTxFeeResponse_TronData struct {
 }
 
 type SuggestTxFeeResponse_EvmData struct {
-	EvmData *SuggestTxFeeResponse_EVMFeeData `protobuf:"bytes,3,opt,name=evm_data,json=evmData,proto3,oneof"`
+	EvmData *SuggestTxFeeResponse_EVMFeesData `protobuf:"bytes,3,opt,name=evm_data,json=evmData,proto3,oneof"`
 }
 
 type SuggestTxFeeResponse_BitcoinLikeData struct {
@@ -657,15 +657,94 @@ func (x *SuggestTxFeeResponse_TronFeeData) GetBurnTrxFee() string {
 	return ""
 }
 
+type SuggestTxFeeResponse_EVMFeesData struct {
+	state           protoimpl.MessageState           `protogen:"open.v1"`
+	GasPriceWei     string                           `protobuf:"bytes,1,opt,name=gas_price_wei,json=gasPriceWei,proto3" json:"gas_price_wei,omitempty"`             // Effective gas price in Wei
+	BaseFeeWei      string                           `protobuf:"bytes,2,opt,name=base_fee_wei,json=baseFeeWei,proto3" json:"base_fee_wei,omitempty"`                // Current base fee in Wei
+	GasUsed         string                           `protobuf:"bytes,3,opt,name=gas_used,json=gasUsed,proto3" json:"gas_used,omitempty"`                           // Estimated gas units for transaction
+	NoTokenBalance  *SuggestTxFeeResponse_EVMFeeData `protobuf:"bytes,4,opt,name=no_token_balance,json=noTokenBalance,proto3" json:"no_token_balance,omitempty"`    // Fee data when receiver account has no balance
+	HasTokenBalance *SuggestTxFeeResponse_EVMFeeData `protobuf:"bytes,5,opt,name=has_token_balance,json=hasTokenBalance,proto3" json:"has_token_balance,omitempty"` // Fee data when receiver account has balance
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *SuggestTxFeeResponse_EVMFeesData) Reset() {
+	*x = SuggestTxFeeResponse_EVMFeesData{}
+	mi := &file_eproxy_transactions_v2_service_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SuggestTxFeeResponse_EVMFeesData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SuggestTxFeeResponse_EVMFeesData) ProtoMessage() {}
+
+func (x *SuggestTxFeeResponse_EVMFeesData) ProtoReflect() protoreflect.Message {
+	mi := &file_eproxy_transactions_v2_service_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SuggestTxFeeResponse_EVMFeesData.ProtoReflect.Descriptor instead.
+func (*SuggestTxFeeResponse_EVMFeesData) Descriptor() ([]byte, []int) {
+	return file_eproxy_transactions_v2_service_proto_rawDescGZIP(), []int{5, 1}
+}
+
+func (x *SuggestTxFeeResponse_EVMFeesData) GetGasPriceWei() string {
+	if x != nil {
+		return x.GasPriceWei
+	}
+	return ""
+}
+
+func (x *SuggestTxFeeResponse_EVMFeesData) GetBaseFeeWei() string {
+	if x != nil {
+		return x.BaseFeeWei
+	}
+	return ""
+}
+
+func (x *SuggestTxFeeResponse_EVMFeesData) GetGasUsed() string {
+	if x != nil {
+		return x.GasUsed
+	}
+	return ""
+}
+
+func (x *SuggestTxFeeResponse_EVMFeesData) GetNoTokenBalance() *SuggestTxFeeResponse_EVMFeeData {
+	if x != nil {
+		return x.NoTokenBalance
+	}
+	return nil
+}
+
+func (x *SuggestTxFeeResponse_EVMFeesData) GetHasTokenBalance() *SuggestTxFeeResponse_EVMFeeData {
+	if x != nil {
+		return x.HasTokenBalance
+	}
+	return nil
+}
+
 type SuggestTxFeeResponse_EVMFeeData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	GasUsed       string                 `protobuf:"bytes,1,opt,name=gas_used,json=gasUsed,proto3" json:"gas_used,omitempty"` // Estimated gas units for transaction
+	L1Fee         string                 `protobuf:"bytes,2,opt,name=l1_fee,json=l1Fee,proto3" json:"l1_fee,omitempty"`       // L1 data fee component
+	L2Fee         string                 `protobuf:"bytes,3,opt,name=l2_fee,json=l2Fee,proto3" json:"l2_fee,omitempty"`       // L2 execution fee component
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SuggestTxFeeResponse_EVMFeeData) Reset() {
 	*x = SuggestTxFeeResponse_EVMFeeData{}
-	mi := &file_eproxy_transactions_v2_service_proto_msgTypes[10]
+	mi := &file_eproxy_transactions_v2_service_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -677,7 +756,7 @@ func (x *SuggestTxFeeResponse_EVMFeeData) String() string {
 func (*SuggestTxFeeResponse_EVMFeeData) ProtoMessage() {}
 
 func (x *SuggestTxFeeResponse_EVMFeeData) ProtoReflect() protoreflect.Message {
-	mi := &file_eproxy_transactions_v2_service_proto_msgTypes[10]
+	mi := &file_eproxy_transactions_v2_service_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -690,7 +769,28 @@ func (x *SuggestTxFeeResponse_EVMFeeData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SuggestTxFeeResponse_EVMFeeData.ProtoReflect.Descriptor instead.
 func (*SuggestTxFeeResponse_EVMFeeData) Descriptor() ([]byte, []int) {
-	return file_eproxy_transactions_v2_service_proto_rawDescGZIP(), []int{5, 1}
+	return file_eproxy_transactions_v2_service_proto_rawDescGZIP(), []int{5, 2}
+}
+
+func (x *SuggestTxFeeResponse_EVMFeeData) GetGasUsed() string {
+	if x != nil {
+		return x.GasUsed
+	}
+	return ""
+}
+
+func (x *SuggestTxFeeResponse_EVMFeeData) GetL1Fee() string {
+	if x != nil {
+		return x.L1Fee
+	}
+	return ""
+}
+
+func (x *SuggestTxFeeResponse_EVMFeeData) GetL2Fee() string {
+	if x != nil {
+		return x.L2Fee
+	}
+	return ""
 }
 
 type SuggestTxFeeResponse_BitcoinLikeFeeData struct {
@@ -705,7 +805,7 @@ type SuggestTxFeeResponse_BitcoinLikeFeeData struct {
 
 func (x *SuggestTxFeeResponse_BitcoinLikeFeeData) Reset() {
 	*x = SuggestTxFeeResponse_BitcoinLikeFeeData{}
-	mi := &file_eproxy_transactions_v2_service_proto_msgTypes[11]
+	mi := &file_eproxy_transactions_v2_service_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -717,7 +817,7 @@ func (x *SuggestTxFeeResponse_BitcoinLikeFeeData) String() string {
 func (*SuggestTxFeeResponse_BitcoinLikeFeeData) ProtoMessage() {}
 
 func (x *SuggestTxFeeResponse_BitcoinLikeFeeData) ProtoReflect() protoreflect.Message {
-	mi := &file_eproxy_transactions_v2_service_proto_msgTypes[11]
+	mi := &file_eproxy_transactions_v2_service_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -730,7 +830,7 @@ func (x *SuggestTxFeeResponse_BitcoinLikeFeeData) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use SuggestTxFeeResponse_BitcoinLikeFeeData.ProtoReflect.Descriptor instead.
 func (*SuggestTxFeeResponse_BitcoinLikeFeeData) Descriptor() ([]byte, []int) {
-	return file_eproxy_transactions_v2_service_proto_rawDescGZIP(), []int{5, 2}
+	return file_eproxy_transactions_v2_service_proto_rawDescGZIP(), []int{5, 3}
 }
 
 func (x *SuggestTxFeeResponse_BitcoinLikeFeeData) GetFeeRate() uint64 {
@@ -820,19 +920,29 @@ const file_eproxy_transactions_v2_service_proto_rawDesc = "" +
 	"blockchain\x12#\n" +
 	"\n" +
 	"identifier\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"identifier\"\xf8\x04\n" +
+	"identifier\"\xfb\a\n" +
 	"\x14SuggestTxFeeResponse\x12\x10\n" +
 	"\x03fee\x18\x01 \x01(\tR\x03fee\x12W\n" +
-	"\ttron_data\x18\x02 \x01(\v28.eproxy.transactions.v2.SuggestTxFeeResponse.TronFeeDataH\x00R\btronData\x12T\n" +
-	"\bevm_data\x18\x03 \x01(\v27.eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeDataH\x00R\aevmData\x12m\n" +
+	"\ttron_data\x18\x02 \x01(\v28.eproxy.transactions.v2.SuggestTxFeeResponse.TronFeeDataH\x00R\btronData\x12U\n" +
+	"\bevm_data\x18\x03 \x01(\v28.eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesDataH\x00R\aevmData\x12m\n" +
 	"\x11bitcoin_like_data\x18\x04 \x01(\v2?.eproxy.transactions.v2.SuggestTxFeeResponse.BitcoinLikeFeeDataH\x00R\x0fbitcoinLikeData\x1a{\n" +
 	"\vTronFeeData\x12!\n" +
 	"\fenergy_usage\x18\x01 \x01(\x04R\venergyUsage\x12'\n" +
 	"\x0fbandwidth_usage\x18\x02 \x01(\x04R\x0ebandwidthUsage\x12 \n" +
 	"\fburn_trx_fee\x18\x03 \x01(\tR\n" +
-	"burnTrxFee\x1a\f\n" +
+	"burnTrxFee\x1a\xb6\x02\n" +
+	"\vEVMFeesData\x12\"\n" +
+	"\rgas_price_wei\x18\x01 \x01(\tR\vgasPriceWei\x12 \n" +
+	"\fbase_fee_wei\x18\x02 \x01(\tR\n" +
+	"baseFeeWei\x12\x19\n" +
+	"\bgas_used\x18\x03 \x01(\tR\agasUsed\x12a\n" +
+	"\x10no_token_balance\x18\x04 \x01(\v27.eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeDataR\x0enoTokenBalance\x12c\n" +
+	"\x11has_token_balance\x18\x05 \x01(\v27.eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeDataR\x0fhasTokenBalance\x1aU\n" +
 	"\n" +
-	"EVMFeeData\x1a\x91\x01\n" +
+	"EVMFeeData\x12\x19\n" +
+	"\bgas_used\x18\x01 \x01(\tR\agasUsed\x12\x15\n" +
+	"\x06l1_fee\x18\x02 \x01(\tR\x05l1Fee\x12\x15\n" +
+	"\x06l2_fee\x18\x03 \x01(\tR\x05l2Fee\x1a\x91\x01\n" +
 	"\x12BitcoinLikeFeeData\x12\x19\n" +
 	"\bfee_rate\x18\x01 \x01(\x04R\afeeRate\x12%\n" +
 	"\x0eestimated_size\x18\x02 \x01(\rR\restimatedSize\x12\x1a\n" +
@@ -858,7 +968,7 @@ func file_eproxy_transactions_v2_service_proto_rawDescGZIP() []byte {
 	return file_eproxy_transactions_v2_service_proto_rawDescData
 }
 
-var file_eproxy_transactions_v2_service_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_eproxy_transactions_v2_service_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_eproxy_transactions_v2_service_proto_goTypes = []any{
 	(*GetInfoRequest)(nil),                          // 0: eproxy.transactions.v2.GetInfoRequest
 	(*GetInfoResponse)(nil),                         // 1: eproxy.transactions.v2.GetInfoResponse
@@ -870,36 +980,39 @@ var file_eproxy_transactions_v2_service_proto_goTypes = []any{
 	(*FindRequest_EVMParams)(nil),                   // 7: eproxy.transactions.v2.FindRequest.EVMParams
 	(*FindRequest_BitcoinLikeParams)(nil),           // 8: eproxy.transactions.v2.FindRequest.BitcoinLikeParams
 	(*SuggestTxFeeResponse_TronFeeData)(nil),        // 9: eproxy.transactions.v2.SuggestTxFeeResponse.TronFeeData
-	(*SuggestTxFeeResponse_EVMFeeData)(nil),         // 10: eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData
-	(*SuggestTxFeeResponse_BitcoinLikeFeeData)(nil), // 11: eproxy.transactions.v2.SuggestTxFeeResponse.BitcoinLikeFeeData
-	(v2.Blockchain)(0),                              // 12: eproxy.common.v2.Blockchain
-	(*Transaction)(nil),                             // 13: eproxy.transactions.v2.Transaction
-	(*v2.FindRequestCommon)(nil),                    // 14: eproxy.common.v2.FindRequestCommon
+	(*SuggestTxFeeResponse_EVMFeesData)(nil),        // 10: eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesData
+	(*SuggestTxFeeResponse_EVMFeeData)(nil),         // 11: eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData
+	(*SuggestTxFeeResponse_BitcoinLikeFeeData)(nil), // 12: eproxy.transactions.v2.SuggestTxFeeResponse.BitcoinLikeFeeData
+	(v2.Blockchain)(0),                              // 13: eproxy.common.v2.Blockchain
+	(*Transaction)(nil),                             // 14: eproxy.transactions.v2.Transaction
+	(*v2.FindRequestCommon)(nil),                    // 15: eproxy.common.v2.FindRequestCommon
 }
 var file_eproxy_transactions_v2_service_proto_depIdxs = []int32{
-	12, // 0: eproxy.transactions.v2.GetInfoRequest.blockchain:type_name -> eproxy.common.v2.Blockchain
-	13, // 1: eproxy.transactions.v2.GetInfoResponse.transaction:type_name -> eproxy.transactions.v2.Transaction
-	12, // 2: eproxy.transactions.v2.FindRequest.blockchain:type_name -> eproxy.common.v2.Blockchain
-	14, // 3: eproxy.transactions.v2.FindRequest.common:type_name -> eproxy.common.v2.FindRequestCommon
+	13, // 0: eproxy.transactions.v2.GetInfoRequest.blockchain:type_name -> eproxy.common.v2.Blockchain
+	14, // 1: eproxy.transactions.v2.GetInfoResponse.transaction:type_name -> eproxy.transactions.v2.Transaction
+	13, // 2: eproxy.transactions.v2.FindRequest.blockchain:type_name -> eproxy.common.v2.Blockchain
+	15, // 3: eproxy.transactions.v2.FindRequest.common:type_name -> eproxy.common.v2.FindRequestCommon
 	6,  // 4: eproxy.transactions.v2.FindRequest.tron_params:type_name -> eproxy.transactions.v2.FindRequest.TronParams
 	7,  // 5: eproxy.transactions.v2.FindRequest.evm_params:type_name -> eproxy.transactions.v2.FindRequest.EVMParams
 	8,  // 6: eproxy.transactions.v2.FindRequest.bitcoin_like_params:type_name -> eproxy.transactions.v2.FindRequest.BitcoinLikeParams
-	13, // 7: eproxy.transactions.v2.FindResponse.items:type_name -> eproxy.transactions.v2.Transaction
-	12, // 8: eproxy.transactions.v2.SuggestTxFeeRequest.blockchain:type_name -> eproxy.common.v2.Blockchain
+	14, // 7: eproxy.transactions.v2.FindResponse.items:type_name -> eproxy.transactions.v2.Transaction
+	13, // 8: eproxy.transactions.v2.SuggestTxFeeRequest.blockchain:type_name -> eproxy.common.v2.Blockchain
 	9,  // 9: eproxy.transactions.v2.SuggestTxFeeResponse.tron_data:type_name -> eproxy.transactions.v2.SuggestTxFeeResponse.TronFeeData
-	10, // 10: eproxy.transactions.v2.SuggestTxFeeResponse.evm_data:type_name -> eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData
-	11, // 11: eproxy.transactions.v2.SuggestTxFeeResponse.bitcoin_like_data:type_name -> eproxy.transactions.v2.SuggestTxFeeResponse.BitcoinLikeFeeData
-	2,  // 12: eproxy.transactions.v2.TransactionsService.Find:input_type -> eproxy.transactions.v2.FindRequest
-	0,  // 13: eproxy.transactions.v2.TransactionsService.GetInfo:input_type -> eproxy.transactions.v2.GetInfoRequest
-	4,  // 14: eproxy.transactions.v2.TransactionsService.SuggestTxFee:input_type -> eproxy.transactions.v2.SuggestTxFeeRequest
-	3,  // 15: eproxy.transactions.v2.TransactionsService.Find:output_type -> eproxy.transactions.v2.FindResponse
-	1,  // 16: eproxy.transactions.v2.TransactionsService.GetInfo:output_type -> eproxy.transactions.v2.GetInfoResponse
-	5,  // 17: eproxy.transactions.v2.TransactionsService.SuggestTxFee:output_type -> eproxy.transactions.v2.SuggestTxFeeResponse
-	15, // [15:18] is the sub-list for method output_type
-	12, // [12:15] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	10, // 10: eproxy.transactions.v2.SuggestTxFeeResponse.evm_data:type_name -> eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesData
+	12, // 11: eproxy.transactions.v2.SuggestTxFeeResponse.bitcoin_like_data:type_name -> eproxy.transactions.v2.SuggestTxFeeResponse.BitcoinLikeFeeData
+	11, // 12: eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesData.no_token_balance:type_name -> eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData
+	11, // 13: eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesData.has_token_balance:type_name -> eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData
+	2,  // 14: eproxy.transactions.v2.TransactionsService.Find:input_type -> eproxy.transactions.v2.FindRequest
+	0,  // 15: eproxy.transactions.v2.TransactionsService.GetInfo:input_type -> eproxy.transactions.v2.GetInfoRequest
+	4,  // 16: eproxy.transactions.v2.TransactionsService.SuggestTxFee:input_type -> eproxy.transactions.v2.SuggestTxFeeRequest
+	3,  // 17: eproxy.transactions.v2.TransactionsService.Find:output_type -> eproxy.transactions.v2.FindResponse
+	1,  // 18: eproxy.transactions.v2.TransactionsService.GetInfo:output_type -> eproxy.transactions.v2.GetInfoResponse
+	5,  // 19: eproxy.transactions.v2.TransactionsService.SuggestTxFee:output_type -> eproxy.transactions.v2.SuggestTxFeeResponse
+	17, // [17:20] is the sub-list for method output_type
+	14, // [14:17] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_eproxy_transactions_v2_service_proto_init() }
@@ -921,7 +1034,7 @@ func file_eproxy_transactions_v2_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_eproxy_transactions_v2_service_proto_rawDesc), len(file_eproxy_transactions_v2_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
