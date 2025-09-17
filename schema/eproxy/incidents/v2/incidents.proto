@@ -1,0 +1,47 @@
+syntax = "proto3";
+package eproxy.incidents.v2;
+
+import "google/protobuf/timestamp.proto";
+import "google/api/field_behavior.proto";
+import "eproxy/common/v2/common.proto";
+
+// IncidentsService is the service for incidents
+service IncidentsService {
+  // Find returns all incidents
+  rpc Find(FindRequest) returns (FindResponse);
+}
+
+// IncidentType represents the type of incident
+enum IncidentType {
+  INCIDENT_TYPE_UNSPECIFIED = 0;
+  INCIDENT_TYPE_ROLLBACK = 1;
+}
+
+// DataRollback represents a rollback incident
+message DataRollback {
+  uint64 revert_to_block_height = 1;
+}
+
+// Incident represents an incident
+message Incident {
+  string id = 1;
+  IncidentType type = 2;
+  oneof data {
+    DataRollback data_rollback = 3;
+  }
+  google.protobuf.Timestamp created_at = 4;
+}
+
+// FindRequest is the request for Find
+message FindRequest {
+  eproxy.common.v2.Blockchain blockchain = 1
+      [ (google.api.field_behavior) = REQUIRED ];
+  eproxy.common.v2.FindRequestCommon common = 2
+      [ (google.api.field_behavior) = REQUIRED ];
+}
+
+// FindResponse is the response for Find
+message FindResponse {
+  repeated Incident items = 1;
+  bool next_page_exists = 2;
+}

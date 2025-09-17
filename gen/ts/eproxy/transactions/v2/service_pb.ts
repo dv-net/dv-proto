@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file eproxy/transactions/v2/service.proto.
  */
 export const file_eproxy_transactions_v2_service: GenFile = /*@__PURE__*/
-  fileDesc("CiRlcHJveHkvdHJhbnNhY3Rpb25zL3YyL3NlcnZpY2UucHJvdG8SFmVwcm94eS50cmFuc2FjdGlvbnMudjIiWgoOR2V0SW5mb1JlcXVlc3QSNQoKYmxvY2tjaGFpbhgBIAEoDjIcLmVwcm94eS5jb21tb24udjIuQmxvY2tjaGFpbkID4EECEhEKBGhhc2gYAiABKAlCA+BBAiJLCg9HZXRJbmZvUmVzcG9uc2USOAoLdHJhbnNhY3Rpb24YASABKAsyIy5lcHJveHkudHJhbnNhY3Rpb25zLnYyLlRyYW5zYWN0aW9uIoYHCgtGaW5kUmVxdWVzdBI1CgpibG9ja2NoYWluGAEgASgOMhwuZXByb3h5LmNvbW1vbi52Mi5CbG9ja2NoYWluQgPgQQISOAoGY29tbW9uGAIgASgLMiMuZXByb3h5LmNvbW1vbi52Mi5GaW5kUmVxdWVzdENvbW1vbkID4EECEhMKBnNlYXJjaBgDIAEoCUgAiAEBEhEKBGhhc2gYBCABKAlIAYgBARIZCgxibG9ja19oZWlnaHQYBSABKARIAogBARIgChNibG9ja19oZWlnaHRfb2Zmc2V0GAYgASgESAOIAQESFAoHYWRkcmVzcxgHIAEoCUgEiAEBEh0KEGNvbnRyYWN0X2FkZHJlc3MYCCABKAlIBYgBARIaCg1jb250cmFjdF90eXBlGAkgASgNSAaIAQESIgoaaXNfaW5jbHVkZV9hZGRpdGlvbmFsX2RhdGEYCiABKAgSSAoLdHJvbl9wYXJhbXMYCyABKAsyLi5lcHJveHkudHJhbnNhY3Rpb25zLnYyLkZpbmRSZXF1ZXN0LlRyb25QYXJhbXNIB4gBARJGCgpldm1fcGFyYW1zGAwgASgLMi0uZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5GaW5kUmVxdWVzdC5FVk1QYXJhbXNICIgBARJXChNiaXRjb2luX2xpa2VfcGFyYW1zGA0gASgLMjUuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5GaW5kUmVxdWVzdC5CaXRjb2luTGlrZVBhcmFtc0gJiAEBGgwKClRyb25QYXJhbXMaCwoJRVZNUGFyYW1zGn8KEUJpdGNvaW5MaWtlUGFyYW1zEh4KEWZpbHRlcl9ieV9hZGRyZXNzGAEgASgISACIAQESHgoRZmlsdGVyX2J5X21lbXBvb2wYAiABKAhIAYgBAUIUChJfZmlsdGVyX2J5X2FkZHJlc3NCFAoSX2ZpbHRlcl9ieV9tZW1wb29sQgkKB19zZWFyY2hCBwoFX2hhc2hCDwoNX2Jsb2NrX2hlaWdodEIWChRfYmxvY2tfaGVpZ2h0X29mZnNldEIKCghfYWRkcmVzc0ITChFfY29udHJhY3RfYWRkcmVzc0IQCg5fY29udHJhY3RfdHlwZUIOCgxfdHJvbl9wYXJhbXNCDQoLX2V2bV9wYXJhbXNCFgoUX2JpdGNvaW5fbGlrZV9wYXJhbXMiXAoMRmluZFJlc3BvbnNlEjIKBWl0ZW1zGAEgAygLMiMuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5UcmFuc2FjdGlvbhIYChBuZXh0X3BhZ2VfZXhpc3RzGAIgASgIImUKE1N1Z2dlc3RUeEZlZVJlcXVlc3QSNQoKYmxvY2tjaGFpbhgBIAEoDjIcLmVwcm94eS5jb21tb24udjIuQmxvY2tjaGFpbkID4EECEhcKCmlkZW50aWZpZXIYAiABKAlCA+BBAiL4AwoUU3VnZ2VzdFR4RmVlUmVzcG9uc2USCwoDZmVlGAEgASgJEk0KCXRyb25fZGF0YRgCIAEoCzI4LmVwcm94eS50cmFuc2FjdGlvbnMudjIuU3VnZ2VzdFR4RmVlUmVzcG9uc2UuVHJvbkZlZURhdGFIABJLCghldm1fZGF0YRgDIAEoCzI3LmVwcm94eS50cmFuc2FjdGlvbnMudjIuU3VnZ2VzdFR4RmVlUmVzcG9uc2UuRVZNRmVlRGF0YUgAElwKEWJpdGNvaW5fbGlrZV9kYXRhGAQgASgLMj8uZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5TdWdnZXN0VHhGZWVSZXNwb25zZS5CaXRjb2luTGlrZUZlZURhdGFIABpSCgtUcm9uRmVlRGF0YRIUCgxlbmVyZ3lfdXNhZ2UYASABKAQSFwoPYmFuZHdpZHRoX3VzYWdlGAIgASgEEhQKDGJ1cm5fdHJ4X2ZlZRgDIAEoCRoMCgpFVk1GZWVEYXRhGmQKEkJpdGNvaW5MaWtlRmVlRGF0YRIQCghmZWVfcmF0ZRgBIAEoBBIWCg5lc3RpbWF0ZWRfc2l6ZRgCIAEoDRIQCghwcmlvcml0eRgDIAEoCRISCgp1dHhvX2NvdW50GAQgASgNQhEKD2FkZGl0aW9uYWxfZGF0YTKvAgoTVHJhbnNhY3Rpb25zU2VydmljZRJRCgRGaW5kEiMuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5GaW5kUmVxdWVzdBokLmVwcm94eS50cmFuc2FjdGlvbnMudjIuRmluZFJlc3BvbnNlEloKB0dldEluZm8SJi5lcHJveHkudHJhbnNhY3Rpb25zLnYyLkdldEluZm9SZXF1ZXN0GicuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5HZXRJbmZvUmVzcG9uc2USaQoMU3VnZ2VzdFR4RmVlEisuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5TdWdnZXN0VHhGZWVSZXF1ZXN0GiwuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5TdWdnZXN0VHhGZWVSZXNwb25zZULtAQoaY29tLmVwcm94eS50cmFuc2FjdGlvbnMudjJCDFNlcnZpY2VQcm90b1ABWkdnaXRodWIuY29tL2R2LW5ldC9kdi1wcm90by9nZW4vZ28vZXByb3h5L3RyYW5zYWN0aW9ucy92Mjt0cmFuc2FjdGlvbnN2MqICA0VUWKoCFkVwcm94eS5UcmFuc2FjdGlvbnMuVjLKAhZFcHJveHlcVHJhbnNhY3Rpb25zXFYy4gIiRXByb3h5XFRyYW5zYWN0aW9uc1xWMlxHUEJNZXRhZGF0YeoCGEVwcm94eTo6VHJhbnNhY3Rpb25zOjpWMmIGcHJvdG8z", [file_google_api_field_behavior, file_eproxy_common_v2_common, file_eproxy_transactions_v2_transaction]);
+  fileDesc("CiRlcHJveHkvdHJhbnNhY3Rpb25zL3YyL3NlcnZpY2UucHJvdG8SFmVwcm94eS50cmFuc2FjdGlvbnMudjIiWgoOR2V0SW5mb1JlcXVlc3QSNQoKYmxvY2tjaGFpbhgBIAEoDjIcLmVwcm94eS5jb21tb24udjIuQmxvY2tjaGFpbkID4EECEhEKBGhhc2gYAiABKAlCA+BBAiJLCg9HZXRJbmZvUmVzcG9uc2USOAoLdHJhbnNhY3Rpb24YASABKAsyIy5lcHJveHkudHJhbnNhY3Rpb25zLnYyLlRyYW5zYWN0aW9uIoYHCgtGaW5kUmVxdWVzdBI1CgpibG9ja2NoYWluGAEgASgOMhwuZXByb3h5LmNvbW1vbi52Mi5CbG9ja2NoYWluQgPgQQISOAoGY29tbW9uGAIgASgLMiMuZXByb3h5LmNvbW1vbi52Mi5GaW5kUmVxdWVzdENvbW1vbkID4EECEhMKBnNlYXJjaBgDIAEoCUgAiAEBEhEKBGhhc2gYBCABKAlIAYgBARIZCgxibG9ja19oZWlnaHQYBSABKARIAogBARIgChNibG9ja19oZWlnaHRfb2Zmc2V0GAYgASgESAOIAQESFAoHYWRkcmVzcxgHIAEoCUgEiAEBEh0KEGNvbnRyYWN0X2FkZHJlc3MYCCABKAlIBYgBARIaCg1jb250cmFjdF90eXBlGAkgASgNSAaIAQESIgoaaXNfaW5jbHVkZV9hZGRpdGlvbmFsX2RhdGEYCiABKAgSSAoLdHJvbl9wYXJhbXMYCyABKAsyLi5lcHJveHkudHJhbnNhY3Rpb25zLnYyLkZpbmRSZXF1ZXN0LlRyb25QYXJhbXNIB4gBARJGCgpldm1fcGFyYW1zGAwgASgLMi0uZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5GaW5kUmVxdWVzdC5FVk1QYXJhbXNICIgBARJXChNiaXRjb2luX2xpa2VfcGFyYW1zGA0gASgLMjUuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5GaW5kUmVxdWVzdC5CaXRjb2luTGlrZVBhcmFtc0gJiAEBGgwKClRyb25QYXJhbXMaCwoJRVZNUGFyYW1zGn8KEUJpdGNvaW5MaWtlUGFyYW1zEh4KEWZpbHRlcl9ieV9hZGRyZXNzGAEgASgISACIAQESHgoRZmlsdGVyX2J5X21lbXBvb2wYAiABKAhIAYgBAUIUChJfZmlsdGVyX2J5X2FkZHJlc3NCFAoSX2ZpbHRlcl9ieV9tZW1wb29sQgkKB19zZWFyY2hCBwoFX2hhc2hCDwoNX2Jsb2NrX2hlaWdodEIWChRfYmxvY2tfaGVpZ2h0X29mZnNldEIKCghfYWRkcmVzc0ITChFfY29udHJhY3RfYWRkcmVzc0IQCg5fY29udHJhY3RfdHlwZUIOCgxfdHJvbl9wYXJhbXNCDQoLX2V2bV9wYXJhbXNCFgoUX2JpdGNvaW5fbGlrZV9wYXJhbXMiXAoMRmluZFJlc3BvbnNlEjIKBWl0ZW1zGAEgAygLMiMuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5UcmFuc2FjdGlvbhIYChBuZXh0X3BhZ2VfZXhpc3RzGAIgASgIImUKE1N1Z2dlc3RUeEZlZVJlcXVlc3QSNQoKYmxvY2tjaGFpbhgBIAEoDjIcLmVwcm94eS5jb21tb24udjIuQmxvY2tjaGFpbkID4EECEhcKCmlkZW50aWZpZXIYAiABKAlCA+BBAiKhBgoUU3VnZ2VzdFR4RmVlUmVzcG9uc2USCwoDZmVlGAEgASgJEk0KCXRyb25fZGF0YRgCIAEoCzI4LmVwcm94eS50cmFuc2FjdGlvbnMudjIuU3VnZ2VzdFR4RmVlUmVzcG9uc2UuVHJvbkZlZURhdGFIABJMCghldm1fZGF0YRgDIAEoCzI4LmVwcm94eS50cmFuc2FjdGlvbnMudjIuU3VnZ2VzdFR4RmVlUmVzcG9uc2UuRVZNRmVlc0RhdGFIABJcChFiaXRjb2luX2xpa2VfZGF0YRgEIAEoCzI/LmVwcm94eS50cmFuc2FjdGlvbnMudjIuU3VnZ2VzdFR4RmVlUmVzcG9uc2UuQml0Y29pbkxpa2VGZWVEYXRhSAAaUgoLVHJvbkZlZURhdGESFAoMZW5lcmd5X3VzYWdlGAEgASgEEhcKD2JhbmR3aWR0aF91c2FnZRgCIAEoBBIUCgxidXJuX3RyeF9mZWUYAyABKAka8wEKC0VWTUZlZXNEYXRhEhUKDWdhc19wcmljZV93ZWkYASABKAkSFAoMYmFzZV9mZWVfd2VpGAIgASgJEhAKCGdhc191c2VkGAMgASgJElEKEG5vX3Rva2VuX2JhbGFuY2UYBCABKAsyNy5lcHJveHkudHJhbnNhY3Rpb25zLnYyLlN1Z2dlc3RUeEZlZVJlc3BvbnNlLkVWTUZlZURhdGESUgoRaGFzX3Rva2VuX2JhbGFuY2UYBSABKAsyNy5lcHJveHkudHJhbnNhY3Rpb25zLnYyLlN1Z2dlc3RUeEZlZVJlc3BvbnNlLkVWTUZlZURhdGEaPgoKRVZNRmVlRGF0YRIQCghnYXNfdXNlZBgBIAEoCRIOCgZsMV9mZWUYAiABKAkSDgoGbDJfZmVlGAMgASgJGmQKEkJpdGNvaW5MaWtlRmVlRGF0YRIQCghmZWVfcmF0ZRgBIAEoBBIWCg5lc3RpbWF0ZWRfc2l6ZRgCIAEoDRIQCghwcmlvcml0eRgDIAEoCRISCgp1dHhvX2NvdW50GAQgASgNQhEKD2FkZGl0aW9uYWxfZGF0YTKvAgoTVHJhbnNhY3Rpb25zU2VydmljZRJRCgRGaW5kEiMuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5GaW5kUmVxdWVzdBokLmVwcm94eS50cmFuc2FjdGlvbnMudjIuRmluZFJlc3BvbnNlEloKB0dldEluZm8SJi5lcHJveHkudHJhbnNhY3Rpb25zLnYyLkdldEluZm9SZXF1ZXN0GicuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5HZXRJbmZvUmVzcG9uc2USaQoMU3VnZ2VzdFR4RmVlEisuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5TdWdnZXN0VHhGZWVSZXF1ZXN0GiwuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5TdWdnZXN0VHhGZWVSZXNwb25zZULtAQoaY29tLmVwcm94eS50cmFuc2FjdGlvbnMudjJCDFNlcnZpY2VQcm90b1ABWkdnaXRodWIuY29tL2R2LW5ldC9kdi1wcm90by9nZW4vZ28vZXByb3h5L3RyYW5zYWN0aW9ucy92Mjt0cmFuc2FjdGlvbnN2MqICA0VUWKoCFkVwcm94eS5UcmFuc2FjdGlvbnMuVjLKAhZFcHJveHlcVHJhbnNhY3Rpb25zXFYy4gIiRXByb3h5XFRyYW5zYWN0aW9uc1xWMlxHUEJNZXRhZGF0YeoCGEVwcm94eTo6VHJhbnNhY3Rpb25zOjpWMmIGcHJvdG8z", [file_google_api_field_behavior, file_eproxy_common_v2_common, file_eproxy_transactions_v2_transaction]);
 
 /**
  * @generated from message eproxy.transactions.v2.GetInfoRequest
@@ -249,9 +249,9 @@ export type SuggestTxFeeResponse = Message<"eproxy.transactions.v2.SuggestTxFeeR
     case: "tronData";
   } | {
     /**
-     * @generated from field: eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData evm_data = 3;
+     * @generated from field: eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesData evm_data = 3;
      */
-    value: SuggestTxFeeResponse_EVMFeeData;
+    value: SuggestTxFeeResponse_EVMFeesData;
     case: "evmData";
   } | {
     /**
@@ -305,11 +305,76 @@ export const SuggestTxFeeResponse_TronFeeDataSchema: GenMessage<SuggestTxFeeResp
   messageDesc(file_eproxy_transactions_v2_service, 5, 0);
 
 /**
- * EVM-specific fee data fields - empty for now
- *
+ * @generated from message eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesData
+ */
+export type SuggestTxFeeResponse_EVMFeesData = Message<"eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesData"> & {
+  /**
+   * Effective gas price in Wei
+   *
+   * @generated from field: string gas_price_wei = 1;
+   */
+  gasPriceWei: string;
+
+  /**
+   * Current base fee in Wei
+   *
+   * @generated from field: string base_fee_wei = 2;
+   */
+  baseFeeWei: string;
+
+  /**
+   * Estimated gas units for transaction
+   *
+   * @generated from field: string gas_used = 3;
+   */
+  gasUsed: string;
+
+  /**
+   * Fee data when receiver account has no balance
+   *
+   * @generated from field: eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData no_token_balance = 4;
+   */
+  noTokenBalance?: SuggestTxFeeResponse_EVMFeeData;
+
+  /**
+   * Fee data when receiver account has balance
+   *
+   * @generated from field: eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData has_token_balance = 5;
+   */
+  hasTokenBalance?: SuggestTxFeeResponse_EVMFeeData;
+};
+
+/**
+ * Describes the message eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesData.
+ * Use `create(SuggestTxFeeResponse_EVMFeesDataSchema)` to create a new message.
+ */
+export const SuggestTxFeeResponse_EVMFeesDataSchema: GenMessage<SuggestTxFeeResponse_EVMFeesData> = /*@__PURE__*/
+  messageDesc(file_eproxy_transactions_v2_service, 5, 1);
+
+/**
  * @generated from message eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData
  */
 export type SuggestTxFeeResponse_EVMFeeData = Message<"eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData"> & {
+  /**
+   * Estimated gas units for transaction
+   *
+   * @generated from field: string gas_used = 1;
+   */
+  gasUsed: string;
+
+  /**
+   * L1 data fee component
+   *
+   * @generated from field: string l1_fee = 2;
+   */
+  l1Fee: string;
+
+  /**
+   * L2 execution fee component
+   *
+   * @generated from field: string l2_fee = 3;
+   */
+  l2Fee: string;
 };
 
 /**
@@ -317,7 +382,7 @@ export type SuggestTxFeeResponse_EVMFeeData = Message<"eproxy.transactions.v2.Su
  * Use `create(SuggestTxFeeResponse_EVMFeeDataSchema)` to create a new message.
  */
 export const SuggestTxFeeResponse_EVMFeeDataSchema: GenMessage<SuggestTxFeeResponse_EVMFeeData> = /*@__PURE__*/
-  messageDesc(file_eproxy_transactions_v2_service, 5, 1);
+  messageDesc(file_eproxy_transactions_v2_service, 5, 2);
 
 /**
  * @generated from message eproxy.transactions.v2.SuggestTxFeeResponse.BitcoinLikeFeeData
@@ -357,7 +422,7 @@ export type SuggestTxFeeResponse_BitcoinLikeFeeData = Message<"eproxy.transactio
  * Use `create(SuggestTxFeeResponse_BitcoinLikeFeeDataSchema)` to create a new message.
  */
 export const SuggestTxFeeResponse_BitcoinLikeFeeDataSchema: GenMessage<SuggestTxFeeResponse_BitcoinLikeFeeData> = /*@__PURE__*/
-  messageDesc(file_eproxy_transactions_v2_service, 5, 2);
+  messageDesc(file_eproxy_transactions_v2_service, 5, 3);
 
 /**
  * TransactionsService returns information about transactions by hash and

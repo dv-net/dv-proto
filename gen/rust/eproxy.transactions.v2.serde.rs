@@ -3620,8 +3620,26 @@ impl serde::Serialize for suggest_tx_fee_response::EvmFeeData {
         S: serde::Serializer,
     {
         use serde::ser::SerializeStruct;
-        let len = 0;
-        let struct_ser = serializer.serialize_struct("eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData", len)?;
+        let mut len = 0;
+        if !self.gas_used.is_empty() {
+            len += 1;
+        }
+        if !self.l1_fee.is_empty() {
+            len += 1;
+        }
+        if !self.l2_fee.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData", len)?;
+        if !self.gas_used.is_empty() {
+            struct_ser.serialize_field("gasUsed", &self.gas_used)?;
+        }
+        if !self.l1_fee.is_empty() {
+            struct_ser.serialize_field("l1Fee", &self.l1_fee)?;
+        }
+        if !self.l2_fee.is_empty() {
+            struct_ser.serialize_field("l2Fee", &self.l2_fee)?;
+        }
         struct_ser.end()
     }
 }
@@ -3632,10 +3650,19 @@ impl<'de> serde::Deserialize<'de> for suggest_tx_fee_response::EvmFeeData {
         D: serde::Deserializer<'de>,
     {
         const FIELDS: &[&str] = &[
+            "gas_used",
+            "gasUsed",
+            "l1_fee",
+            "l1Fee",
+            "l2_fee",
+            "l2Fee",
         ];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
+            GasUsed,
+            L1Fee,
+            L2Fee,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -3656,7 +3683,12 @@ impl<'de> serde::Deserialize<'de> for suggest_tx_fee_response::EvmFeeData {
                     where
                         E: serde::de::Error,
                     {
-                            Err(serde::de::Error::unknown_field(value, FIELDS))
+                        match value {
+                            "gasUsed" | "gas_used" => Ok(GeneratedField::GasUsed),
+                            "l1Fee" | "l1_fee" => Ok(GeneratedField::L1Fee),
+                            "l2Fee" | "l2_fee" => Ok(GeneratedField::L2Fee),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
                     }
                 }
                 deserializer.deserialize_identifier(GeneratedVisitor)
@@ -3674,14 +3706,203 @@ impl<'de> serde::Deserialize<'de> for suggest_tx_fee_response::EvmFeeData {
                 where
                     V: serde::de::MapAccess<'de>,
             {
-                while map_.next_key::<GeneratedField>()?.is_some() {
-                    let _ = map_.next_value::<serde::de::IgnoredAny>()?;
+                let mut gas_used__ = None;
+                let mut l1_fee__ = None;
+                let mut l2_fee__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::GasUsed => {
+                            if gas_used__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("gasUsed"));
+                            }
+                            gas_used__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::L1Fee => {
+                            if l1_fee__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("l1Fee"));
+                            }
+                            l1_fee__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::L2Fee => {
+                            if l2_fee__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("l2Fee"));
+                            }
+                            l2_fee__ = Some(map_.next_value()?);
+                        }
+                    }
                 }
                 Ok(suggest_tx_fee_response::EvmFeeData {
+                    gas_used: gas_used__.unwrap_or_default(),
+                    l1_fee: l1_fee__.unwrap_or_default(),
+                    l2_fee: l2_fee__.unwrap_or_default(),
                 })
             }
         }
         deserializer.deserialize_struct("eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeeData", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for suggest_tx_fee_response::EvmFeesData {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.gas_price_wei.is_empty() {
+            len += 1;
+        }
+        if !self.base_fee_wei.is_empty() {
+            len += 1;
+        }
+        if !self.gas_used.is_empty() {
+            len += 1;
+        }
+        if self.no_token_balance.is_some() {
+            len += 1;
+        }
+        if self.has_token_balance.is_some() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesData", len)?;
+        if !self.gas_price_wei.is_empty() {
+            struct_ser.serialize_field("gasPriceWei", &self.gas_price_wei)?;
+        }
+        if !self.base_fee_wei.is_empty() {
+            struct_ser.serialize_field("baseFeeWei", &self.base_fee_wei)?;
+        }
+        if !self.gas_used.is_empty() {
+            struct_ser.serialize_field("gasUsed", &self.gas_used)?;
+        }
+        if let Some(v) = self.no_token_balance.as_ref() {
+            struct_ser.serialize_field("noTokenBalance", v)?;
+        }
+        if let Some(v) = self.has_token_balance.as_ref() {
+            struct_ser.serialize_field("hasTokenBalance", v)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for suggest_tx_fee_response::EvmFeesData {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "gas_price_wei",
+            "gasPriceWei",
+            "base_fee_wei",
+            "baseFeeWei",
+            "gas_used",
+            "gasUsed",
+            "no_token_balance",
+            "noTokenBalance",
+            "has_token_balance",
+            "hasTokenBalance",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            GasPriceWei,
+            BaseFeeWei,
+            GasUsed,
+            NoTokenBalance,
+            HasTokenBalance,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "gasPriceWei" | "gas_price_wei" => Ok(GeneratedField::GasPriceWei),
+                            "baseFeeWei" | "base_fee_wei" => Ok(GeneratedField::BaseFeeWei),
+                            "gasUsed" | "gas_used" => Ok(GeneratedField::GasUsed),
+                            "noTokenBalance" | "no_token_balance" => Ok(GeneratedField::NoTokenBalance),
+                            "hasTokenBalance" | "has_token_balance" => Ok(GeneratedField::HasTokenBalance),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = suggest_tx_fee_response::EvmFeesData;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesData")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<suggest_tx_fee_response::EvmFeesData, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut gas_price_wei__ = None;
+                let mut base_fee_wei__ = None;
+                let mut gas_used__ = None;
+                let mut no_token_balance__ = None;
+                let mut has_token_balance__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::GasPriceWei => {
+                            if gas_price_wei__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("gasPriceWei"));
+                            }
+                            gas_price_wei__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::BaseFeeWei => {
+                            if base_fee_wei__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("baseFeeWei"));
+                            }
+                            base_fee_wei__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::GasUsed => {
+                            if gas_used__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("gasUsed"));
+                            }
+                            gas_used__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::NoTokenBalance => {
+                            if no_token_balance__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("noTokenBalance"));
+                            }
+                            no_token_balance__ = map_.next_value()?;
+                        }
+                        GeneratedField::HasTokenBalance => {
+                            if has_token_balance__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("hasTokenBalance"));
+                            }
+                            has_token_balance__ = map_.next_value()?;
+                        }
+                    }
+                }
+                Ok(suggest_tx_fee_response::EvmFeesData {
+                    gas_price_wei: gas_price_wei__.unwrap_or_default(),
+                    base_fee_wei: base_fee_wei__.unwrap_or_default(),
+                    gas_used: gas_used__.unwrap_or_default(),
+                    no_token_balance: no_token_balance__,
+                    has_token_balance: has_token_balance__,
+                })
+            }
+        }
+        deserializer.deserialize_struct("eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesData", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for suggest_tx_fee_response::TronFeeData {
