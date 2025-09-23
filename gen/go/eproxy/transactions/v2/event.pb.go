@@ -78,6 +78,7 @@ type Event struct {
 	AddressFrom       *string                `protobuf:"bytes,7,opt,name=address_from,json=addressFrom,proto3,oneof" json:"address_from,omitempty"`
 	AddressTo         *string                `protobuf:"bytes,8,opt,name=address_to,json=addressTo,proto3,oneof" json:"address_to,omitempty"`
 	Value             *string                `protobuf:"bytes,9,opt,name=value,proto3,oneof" json:"value,omitempty"`
+	Status            *string                `protobuf:"bytes,10,opt,name=status,proto3,oneof" json:"status,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -175,11 +176,18 @@ func (x *Event) GetValue() string {
 	return ""
 }
 
+func (x *Event) GetStatus() string {
+	if x != nil && x.Status != nil {
+		return *x.Status
+	}
+	return ""
+}
+
 var File_eproxy_transactions_v2_event_proto protoreflect.FileDescriptor
 
 const file_eproxy_transactions_v2_event_proto_rawDesc = "" +
 	"\n" +
-	"\"eproxy/transactions/v2/event.proto\x12\x16eproxy.transactions.v2\"\xfc\x03\n" +
+	"\"eproxy/transactions/v2/event.proto\x12\x16eproxy.transactions.v2\"\xa4\x04\n" +
 	"\x05Event\x12:\n" +
 	"\x04type\x18\x01 \x01(\x0e2!.eproxy.transactions.v2.EventTypeH\x00R\x04type\x88\x01\x01\x12(\n" +
 	"\roriginal_data\x18\x02 \x01(\tH\x01R\foriginalData\x88\x01\x01\x12\x16\n" +
@@ -190,7 +198,9 @@ const file_eproxy_transactions_v2_event_proto_rawDesc = "" +
 	"\faddress_from\x18\a \x01(\tH\x05R\vaddressFrom\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"address_to\x18\b \x01(\tH\x06R\taddressTo\x88\x01\x01\x12\x19\n" +
-	"\x05value\x18\t \x01(\tH\aR\x05value\x88\x01\x01B\a\n" +
+	"\x05value\x18\t \x01(\tH\aR\x05value\x88\x01\x01\x12\x1b\n" +
+	"\x06status\x18\n" +
+	" \x01(\tH\bR\x06status\x88\x01\x01B\a\n" +
 	"\x05_typeB\x10\n" +
 	"\x0e_original_dataB\x0f\n" +
 	"\r_encoded_dataB\x16\n" +
@@ -198,7 +208,8 @@ const file_eproxy_transactions_v2_event_proto_rawDesc = "" +
 	"\x11_asset_identifierB\x0f\n" +
 	"\r_address_fromB\r\n" +
 	"\v_address_toB\b\n" +
-	"\x06_value*@\n" +
+	"\x06_valueB\t\n" +
+	"\a_status*@\n" +
 	"\tEventType\x12\x1a\n" +
 	"\x16EVENT_TYPE_UNSPECIFIED\x10\x00\x12\x17\n" +
 	"\x13EVENT_TYPE_TRANSFER\x10\x01B\xeb\x01\n" +

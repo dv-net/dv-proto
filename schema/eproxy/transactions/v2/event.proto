@@ -16,4 +16,5 @@ message Event {
   optional string address_from = 7;
   optional string address_to = 8;
   optional string value = 9;
+  optional string status = 10;
 }
