@@ -373,6 +373,9 @@
         },
         "value": {
           "type": "string"
+        },
+        "status": {
+          "type": "string"
         }
       }
     },

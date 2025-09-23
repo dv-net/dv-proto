@@ -1398,6 +1398,9 @@ impl serde::Serialize for Event {
         if self.value.is_some() {
             len += 1;
         }
+        if self.status.is_some() {
+            len += 1;
+        }
         let mut struct_ser = serializer.serialize_struct("eproxy.transactions.v2.Event", len)?;
         if let Some(v) = self.r#type.as_ref() {
             let v = EventType::try_from(*v)
@@ -1430,6 +1433,9 @@ impl serde::Serialize for Event {
         if let Some(v) = self.value.as_ref() {
             struct_ser.serialize_field("value", v)?;
         }
+        if let Some(v) = self.status.as_ref() {
+            struct_ser.serialize_field("status", v)?;
+        }
         struct_ser.end()
     }
 }
@@ -1455,6 +1461,7 @@ impl<'de> serde::Deserialize<'de> for Event {
             "address_to",
             "addressTo",
             "value",
+            "status",
         ];
 
         #[allow(clippy::enum_variant_names)]
@@ -1468,6 +1475,7 @@ impl<'de> serde::Deserialize<'de> for Event {
             AddressFrom,
             AddressTo,
             Value,
+            Status,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -1498,6 +1506,7 @@ impl<'de> serde::Deserialize<'de> for Event {
                             "addressFrom" | "address_from" => Ok(GeneratedField::AddressFrom),
                             "addressTo" | "address_to" => Ok(GeneratedField::AddressTo),
                             "value" => Ok(GeneratedField::Value),
+                            "status" => Ok(GeneratedField::Status),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -1526,6 +1535,7 @@ impl<'de> serde::Deserialize<'de> for Event {
                 let mut address_from__ = None;
                 let mut address_to__ = None;
                 let mut value__ = None;
+                let mut status__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Type => {
@@ -1584,6 +1594,12 @@ impl<'de> serde::Deserialize<'de> for Event {
                             }
                             value__ = map_.next_value()?;
                         }
+                        GeneratedField::Status => {
+                            if status__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("status"));
+                            }
+                            status__ = map_.next_value()?;
+                        }
                     }
                 }
                 Ok(Event {
@@ -1596,6 +1612,7 @@ impl<'de> serde::Deserialize<'de> for Event {
                     address_from: address_from__,
                     address_to: address_to__,
                     value: value__,
+                    status: status__,
                 })
             }
         }
