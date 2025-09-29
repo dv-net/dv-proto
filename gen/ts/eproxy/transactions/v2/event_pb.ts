@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file eproxy/transactions/v2/event.proto.
  */
 export const file_eproxy_transactions_v2_event: GenFile = /*@__PURE__*/
-  fileDesc("CiJlcHJveHkvdHJhbnNhY3Rpb25zL3YyL2V2ZW50LnByb3RvEhZlcHJveHkudHJhbnNhY3Rpb25zLnYyIrADCgVFdmVudBI0CgR0eXBlGAEgASgOMiEuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5FdmVudFR5cGVIAIgBARIaCg1vcmlnaW5hbF9kYXRhGAIgASgJSAGIAQESDgoGdG9waWNzGAMgAygJEhkKDGVuY29kZWRfZGF0YRgEIAEoDEgCiAEBEiAKE2Jsb2NrY2hhaW5fdW5pcV9rZXkYBSABKAlIA4gBARIdChBhc3NldF9pZGVudGlmaWVyGAYgASgJSASIAQESGQoMYWRkcmVzc19mcm9tGAcgASgJSAWIAQESFwoKYWRkcmVzc190bxgIIAEoCUgGiAEBEhIKBXZhbHVlGAkgASgJSAeIAQESEwoGc3RhdHVzGAogASgJSAiIAQFCBwoFX3R5cGVCEAoOX29yaWdpbmFsX2RhdGFCDwoNX2VuY29kZWRfZGF0YUIWChRfYmxvY2tjaGFpbl91bmlxX2tleUITChFfYXNzZXRfaWRlbnRpZmllckIPCg1fYWRkcmVzc19mcm9tQg0KC19hZGRyZXNzX3RvQggKBl92YWx1ZUIJCgdfc3RhdHVzKkAKCUV2ZW50VHlwZRIaChZFVkVOVF9UWVBFX1VOU1BFQ0lGSUVEEAASFwoTRVZFTlRfVFlQRV9UUkFOU0ZFUhABQusBChpjb20uZXByb3h5LnRyYW5zYWN0aW9ucy52MkIKRXZlbnRQcm90b1ABWkdnaXRodWIuY29tL2R2LW5ldC9kdi1wcm90by9nZW4vZ28vZXByb3h5L3RyYW5zYWN0aW9ucy92Mjt0cmFuc2FjdGlvbnN2MqICA0VUWKoCFkVwcm94eS5UcmFuc2FjdGlvbnMuVjLKAhZFcHJveHlcVHJhbnNhY3Rpb25zXFYy4gIiRXByb3h5XFRyYW5zYWN0aW9uc1xWMlxHUEJNZXRhZGF0YeoCGEVwcm94eTo6VHJhbnNhY3Rpb25zOjpWMmIGcHJvdG8z");
+  fileDesc("CiJlcHJveHkvdHJhbnNhY3Rpb25zL3YyL2V2ZW50LnByb3RvEhZlcHJveHkudHJhbnNhY3Rpb25zLnYyItUDCgVFdmVudBI0CgR0eXBlGAEgASgOMiEuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5FdmVudFR5cGVIAIgBARIaCg1vcmlnaW5hbF9kYXRhGAIgASgJSAGIAQESDgoGdG9waWNzGAMgAygJEhkKDGVuY29kZWRfZGF0YRgEIAEoDEgCiAEBEiAKE2Jsb2NrY2hhaW5fdW5pcV9rZXkYBSABKAlIA4gBARIdChBhc3NldF9pZGVudGlmaWVyGAYgASgJSASIAQESGQoMYWRkcmVzc19mcm9tGAcgASgJSAWIAQESFwoKYWRkcmVzc190bxgIIAEoCUgGiAEBEhIKBXZhbHVlGAkgASgJSAeIAQESOAoGc3RhdHVzGAogASgOMiMuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5FdmVudFN0YXR1c0gIiAEBQgcKBV90eXBlQhAKDl9vcmlnaW5hbF9kYXRhQg8KDV9lbmNvZGVkX2RhdGFCFgoUX2Jsb2NrY2hhaW5fdW5pcV9rZXlCEwoRX2Fzc2V0X2lkZW50aWZpZXJCDwoNX2FkZHJlc3NfZnJvbUINCgtfYWRkcmVzc190b0IICgZfdmFsdWVCCQoHX3N0YXR1cypACglFdmVudFR5cGUSGgoWRVZFTlRfVFlQRV9VTlNQRUNJRklFRBAAEhcKE0VWRU5UX1RZUEVfVFJBTlNGRVIQASpeCgtFdmVudFN0YXR1cxIcChhFVkVOVF9TVEFUVVNfVU5TUEVDSUZJRUQQABIYChRFVkVOVF9TVEFUVVNfU1VDQ0VTUxABEhcKE0VWRU5UX1NUQVRVU19GQUlMRUQQAkLrAQoaY29tLmVwcm94eS50cmFuc2FjdGlvbnMudjJCCkV2ZW50UHJvdG9QAVpHZ2l0aHViLmNvbS9kdi1uZXQvZHYtcHJvdG8vZ2VuL2dvL2Vwcm94eS90cmFuc2FjdGlvbnMvdjI7dHJhbnNhY3Rpb25zdjKiAgNFVFiqAhZFcHJveHkuVHJhbnNhY3Rpb25zLlYyygIWRXByb3h5XFRyYW5zYWN0aW9uc1xWMuICIkVwcm94eVxUcmFuc2FjdGlvbnNcVjJcR1BCTWV0YWRhdGHqAhhFcHJveHk6OlRyYW5zYWN0aW9uczo6VjJiBnByb3RvMw");
 
 /**
  * @generated from message eproxy.transactions.v2.Event
@@ -62,9 +62,9 @@ export type Event = Message<"eproxy.transactions.v2.Event"> & {
   value?: string;
 
   /**
-   * @generated from field: optional string status = 10;
+   * @generated from field: optional eproxy.transactions.v2.EventStatus status = 10;
    */
-  status?: string;
+  status?: EventStatus;
 };
 
 /**
@@ -94,4 +94,30 @@ export enum EventType {
  */
 export const EventTypeSchema: GenEnum<EventType> = /*@__PURE__*/
   enumDesc(file_eproxy_transactions_v2_event, 0);
+
+/**
+ * @generated from enum eproxy.transactions.v2.EventStatus
+ */
+export enum EventStatus {
+  /**
+   * @generated from enum value: EVENT_STATUS_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: EVENT_STATUS_SUCCESS = 1;
+   */
+  SUCCESS = 1,
+
+  /**
+   * @generated from enum value: EVENT_STATUS_FAILED = 2;
+   */
+  FAILED = 2,
+}
+
+/**
+ * Describes the enum eproxy.transactions.v2.EventStatus.
+ */
+export const EventStatusSchema: GenEnum<EventStatus> = /*@__PURE__*/
+  enumDesc(file_eproxy_transactions_v2_event, 1);
 

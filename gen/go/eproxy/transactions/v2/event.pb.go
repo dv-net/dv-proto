@@ -67,6 +67,55 @@ func (EventType) EnumDescriptor() ([]byte, []int) {
 	return file_eproxy_transactions_v2_event_proto_rawDescGZIP(), []int{0}
 }
 
+type EventStatus int32
+
+const (
+	EventStatus_EVENT_STATUS_UNSPECIFIED EventStatus = 0
+	EventStatus_EVENT_STATUS_SUCCESS     EventStatus = 1
+	EventStatus_EVENT_STATUS_FAILED      EventStatus = 2
+)
+
+// Enum value maps for EventStatus.
+var (
+	EventStatus_name = map[int32]string{
+		0: "EVENT_STATUS_UNSPECIFIED",
+		1: "EVENT_STATUS_SUCCESS",
+		2: "EVENT_STATUS_FAILED",
+	}
+	EventStatus_value = map[string]int32{
+		"EVENT_STATUS_UNSPECIFIED": 0,
+		"EVENT_STATUS_SUCCESS":     1,
+		"EVENT_STATUS_FAILED":      2,
+	}
+)
+
+func (x EventStatus) Enum() *EventStatus {
+	p := new(EventStatus)
+	*p = x
+	return p
+}
+
+func (x EventStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (EventStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_eproxy_transactions_v2_event_proto_enumTypes[1].Descriptor()
+}
+
+func (EventStatus) Type() protoreflect.EnumType {
+	return &file_eproxy_transactions_v2_event_proto_enumTypes[1]
+}
+
+func (x EventStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use EventStatus.Descriptor instead.
+func (EventStatus) EnumDescriptor() ([]byte, []int) {
+	return file_eproxy_transactions_v2_event_proto_rawDescGZIP(), []int{1}
+}
+
 type Event struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	Type              *EventType             `protobuf:"varint,1,opt,name=type,proto3,enum=eproxy.transactions.v2.EventType,oneof" json:"type,omitempty"`
@@ -78,7 +127,7 @@ type Event struct {
 	AddressFrom       *string                `protobuf:"bytes,7,opt,name=address_from,json=addressFrom,proto3,oneof" json:"address_from,omitempty"`
 	AddressTo         *string                `protobuf:"bytes,8,opt,name=address_to,json=addressTo,proto3,oneof" json:"address_to,omitempty"`
 	Value             *string                `protobuf:"bytes,9,opt,name=value,proto3,oneof" json:"value,omitempty"`
-	Status            *string                `protobuf:"bytes,10,opt,name=status,proto3,oneof" json:"status,omitempty"`
+	Status            *EventStatus           `protobuf:"varint,10,opt,name=status,proto3,enum=eproxy.transactions.v2.EventStatus,oneof" json:"status,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -176,18 +225,18 @@ func (x *Event) GetValue() string {
 	return ""
 }
 
-func (x *Event) GetStatus() string {
+func (x *Event) GetStatus() EventStatus {
 	if x != nil && x.Status != nil {
 		return *x.Status
 	}
-	return ""
+	return EventStatus_EVENT_STATUS_UNSPECIFIED
 }
 
 var File_eproxy_transactions_v2_event_proto protoreflect.FileDescriptor
 
 const file_eproxy_transactions_v2_event_proto_rawDesc = "" +
 	"\n" +
-	"\"eproxy/transactions/v2/event.proto\x12\x16eproxy.transactions.v2\"\xa4\x04\n" +
+	"\"eproxy/transactions/v2/event.proto\x12\x16eproxy.transactions.v2\"\xc9\x04\n" +
 	"\x05Event\x12:\n" +
 	"\x04type\x18\x01 \x01(\x0e2!.eproxy.transactions.v2.EventTypeH\x00R\x04type\x88\x01\x01\x12(\n" +
 	"\roriginal_data\x18\x02 \x01(\tH\x01R\foriginalData\x88\x01\x01\x12\x16\n" +
@@ -198,9 +247,9 @@ const file_eproxy_transactions_v2_event_proto_rawDesc = "" +
 	"\faddress_from\x18\a \x01(\tH\x05R\vaddressFrom\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"address_to\x18\b \x01(\tH\x06R\taddressTo\x88\x01\x01\x12\x19\n" +
-	"\x05value\x18\t \x01(\tH\aR\x05value\x88\x01\x01\x12\x1b\n" +
+	"\x05value\x18\t \x01(\tH\aR\x05value\x88\x01\x01\x12@\n" +
 	"\x06status\x18\n" +
-	" \x01(\tH\bR\x06status\x88\x01\x01B\a\n" +
+	" \x01(\x0e2#.eproxy.transactions.v2.EventStatusH\bR\x06status\x88\x01\x01B\a\n" +
 	"\x05_typeB\x10\n" +
 	"\x0e_original_dataB\x0f\n" +
 	"\r_encoded_dataB\x16\n" +
@@ -212,7 +261,11 @@ const file_eproxy_transactions_v2_event_proto_rawDesc = "" +
 	"\a_status*@\n" +
 	"\tEventType\x12\x1a\n" +
 	"\x16EVENT_TYPE_UNSPECIFIED\x10\x00\x12\x17\n" +
-	"\x13EVENT_TYPE_TRANSFER\x10\x01B\xeb\x01\n" +
+	"\x13EVENT_TYPE_TRANSFER\x10\x01*^\n" +
+	"\vEventStatus\x12\x1c\n" +
+	"\x18EVENT_STATUS_UNSPECIFIED\x10\x00\x12\x18\n" +
+	"\x14EVENT_STATUS_SUCCESS\x10\x01\x12\x17\n" +
+	"\x13EVENT_STATUS_FAILED\x10\x02B\xeb\x01\n" +
 	"\x1acom.eproxy.transactions.v2B\n" +
 	"EventProtoP\x01ZGgithub.com/dv-net/dv-proto/gen/go/eproxy/transactions/v2;transactionsv2\xa2\x02\x03ETX\xaa\x02\x16Eproxy.Transactions.V2\xca\x02\x16Eproxy\\Transactions\\V2\xe2\x02\"Eproxy\\Transactions\\V2\\GPBMetadata\xea\x02\x18Eproxy::Transactions::V2b\x06proto3"
 
@@ -228,19 +281,21 @@ func file_eproxy_transactions_v2_event_proto_rawDescGZIP() []byte {
 	return file_eproxy_transactions_v2_event_proto_rawDescData
 }
 
-var file_eproxy_transactions_v2_event_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_eproxy_transactions_v2_event_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_eproxy_transactions_v2_event_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_eproxy_transactions_v2_event_proto_goTypes = []any{
-	(EventType)(0), // 0: eproxy.transactions.v2.EventType
-	(*Event)(nil),  // 1: eproxy.transactions.v2.Event
+	(EventType)(0),   // 0: eproxy.transactions.v2.EventType
+	(EventStatus)(0), // 1: eproxy.transactions.v2.EventStatus
+	(*Event)(nil),    // 2: eproxy.transactions.v2.Event
 }
 var file_eproxy_transactions_v2_event_proto_depIdxs = []int32{
 	0, // 0: eproxy.transactions.v2.Event.type:type_name -> eproxy.transactions.v2.EventType
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	1, // 1: eproxy.transactions.v2.Event.status:type_name -> eproxy.transactions.v2.EventStatus
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_eproxy_transactions_v2_event_proto_init() }
@@ -254,7 +309,7 @@ func file_eproxy_transactions_v2_event_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_eproxy_transactions_v2_event_proto_rawDesc), len(file_eproxy_transactions_v2_event_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      2,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,

@@ -3040,9 +3040,18 @@
           "type": "string"
         },
         "status": {
-          "type": "string"
+          "$ref": "#/definitions/eproxy.transactions.v2.EventStatus"
         }
       }
+    },
+    "eproxy.transactions.v2.EventStatus": {
+      "type": "string",
+      "enum": [
+        "EVENT_STATUS_UNSPECIFIED",
+        "EVENT_STATUS_SUCCESS",
+        "EVENT_STATUS_FAILED"
+      ],
+      "default": "EVENT_STATUS_UNSPECIFIED"
     },
     "eproxy.transactions.v2.EventType": {
       "type": "string",
