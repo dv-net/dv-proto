@@ -5,7 +5,11 @@ enum EventType {
   EVENT_TYPE_UNSPECIFIED = 0;
   EVENT_TYPE_TRANSFER = 1;
 }
-
+enum EventStatus {
+  EVENT_STATUS_UNSPECIFIED = 0;
+  EVENT_STATUS_SUCCESS = 1;
+  EVENT_STATUS_FAILED = 2;
+}
 message Event {
   optional EventType type = 1;
   optional string original_data = 2;
@@ -16,5 +20,5 @@ message Event {
   optional string address_from = 7;
   optional string address_to = 8;
   optional string value = 9;
-  optional string status = 10;
+  optional EventStatus status = 10;
 }
