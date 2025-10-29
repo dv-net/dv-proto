@@ -16,9 +16,16 @@ message InfoRequest {
   string identifier = 2 [ (google.api.field_behavior) = REQUIRED ];
 }
 
+message StorageLayout {
+  optional uint64 balance_slot = 1;
+  optional uint64 allowance_slot = 2;
+  optional string proxy_implementation = 3;
+}
+
 message InfoResponse {
   string name = 1;
   string symbol = 2;
   optional uint32 decimals = 3;
   optional string kind = 4;
+  optional StorageLayout storage_layout = 5;
 }

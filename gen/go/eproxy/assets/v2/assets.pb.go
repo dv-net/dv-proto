@@ -75,19 +75,80 @@ func (x *InfoRequest) GetIdentifier() string {
 	return ""
 }
 
+type StorageLayout struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	BalanceSlot         *uint64                `protobuf:"varint,1,opt,name=balance_slot,json=balanceSlot,proto3,oneof" json:"balance_slot,omitempty"`
+	AllowanceSlot       *uint64                `protobuf:"varint,2,opt,name=allowance_slot,json=allowanceSlot,proto3,oneof" json:"allowance_slot,omitempty"`
+	ProxyImplementation *string                `protobuf:"bytes,3,opt,name=proxy_implementation,json=proxyImplementation,proto3,oneof" json:"proxy_implementation,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *StorageLayout) Reset() {
+	*x = StorageLayout{}
+	mi := &file_eproxy_assets_v2_assets_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StorageLayout) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StorageLayout) ProtoMessage() {}
+
+func (x *StorageLayout) ProtoReflect() protoreflect.Message {
+	mi := &file_eproxy_assets_v2_assets_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StorageLayout.ProtoReflect.Descriptor instead.
+func (*StorageLayout) Descriptor() ([]byte, []int) {
+	return file_eproxy_assets_v2_assets_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *StorageLayout) GetBalanceSlot() uint64 {
+	if x != nil && x.BalanceSlot != nil {
+		return *x.BalanceSlot
+	}
+	return 0
+}
+
+func (x *StorageLayout) GetAllowanceSlot() uint64 {
+	if x != nil && x.AllowanceSlot != nil {
+		return *x.AllowanceSlot
+	}
+	return 0
+}
+
+func (x *StorageLayout) GetProxyImplementation() string {
+	if x != nil && x.ProxyImplementation != nil {
+		return *x.ProxyImplementation
+	}
+	return ""
+}
+
 type InfoResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Symbol        string                 `protobuf:"bytes,2,opt,name=symbol,proto3" json:"symbol,omitempty"`
 	Decimals      *uint32                `protobuf:"varint,3,opt,name=decimals,proto3,oneof" json:"decimals,omitempty"`
 	Kind          *string                `protobuf:"bytes,4,opt,name=kind,proto3,oneof" json:"kind,omitempty"`
+	StorageLayout *StorageLayout         `protobuf:"bytes,5,opt,name=storage_layout,json=storageLayout,proto3,oneof" json:"storage_layout,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *InfoResponse) Reset() {
 	*x = InfoResponse{}
-	mi := &file_eproxy_assets_v2_assets_proto_msgTypes[1]
+	mi := &file_eproxy_assets_v2_assets_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -99,7 +160,7 @@ func (x *InfoResponse) String() string {
 func (*InfoResponse) ProtoMessage() {}
 
 func (x *InfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_eproxy_assets_v2_assets_proto_msgTypes[1]
+	mi := &file_eproxy_assets_v2_assets_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -112,7 +173,7 @@ func (x *InfoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InfoResponse.ProtoReflect.Descriptor instead.
 func (*InfoResponse) Descriptor() ([]byte, []int) {
-	return file_eproxy_assets_v2_assets_proto_rawDescGZIP(), []int{1}
+	return file_eproxy_assets_v2_assets_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *InfoResponse) GetName() string {
@@ -143,6 +204,13 @@ func (x *InfoResponse) GetKind() string {
 	return ""
 }
 
+func (x *InfoResponse) GetStorageLayout() *StorageLayout {
+	if x != nil {
+		return x.StorageLayout
+	}
+	return nil
+}
+
 var File_eproxy_assets_v2_assets_proto protoreflect.FileDescriptor
 
 const file_eproxy_assets_v2_assets_proto_rawDesc = "" +
@@ -154,14 +222,23 @@ const file_eproxy_assets_v2_assets_proto_rawDesc = "" +
 	"blockchain\x12#\n" +
 	"\n" +
 	"identifier\x18\x02 \x01(\tB\x03\xe0A\x02R\n" +
-	"identifier\"\x8a\x01\n" +
+	"identifier\"\xd8\x01\n" +
+	"\rStorageLayout\x12&\n" +
+	"\fbalance_slot\x18\x01 \x01(\x04H\x00R\vbalanceSlot\x88\x01\x01\x12*\n" +
+	"\x0eallowance_slot\x18\x02 \x01(\x04H\x01R\rallowanceSlot\x88\x01\x01\x126\n" +
+	"\x14proxy_implementation\x18\x03 \x01(\tH\x02R\x13proxyImplementation\x88\x01\x01B\x0f\n" +
+	"\r_balance_slotB\x11\n" +
+	"\x0f_allowance_slotB\x17\n" +
+	"\x15_proxy_implementation\"\xea\x01\n" +
 	"\fInfoResponse\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
 	"\x06symbol\x18\x02 \x01(\tR\x06symbol\x12\x1f\n" +
 	"\bdecimals\x18\x03 \x01(\rH\x00R\bdecimals\x88\x01\x01\x12\x17\n" +
-	"\x04kind\x18\x04 \x01(\tH\x01R\x04kind\x88\x01\x01B\v\n" +
+	"\x04kind\x18\x04 \x01(\tH\x01R\x04kind\x88\x01\x01\x12K\n" +
+	"\x0estorage_layout\x18\x05 \x01(\v2\x1f.eproxy.assets.v2.StorageLayoutH\x02R\rstorageLayout\x88\x01\x01B\v\n" +
 	"\t_decimalsB\a\n" +
-	"\x05_kind2V\n" +
+	"\x05_kindB\x11\n" +
+	"\x0f_storage_layout2V\n" +
 	"\rAssetsService\x12E\n" +
 	"\x04Info\x12\x1d.eproxy.assets.v2.InfoRequest\x1a\x1e.eproxy.assets.v2.InfoResponseB\xc2\x01\n" +
 	"\x14com.eproxy.assets.v2B\vAssetsProtoP\x01Z;github.com/dv-net/dv-proto/gen/go/eproxy/assets/v2;assetsv2\xa2\x02\x03EAX\xaa\x02\x10Eproxy.Assets.V2\xca\x02\x10Eproxy\\Assets\\V2\xe2\x02\x1cEproxy\\Assets\\V2\\GPBMetadata\xea\x02\x12Eproxy::Assets::V2b\x06proto3"
@@ -178,21 +255,23 @@ func file_eproxy_assets_v2_assets_proto_rawDescGZIP() []byte {
 	return file_eproxy_assets_v2_assets_proto_rawDescData
 }
 
-var file_eproxy_assets_v2_assets_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_eproxy_assets_v2_assets_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_eproxy_assets_v2_assets_proto_goTypes = []any{
-	(*InfoRequest)(nil),  // 0: eproxy.assets.v2.InfoRequest
-	(*InfoResponse)(nil), // 1: eproxy.assets.v2.InfoResponse
-	(v2.Blockchain)(0),   // 2: eproxy.common.v2.Blockchain
+	(*InfoRequest)(nil),   // 0: eproxy.assets.v2.InfoRequest
+	(*StorageLayout)(nil), // 1: eproxy.assets.v2.StorageLayout
+	(*InfoResponse)(nil),  // 2: eproxy.assets.v2.InfoResponse
+	(v2.Blockchain)(0),    // 3: eproxy.common.v2.Blockchain
 }
 var file_eproxy_assets_v2_assets_proto_depIdxs = []int32{
-	2, // 0: eproxy.assets.v2.InfoRequest.blockchain:type_name -> eproxy.common.v2.Blockchain
-	0, // 1: eproxy.assets.v2.AssetsService.Info:input_type -> eproxy.assets.v2.InfoRequest
-	1, // 2: eproxy.assets.v2.AssetsService.Info:output_type -> eproxy.assets.v2.InfoResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	3, // 0: eproxy.assets.v2.InfoRequest.blockchain:type_name -> eproxy.common.v2.Blockchain
+	1, // 1: eproxy.assets.v2.InfoResponse.storage_layout:type_name -> eproxy.assets.v2.StorageLayout
+	0, // 2: eproxy.assets.v2.AssetsService.Info:input_type -> eproxy.assets.v2.InfoRequest
+	2, // 3: eproxy.assets.v2.AssetsService.Info:output_type -> eproxy.assets.v2.InfoResponse
+	3, // [3:4] is the sub-list for method output_type
+	2, // [2:3] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_eproxy_assets_v2_assets_proto_init() }
@@ -201,13 +280,14 @@ func file_eproxy_assets_v2_assets_proto_init() {
 		return
 	}
 	file_eproxy_assets_v2_assets_proto_msgTypes[1].OneofWrappers = []any{}
+	file_eproxy_assets_v2_assets_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_eproxy_assets_v2_assets_proto_rawDesc), len(file_eproxy_assets_v2_assets_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

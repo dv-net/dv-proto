@@ -1449,6 +1449,25 @@
         },
         "kind": {
           "type": "string"
+        },
+        "storage_layout": {
+          "$ref": "#/definitions/eproxy.assets.v2.StorageLayout"
+        }
+      }
+    },
+    "eproxy.assets.v2.StorageLayout": {
+      "type": "object",
+      "properties": {
+        "balance_slot": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "allowance_slot": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "proxy_implementation": {
+          "type": "string"
         }
       }
     },

@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file eproxy/assets/v2/assets.proto.
  */
 export const file_eproxy_assets_v2_assets: GenFile = /*@__PURE__*/
-  fileDesc("Ch1lcHJveHkvYXNzZXRzL3YyL2Fzc2V0cy5wcm90bxIQZXByb3h5LmFzc2V0cy52MiJdCgtJbmZvUmVxdWVzdBI1CgpibG9ja2NoYWluGAEgASgOMhwuZXByb3h5LmNvbW1vbi52Mi5CbG9ja2NoYWluQgPgQQISFwoKaWRlbnRpZmllchgCIAEoCUID4EECImwKDEluZm9SZXNwb25zZRIMCgRuYW1lGAEgASgJEg4KBnN5bWJvbBgCIAEoCRIVCghkZWNpbWFscxgDIAEoDUgAiAEBEhEKBGtpbmQYBCABKAlIAYgBAUILCglfZGVjaW1hbHNCBwoFX2tpbmQyVgoNQXNzZXRzU2VydmljZRJFCgRJbmZvEh0uZXByb3h5LmFzc2V0cy52Mi5JbmZvUmVxdWVzdBoeLmVwcm94eS5hc3NldHMudjIuSW5mb1Jlc3BvbnNlQsIBChRjb20uZXByb3h5LmFzc2V0cy52MkILQXNzZXRzUHJvdG9QAVo7Z2l0aHViLmNvbS9kdi1uZXQvZHYtcHJvdG8vZ2VuL2dvL2Vwcm94eS9hc3NldHMvdjI7YXNzZXRzdjKiAgNFQViqAhBFcHJveHkuQXNzZXRzLlYyygIQRXByb3h5XEFzc2V0c1xWMuICHEVwcm94eVxBc3NldHNcVjJcR1BCTWV0YWRhdGHqAhJFcHJveHk6OkFzc2V0czo6VjJiBnByb3RvMw", [file_google_api_field_behavior, file_eproxy_common_v2_common]);
+  fileDesc("Ch1lcHJveHkvYXNzZXRzL3YyL2Fzc2V0cy5wcm90bxIQZXByb3h5LmFzc2V0cy52MiJdCgtJbmZvUmVxdWVzdBI1CgpibG9ja2NoYWluGAEgASgOMhwuZXByb3h5LmNvbW1vbi52Mi5CbG9ja2NoYWluQgPgQQISFwoKaWRlbnRpZmllchgCIAEoCUID4EECIqcBCg1TdG9yYWdlTGF5b3V0EhkKDGJhbGFuY2Vfc2xvdBgBIAEoBEgAiAEBEhsKDmFsbG93YW5jZV9zbG90GAIgASgESAGIAQESIQoUcHJveHlfaW1wbGVtZW50YXRpb24YAyABKAlIAogBAUIPCg1fYmFsYW5jZV9zbG90QhEKD19hbGxvd2FuY2Vfc2xvdEIXChVfcHJveHlfaW1wbGVtZW50YXRpb24ivQEKDEluZm9SZXNwb25zZRIMCgRuYW1lGAEgASgJEg4KBnN5bWJvbBgCIAEoCRIVCghkZWNpbWFscxgDIAEoDUgAiAEBEhEKBGtpbmQYBCABKAlIAYgBARI8Cg5zdG9yYWdlX2xheW91dBgFIAEoCzIfLmVwcm94eS5hc3NldHMudjIuU3RvcmFnZUxheW91dEgCiAEBQgsKCV9kZWNpbWFsc0IHCgVfa2luZEIRCg9fc3RvcmFnZV9sYXlvdXQyVgoNQXNzZXRzU2VydmljZRJFCgRJbmZvEh0uZXByb3h5LmFzc2V0cy52Mi5JbmZvUmVxdWVzdBoeLmVwcm94eS5hc3NldHMudjIuSW5mb1Jlc3BvbnNlQsIBChRjb20uZXByb3h5LmFzc2V0cy52MkILQXNzZXRzUHJvdG9QAVo7Z2l0aHViLmNvbS9kdi1uZXQvZHYtcHJvdG8vZ2VuL2dvL2Vwcm94eS9hc3NldHMvdjI7YXNzZXRzdjKiAgNFQViqAhBFcHJveHkuQXNzZXRzLlYyygIQRXByb3h5XEFzc2V0c1xWMuICHEVwcm94eVxBc3NldHNcVjJcR1BCTWV0YWRhdGHqAhJFcHJveHk6OkFzc2V0czo6VjJiBnByb3RvMw", [file_google_api_field_behavior, file_eproxy_common_v2_common]);
 
 /**
  * @generated from message eproxy.assets.v2.InfoRequest
@@ -38,6 +38,33 @@ export const InfoRequestSchema: GenMessage<InfoRequest> = /*@__PURE__*/
   messageDesc(file_eproxy_assets_v2_assets, 0);
 
 /**
+ * @generated from message eproxy.assets.v2.StorageLayout
+ */
+export type StorageLayout = Message<"eproxy.assets.v2.StorageLayout"> & {
+  /**
+   * @generated from field: optional uint64 balance_slot = 1;
+   */
+  balanceSlot?: bigint;
+
+  /**
+   * @generated from field: optional uint64 allowance_slot = 2;
+   */
+  allowanceSlot?: bigint;
+
+  /**
+   * @generated from field: optional string proxy_implementation = 3;
+   */
+  proxyImplementation?: string;
+};
+
+/**
+ * Describes the message eproxy.assets.v2.StorageLayout.
+ * Use `create(StorageLayoutSchema)` to create a new message.
+ */
+export const StorageLayoutSchema: GenMessage<StorageLayout> = /*@__PURE__*/
+  messageDesc(file_eproxy_assets_v2_assets, 1);
+
+/**
  * @generated from message eproxy.assets.v2.InfoResponse
  */
 export type InfoResponse = Message<"eproxy.assets.v2.InfoResponse"> & {
@@ -60,6 +87,11 @@ export type InfoResponse = Message<"eproxy.assets.v2.InfoResponse"> & {
    * @generated from field: optional string kind = 4;
    */
   kind?: string;
+
+  /**
+   * @generated from field: optional eproxy.assets.v2.StorageLayout storage_layout = 5;
+   */
+  storageLayout?: StorageLayout;
 };
 
 /**
@@ -67,7 +99,7 @@ export type InfoResponse = Message<"eproxy.assets.v2.InfoResponse"> & {
  * Use `create(InfoResponseSchema)` to create a new message.
  */
 export const InfoResponseSchema: GenMessage<InfoResponse> = /*@__PURE__*/
-  messageDesc(file_eproxy_assets_v2_assets, 1);
+  messageDesc(file_eproxy_assets_v2_assets, 2);
 
 /**
  * AssetService work with asset information
