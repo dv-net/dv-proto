@@ -347,6 +347,9 @@ impl serde::Serialize for BalanceRequest {
         if !self.asset_identifier.is_empty() {
             len += 1;
         }
+        if self.block_number.is_some() {
+            len += 1;
+        }
         let mut struct_ser = serializer.serialize_struct("eproxy.addresses.v2.BalanceRequest", len)?;
         if self.blockchain != 0 {
             let v = super::super::common::v2::Blockchain::try_from(self.blockchain)
@@ -358,6 +361,11 @@ impl serde::Serialize for BalanceRequest {
         }
         if !self.asset_identifier.is_empty() {
             struct_ser.serialize_field("assetIdentifier", &self.asset_identifier)?;
+        }
+        if let Some(v) = self.block_number.as_ref() {
+            #[allow(clippy::needless_borrow)]
+            #[allow(clippy::needless_borrows_for_generic_args)]
+            struct_ser.serialize_field("blockNumber", ToString::to_string(&v).as_str())?;
         }
         struct_ser.end()
     }
@@ -373,6 +381,8 @@ impl<'de> serde::Deserialize<'de> for BalanceRequest {
             "address",
             "asset_identifier",
             "assetIdentifier",
+            "block_number",
+            "blockNumber",
         ];
 
         #[allow(clippy::enum_variant_names)]
@@ -380,6 +390,7 @@ impl<'de> serde::Deserialize<'de> for BalanceRequest {
             Blockchain,
             Address,
             AssetIdentifier,
+            BlockNumber,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -404,6 +415,7 @@ impl<'de> serde::Deserialize<'de> for BalanceRequest {
                             "blockchain" => Ok(GeneratedField::Blockchain),
                             "address" => Ok(GeneratedField::Address),
                             "assetIdentifier" | "asset_identifier" => Ok(GeneratedField::AssetIdentifier),
+                            "blockNumber" | "block_number" => Ok(GeneratedField::BlockNumber),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -426,6 +438,7 @@ impl<'de> serde::Deserialize<'de> for BalanceRequest {
                 let mut blockchain__ = None;
                 let mut address__ = None;
                 let mut asset_identifier__ = None;
+                let mut block_number__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Blockchain => {
@@ -446,12 +459,21 @@ impl<'de> serde::Deserialize<'de> for BalanceRequest {
                             }
                             asset_identifier__ = Some(map_.next_value()?);
                         }
+                        GeneratedField::BlockNumber => {
+                            if block_number__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("blockNumber"));
+                            }
+                            block_number__ = 
+                                map_.next_value::<::std::option::Option<::pbjson::private::NumberDeserialize<_>>>()?.map(|x| x.0)
+                            ;
+                        }
                     }
                 }
                 Ok(BalanceRequest {
                     blockchain: blockchain__.unwrap_or_default(),
                     address: address__.unwrap_or_default(),
                     asset_identifier: asset_identifier__.unwrap_or_default(),
+                    block_number: block_number__,
                 })
             }
         }
