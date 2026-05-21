@@ -45,6 +45,7 @@ message BalanceRequest {
       [ (google.api.field_behavior) = REQUIRED ];
   string address = 2 [ (google.api.field_behavior) = REQUIRED ];
   string asset_identifier = 3 [ (google.api.field_behavior) = REQUIRED ];
+  optional uint64 block_number = 4;
 }
 
 message BalanceResponse { string amount = 1; }
