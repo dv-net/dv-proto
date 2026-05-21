@@ -279,6 +279,7 @@ type BalanceRequest struct {
 	Blockchain      v2.Blockchain          `protobuf:"varint,1,opt,name=blockchain,proto3,enum=eproxy.common.v2.Blockchain" json:"blockchain,omitempty"`
 	Address         string                 `protobuf:"bytes,2,opt,name=address,proto3" json:"address,omitempty"`
 	AssetIdentifier string                 `protobuf:"bytes,3,opt,name=asset_identifier,json=assetIdentifier,proto3" json:"asset_identifier,omitempty"`
+	BlockNumber     *uint64                `protobuf:"varint,4,opt,name=block_number,json=blockNumber,proto3,oneof" json:"block_number,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -332,6 +333,13 @@ func (x *BalanceRequest) GetAssetIdentifier() string {
 		return x.AssetIdentifier
 	}
 	return ""
+}
+
+func (x *BalanceRequest) GetBlockNumber() uint64 {
+	if x != nil && x.BlockNumber != nil {
+		return *x.BlockNumber
+	}
+	return 0
 }
 
 type BalanceResponse struct {
@@ -402,13 +410,15 @@ const file_eproxy_addresses_v2_addresses_proto_rawDesc = "" +
 	"blockchain\x12\x1d\n" +
 	"\aaddress\x18\x02 \x01(\tB\x03\xe0A\x02R\aaddress\"@\n" +
 	"\fInfoResponse\x120\n" +
-	"\x04item\x18\x01 \x01(\v2\x1c.eproxy.addresses.v2.AddressR\x04item\"\xa2\x01\n" +
+	"\x04item\x18\x01 \x01(\v2\x1c.eproxy.addresses.v2.AddressR\x04item\"\xdb\x01\n" +
 	"\x0eBalanceRequest\x12A\n" +
 	"\n" +
 	"blockchain\x18\x01 \x01(\x0e2\x1c.eproxy.common.v2.BlockchainB\x03\xe0A\x02R\n" +
 	"blockchain\x12\x1d\n" +
 	"\aaddress\x18\x02 \x01(\tB\x03\xe0A\x02R\aaddress\x12.\n" +
-	"\x10asset_identifier\x18\x03 \x01(\tB\x03\xe0A\x02R\x0fassetIdentifier\")\n" +
+	"\x10asset_identifier\x18\x03 \x01(\tB\x03\xe0A\x02R\x0fassetIdentifier\x12&\n" +
+	"\fblock_number\x18\x04 \x01(\x04H\x00R\vblockNumber\x88\x01\x01B\x0f\n" +
+	"\r_block_number\")\n" +
 	"\x0fBalanceResponse\x12\x16\n" +
 	"\x06amount\x18\x01 \x01(\tR\x06amount2\xb5\x01\n" +
 	"\x10AddressesService\x12K\n" +
@@ -462,6 +472,7 @@ func file_eproxy_addresses_v2_addresses_proto_init() {
 	if File_eproxy_addresses_v2_addresses_proto != nil {
 		return
 	}
+	file_eproxy_addresses_v2_addresses_proto_msgTypes[4].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

@@ -1348,6 +1348,10 @@
         },
         "asset_identifier": {
           "type": "string"
+        },
+        "block_number": {
+          "type": "string",
+          "format": "uint64"
         }
       },
       "title": "Info balance",
