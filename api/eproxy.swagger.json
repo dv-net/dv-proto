@@ -1203,6 +1203,38 @@
           "TronService"
         ]
       }
+    },
+    "/eproxy.tron.v2.TronService/GetResources": {
+      "post": {
+        "operationId": "TronService_GetResources",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/eproxy.tron.v2.GetResourcesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/eproxy.tron.v2.GetResourcesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "TronService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -3600,6 +3632,96 @@
       ]
     },
     "eproxy.tron.v1.GetResourcesResponse": {
+      "type": "object",
+      "properties": {
+        "free_net_used": {
+          "type": "string",
+          "format": "int64"
+        },
+        "free_net_limit": {
+          "type": "string",
+          "format": "int64"
+        },
+        "net_used": {
+          "type": "string",
+          "format": "int64"
+        },
+        "net_limit": {
+          "type": "string",
+          "format": "int64"
+        },
+        "asset_net_used": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "asset_net_limit": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "total_net_limit": {
+          "type": "string",
+          "format": "int64"
+        },
+        "total_net_weight": {
+          "type": "string",
+          "format": "int64"
+        },
+        "total_tron_power_weight": {
+          "type": "string",
+          "format": "int64"
+        },
+        "tron_power_used": {
+          "type": "string",
+          "format": "int64"
+        },
+        "tron_power_limit": {
+          "type": "string",
+          "format": "int64"
+        },
+        "energy_used": {
+          "type": "string",
+          "format": "int64"
+        },
+        "energy_limit": {
+          "type": "string",
+          "format": "int64"
+        },
+        "total_energy_limit": {
+          "type": "string",
+          "format": "int64"
+        },
+        "total_energy_weight": {
+          "type": "string",
+          "format": "int64"
+        },
+        "storage_used": {
+          "type": "string",
+          "format": "int64"
+        },
+        "storage_limit": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "eproxy.tron.v2.GetResourcesRequest": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "address"
+      ]
+    },
+    "eproxy.tron.v2.GetResourcesResponse": {
       "type": "object",
       "properties": {
         "free_net_used": {
