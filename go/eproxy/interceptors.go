@@ -22,7 +22,7 @@ func (i *ClientInterceptor) WrapUnary(next connect.UnaryFunc) connect.UnaryFunc 
 		ctx context.Context,
 		req connect.AnyRequest,
 	) (connect.AnyResponse, error) {
-		req.Header().Set("version", i.appVersion)
+		req.Header().Set("Version", i.appVersion)
 		return next(ctx, req)
 	})
 }
@@ -33,7 +33,7 @@ func (i *ClientInterceptor) WrapStreamingHandler(next connect.StreamingHandlerFu
 		ctx context.Context,
 		conn connect.StreamingHandlerConn,
 	) error {
-		conn.RequestHeader().Set("version", i.appVersion)
+		conn.RequestHeader().Set("Version", i.appVersion)
 		return next(ctx, conn)
 	})
 }
@@ -44,7 +44,7 @@ func (i *ClientInterceptor) WrapStreamingClient(next connect.StreamingClientFunc
 		spec connect.Spec,
 	) connect.StreamingClientConn {
 		conn := next(ctx, spec)
-		conn.RequestHeader().Set("version", i.appVersion)
+		conn.RequestHeader().Set("Version", i.appVersion)
 
 		return conn
 	})
