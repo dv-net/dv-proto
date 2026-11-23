@@ -67,6 +67,7 @@ message SuggestTxFeeResponse {
         TronFeeData tron_data = 2;
         EVMFeesData evm_data = 3;
         BitcoinLikeFeeData bitcoin_like_data = 4;
+        TonFeeData ton_data = 5;
     }
     
     message TronFeeData {
@@ -95,5 +96,13 @@ message SuggestTxFeeResponse {
         uint32 estimated_size = 2;      // Estimated transaction size in bytes
         string priority = 3;            // Priority level: "low", "medium", "high"
         uint32 utxo_count = 4;          // Number of UTXOs used (affects size calculation)
+    }
+    message TonFeeData {
+        // All values are in nanograms
+        string storage_fee = 1;         // Storage fee of the sender wallet
+        string gas_fee = 2;             // Compute (gas) fee of the sender wallet
+        string fwd_fee = 3;             // Forwarding fee of outgoing messages
+        string in_fwd_fee = 4;          // Import fee of the external message
+        string attached_amount = 5;     // Amount attached to a jetton transfer message, the excess is returned
     }
 }

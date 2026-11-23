@@ -19,6 +19,9 @@ impl serde::Serialize for AdditionalData {
         if self.monero.is_some() {
             len += 1;
         }
+        if self.ton.is_some() {
+            len += 1;
+        }
         let mut struct_ser = serializer.serialize_struct("eproxy.transactions.v2.AdditionalData", len)?;
         if let Some(v) = self.tron.as_ref() {
             struct_ser.serialize_field("tron", v)?;
@@ -31,6 +34,9 @@ impl serde::Serialize for AdditionalData {
         }
         if let Some(v) = self.monero.as_ref() {
             struct_ser.serialize_field("monero", v)?;
+        }
+        if let Some(v) = self.ton.as_ref() {
+            struct_ser.serialize_field("ton", v)?;
         }
         struct_ser.end()
     }
@@ -46,6 +52,7 @@ impl<'de> serde::Deserialize<'de> for AdditionalData {
             "evm",
             "btclike",
             "monero",
+            "ton",
         ];
 
         #[allow(clippy::enum_variant_names)]
@@ -54,6 +61,7 @@ impl<'de> serde::Deserialize<'de> for AdditionalData {
             Evm,
             Btclike,
             Monero,
+            Ton,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -79,6 +87,7 @@ impl<'de> serde::Deserialize<'de> for AdditionalData {
                             "evm" => Ok(GeneratedField::Evm),
                             "btclike" => Ok(GeneratedField::Btclike),
                             "monero" => Ok(GeneratedField::Monero),
+                            "ton" => Ok(GeneratedField::Ton),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -102,6 +111,7 @@ impl<'de> serde::Deserialize<'de> for AdditionalData {
                 let mut evm__ = None;
                 let mut btclike__ = None;
                 let mut monero__ = None;
+                let mut ton__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Tron => {
@@ -128,6 +138,12 @@ impl<'de> serde::Deserialize<'de> for AdditionalData {
                             }
                             monero__ = map_.next_value()?;
                         }
+                        GeneratedField::Ton => {
+                            if ton__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("ton"));
+                            }
+                            ton__ = map_.next_value()?;
+                        }
                     }
                 }
                 Ok(AdditionalData {
@@ -135,6 +151,7 @@ impl<'de> serde::Deserialize<'de> for AdditionalData {
                     evm: evm__,
                     btclike: btclike__,
                     monero: monero__,
+                    ton: ton__,
                 })
             }
         }
@@ -1401,6 +1418,12 @@ impl serde::Serialize for Event {
         if self.status.is_some() {
             len += 1;
         }
+        if self.comment.is_some() {
+            len += 1;
+        }
+        if self.is_bounced.is_some() {
+            len += 1;
+        }
         let mut struct_ser = serializer.serialize_struct("eproxy.transactions.v2.Event", len)?;
         if let Some(v) = self.r#type.as_ref() {
             let v = EventType::try_from(*v)
@@ -1438,6 +1461,12 @@ impl serde::Serialize for Event {
                 .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", *v)))?;
             struct_ser.serialize_field("status", &v)?;
         }
+        if let Some(v) = self.comment.as_ref() {
+            struct_ser.serialize_field("comment", v)?;
+        }
+        if let Some(v) = self.is_bounced.as_ref() {
+            struct_ser.serialize_field("isBounced", v)?;
+        }
         struct_ser.end()
     }
 }
@@ -1464,6 +1493,9 @@ impl<'de> serde::Deserialize<'de> for Event {
             "addressTo",
             "value",
             "status",
+            "comment",
+            "is_bounced",
+            "isBounced",
         ];
 
         #[allow(clippy::enum_variant_names)]
@@ -1478,6 +1510,8 @@ impl<'de> serde::Deserialize<'de> for Event {
             AddressTo,
             Value,
             Status,
+            Comment,
+            IsBounced,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -1509,6 +1543,8 @@ impl<'de> serde::Deserialize<'de> for Event {
                             "addressTo" | "address_to" => Ok(GeneratedField::AddressTo),
                             "value" => Ok(GeneratedField::Value),
                             "status" => Ok(GeneratedField::Status),
+                            "comment" => Ok(GeneratedField::Comment),
+                            "isBounced" | "is_bounced" => Ok(GeneratedField::IsBounced),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -1538,6 +1574,8 @@ impl<'de> serde::Deserialize<'de> for Event {
                 let mut address_to__ = None;
                 let mut value__ = None;
                 let mut status__ = None;
+                let mut comment__ = None;
+                let mut is_bounced__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Type => {
@@ -1602,6 +1640,18 @@ impl<'de> serde::Deserialize<'de> for Event {
                             }
                             status__ = map_.next_value::<::std::option::Option<EventStatus>>()?.map(|x| x as i32);
                         }
+                        GeneratedField::Comment => {
+                            if comment__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("comment"));
+                            }
+                            comment__ = map_.next_value()?;
+                        }
+                        GeneratedField::IsBounced => {
+                            if is_bounced__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("isBounced"));
+                            }
+                            is_bounced__ = map_.next_value()?;
+                        }
                     }
                 }
                 Ok(Event {
@@ -1615,6 +1665,8 @@ impl<'de> serde::Deserialize<'de> for Event {
                     address_to: address_to__,
                     value: value__,
                     status: status__,
+                    comment: comment__,
+                    is_bounced: is_bounced__,
                 })
             }
         }
@@ -1704,6 +1756,9 @@ impl serde::Serialize for EventType {
         let variant = match self {
             Self::Unspecified => "EVENT_TYPE_UNSPECIFIED",
             Self::Transfer => "EVENT_TYPE_TRANSFER",
+            Self::JettonNotification => "EVENT_TYPE_JETTON_NOTIFICATION",
+            Self::Excess => "EVENT_TYPE_EXCESS",
+            Self::Bounce => "EVENT_TYPE_BOUNCE",
         };
         serializer.serialize_str(variant)
     }
@@ -1717,6 +1772,9 @@ impl<'de> serde::Deserialize<'de> for EventType {
         const FIELDS: &[&str] = &[
             "EVENT_TYPE_UNSPECIFIED",
             "EVENT_TYPE_TRANSFER",
+            "EVENT_TYPE_JETTON_NOTIFICATION",
+            "EVENT_TYPE_EXCESS",
+            "EVENT_TYPE_BOUNCE",
         ];
 
         struct GeneratedVisitor;
@@ -1759,6 +1817,9 @@ impl<'de> serde::Deserialize<'de> for EventType {
                 match value {
                     "EVENT_TYPE_UNSPECIFIED" => Ok(EventType::Unspecified),
                     "EVENT_TYPE_TRANSFER" => Ok(EventType::Transfer),
+                    "EVENT_TYPE_JETTON_NOTIFICATION" => Ok(EventType::JettonNotification),
+                    "EVENT_TYPE_EXCESS" => Ok(EventType::Excess),
+                    "EVENT_TYPE_BOUNCE" => Ok(EventType::Bounce),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }
@@ -3440,6 +3501,9 @@ impl serde::Serialize for SuggestTxFeeResponse {
                 suggest_tx_fee_response::AdditionalData::BitcoinLikeData(v) => {
                     struct_ser.serialize_field("bitcoinLikeData", v)?;
                 }
+                suggest_tx_fee_response::AdditionalData::TonData(v) => {
+                    struct_ser.serialize_field("tonData", v)?;
+                }
             }
         }
         struct_ser.end()
@@ -3459,6 +3523,8 @@ impl<'de> serde::Deserialize<'de> for SuggestTxFeeResponse {
             "evmData",
             "bitcoin_like_data",
             "bitcoinLikeData",
+            "ton_data",
+            "tonData",
         ];
 
         #[allow(clippy::enum_variant_names)]
@@ -3467,6 +3533,7 @@ impl<'de> serde::Deserialize<'de> for SuggestTxFeeResponse {
             TronData,
             EvmData,
             BitcoinLikeData,
+            TonData,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -3492,6 +3559,7 @@ impl<'de> serde::Deserialize<'de> for SuggestTxFeeResponse {
                             "tronData" | "tron_data" => Ok(GeneratedField::TronData),
                             "evmData" | "evm_data" => Ok(GeneratedField::EvmData),
                             "bitcoinLikeData" | "bitcoin_like_data" => Ok(GeneratedField::BitcoinLikeData),
+                            "tonData" | "ton_data" => Ok(GeneratedField::TonData),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -3540,6 +3608,13 @@ impl<'de> serde::Deserialize<'de> for SuggestTxFeeResponse {
                                 return Err(serde::de::Error::duplicate_field("bitcoinLikeData"));
                             }
                             additional_data__ = map_.next_value::<::std::option::Option<_>>()?.map(suggest_tx_fee_response::AdditionalData::BitcoinLikeData)
+;
+                        }
+                        GeneratedField::TonData => {
+                            if additional_data__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("tonData"));
+                            }
+                            additional_data__ = map_.next_value::<::std::option::Option<_>>()?.map(suggest_tx_fee_response::AdditionalData::TonData)
 ;
                         }
                     }
@@ -3998,6 +4073,170 @@ impl<'de> serde::Deserialize<'de> for suggest_tx_fee_response::EvmFeesData {
         deserializer.deserialize_struct("eproxy.transactions.v2.SuggestTxFeeResponse.EVMFeesData", FIELDS, GeneratedVisitor)
     }
 }
+impl serde::Serialize for suggest_tx_fee_response::TonFeeData {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.storage_fee.is_empty() {
+            len += 1;
+        }
+        if !self.gas_fee.is_empty() {
+            len += 1;
+        }
+        if !self.fwd_fee.is_empty() {
+            len += 1;
+        }
+        if !self.in_fwd_fee.is_empty() {
+            len += 1;
+        }
+        if !self.attached_amount.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("eproxy.transactions.v2.SuggestTxFeeResponse.TonFeeData", len)?;
+        if !self.storage_fee.is_empty() {
+            struct_ser.serialize_field("storageFee", &self.storage_fee)?;
+        }
+        if !self.gas_fee.is_empty() {
+            struct_ser.serialize_field("gasFee", &self.gas_fee)?;
+        }
+        if !self.fwd_fee.is_empty() {
+            struct_ser.serialize_field("fwdFee", &self.fwd_fee)?;
+        }
+        if !self.in_fwd_fee.is_empty() {
+            struct_ser.serialize_field("inFwdFee", &self.in_fwd_fee)?;
+        }
+        if !self.attached_amount.is_empty() {
+            struct_ser.serialize_field("attachedAmount", &self.attached_amount)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for suggest_tx_fee_response::TonFeeData {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "storage_fee",
+            "storageFee",
+            "gas_fee",
+            "gasFee",
+            "fwd_fee",
+            "fwdFee",
+            "in_fwd_fee",
+            "inFwdFee",
+            "attached_amount",
+            "attachedAmount",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            StorageFee,
+            GasFee,
+            FwdFee,
+            InFwdFee,
+            AttachedAmount,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "storageFee" | "storage_fee" => Ok(GeneratedField::StorageFee),
+                            "gasFee" | "gas_fee" => Ok(GeneratedField::GasFee),
+                            "fwdFee" | "fwd_fee" => Ok(GeneratedField::FwdFee),
+                            "inFwdFee" | "in_fwd_fee" => Ok(GeneratedField::InFwdFee),
+                            "attachedAmount" | "attached_amount" => Ok(GeneratedField::AttachedAmount),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = suggest_tx_fee_response::TonFeeData;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct eproxy.transactions.v2.SuggestTxFeeResponse.TonFeeData")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<suggest_tx_fee_response::TonFeeData, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut storage_fee__ = None;
+                let mut gas_fee__ = None;
+                let mut fwd_fee__ = None;
+                let mut in_fwd_fee__ = None;
+                let mut attached_amount__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::StorageFee => {
+                            if storage_fee__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("storageFee"));
+                            }
+                            storage_fee__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::GasFee => {
+                            if gas_fee__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("gasFee"));
+                            }
+                            gas_fee__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::FwdFee => {
+                            if fwd_fee__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("fwdFee"));
+                            }
+                            fwd_fee__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::InFwdFee => {
+                            if in_fwd_fee__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("inFwdFee"));
+                            }
+                            in_fwd_fee__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::AttachedAmount => {
+                            if attached_amount__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("attachedAmount"));
+                            }
+                            attached_amount__ = Some(map_.next_value()?);
+                        }
+                    }
+                }
+                Ok(suggest_tx_fee_response::TonFeeData {
+                    storage_fee: storage_fee__.unwrap_or_default(),
+                    gas_fee: gas_fee__.unwrap_or_default(),
+                    fwd_fee: fwd_fee__.unwrap_or_default(),
+                    in_fwd_fee: in_fwd_fee__.unwrap_or_default(),
+                    attached_amount: attached_amount__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("eproxy.transactions.v2.SuggestTxFeeResponse.TonFeeData", FIELDS, GeneratedVisitor)
+    }
+}
 impl serde::Serialize for suggest_tx_fee_response::TronFeeData {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
@@ -4335,6 +4574,289 @@ impl<'de> serde::Deserialize<'de> for TargetKey {
         deserializer.deserialize_struct("eproxy.transactions.v2.TargetKey", FIELDS, GeneratedVisitor)
     }
 }
+impl serde::Serialize for TonAdditionalDataFull {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.account.is_empty() {
+            len += 1;
+        }
+        if self.lt != 0 {
+            len += 1;
+        }
+        if !self.prev_tx_hash.is_empty() {
+            len += 1;
+        }
+        if self.prev_tx_lt != 0 {
+            len += 1;
+        }
+        if self.workchain != 0 {
+            len += 1;
+        }
+        if !self.shard.is_empty() {
+            len += 1;
+        }
+        if self.shard_seqno != 0 {
+            len += 1;
+        }
+        if self.aborted {
+            len += 1;
+        }
+        if self.exit_code != 0 {
+            len += 1;
+        }
+        if self.compute_skip_reason.is_some() {
+            len += 1;
+        }
+        if self.action_result_code != 0 {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("eproxy.transactions.v2.TonAdditionalDataFull", len)?;
+        if !self.account.is_empty() {
+            struct_ser.serialize_field("account", &self.account)?;
+        }
+        if self.lt != 0 {
+            #[allow(clippy::needless_borrow)]
+            #[allow(clippy::needless_borrows_for_generic_args)]
+            struct_ser.serialize_field("lt", ToString::to_string(&self.lt).as_str())?;
+        }
+        if !self.prev_tx_hash.is_empty() {
+            struct_ser.serialize_field("prevTxHash", &self.prev_tx_hash)?;
+        }
+        if self.prev_tx_lt != 0 {
+            #[allow(clippy::needless_borrow)]
+            #[allow(clippy::needless_borrows_for_generic_args)]
+            struct_ser.serialize_field("prevTxLt", ToString::to_string(&self.prev_tx_lt).as_str())?;
+        }
+        if self.workchain != 0 {
+            struct_ser.serialize_field("workchain", &self.workchain)?;
+        }
+        if !self.shard.is_empty() {
+            struct_ser.serialize_field("shard", &self.shard)?;
+        }
+        if self.shard_seqno != 0 {
+            struct_ser.serialize_field("shardSeqno", &self.shard_seqno)?;
+        }
+        if self.aborted {
+            struct_ser.serialize_field("aborted", &self.aborted)?;
+        }
+        if self.exit_code != 0 {
+            struct_ser.serialize_field("exitCode", &self.exit_code)?;
+        }
+        if let Some(v) = self.compute_skip_reason.as_ref() {
+            struct_ser.serialize_field("computeSkipReason", v)?;
+        }
+        if self.action_result_code != 0 {
+            struct_ser.serialize_field("actionResultCode", &self.action_result_code)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for TonAdditionalDataFull {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "account",
+            "lt",
+            "prev_tx_hash",
+            "prevTxHash",
+            "prev_tx_lt",
+            "prevTxLt",
+            "workchain",
+            "shard",
+            "shard_seqno",
+            "shardSeqno",
+            "aborted",
+            "exit_code",
+            "exitCode",
+            "compute_skip_reason",
+            "computeSkipReason",
+            "action_result_code",
+            "actionResultCode",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Account,
+            Lt,
+            PrevTxHash,
+            PrevTxLt,
+            Workchain,
+            Shard,
+            ShardSeqno,
+            Aborted,
+            ExitCode,
+            ComputeSkipReason,
+            ActionResultCode,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "account" => Ok(GeneratedField::Account),
+                            "lt" => Ok(GeneratedField::Lt),
+                            "prevTxHash" | "prev_tx_hash" => Ok(GeneratedField::PrevTxHash),
+                            "prevTxLt" | "prev_tx_lt" => Ok(GeneratedField::PrevTxLt),
+                            "workchain" => Ok(GeneratedField::Workchain),
+                            "shard" => Ok(GeneratedField::Shard),
+                            "shardSeqno" | "shard_seqno" => Ok(GeneratedField::ShardSeqno),
+                            "aborted" => Ok(GeneratedField::Aborted),
+                            "exitCode" | "exit_code" => Ok(GeneratedField::ExitCode),
+                            "computeSkipReason" | "compute_skip_reason" => Ok(GeneratedField::ComputeSkipReason),
+                            "actionResultCode" | "action_result_code" => Ok(GeneratedField::ActionResultCode),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = TonAdditionalDataFull;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct eproxy.transactions.v2.TonAdditionalDataFull")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<TonAdditionalDataFull, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut account__ = None;
+                let mut lt__ = None;
+                let mut prev_tx_hash__ = None;
+                let mut prev_tx_lt__ = None;
+                let mut workchain__ = None;
+                let mut shard__ = None;
+                let mut shard_seqno__ = None;
+                let mut aborted__ = None;
+                let mut exit_code__ = None;
+                let mut compute_skip_reason__ = None;
+                let mut action_result_code__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Account => {
+                            if account__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("account"));
+                            }
+                            account__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Lt => {
+                            if lt__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("lt"));
+                            }
+                            lt__ = 
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                            ;
+                        }
+                        GeneratedField::PrevTxHash => {
+                            if prev_tx_hash__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("prevTxHash"));
+                            }
+                            prev_tx_hash__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::PrevTxLt => {
+                            if prev_tx_lt__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("prevTxLt"));
+                            }
+                            prev_tx_lt__ = 
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                            ;
+                        }
+                        GeneratedField::Workchain => {
+                            if workchain__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("workchain"));
+                            }
+                            workchain__ = 
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                            ;
+                        }
+                        GeneratedField::Shard => {
+                            if shard__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("shard"));
+                            }
+                            shard__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::ShardSeqno => {
+                            if shard_seqno__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("shardSeqno"));
+                            }
+                            shard_seqno__ = 
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                            ;
+                        }
+                        GeneratedField::Aborted => {
+                            if aborted__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("aborted"));
+                            }
+                            aborted__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::ExitCode => {
+                            if exit_code__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("exitCode"));
+                            }
+                            exit_code__ = 
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                            ;
+                        }
+                        GeneratedField::ComputeSkipReason => {
+                            if compute_skip_reason__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("computeSkipReason"));
+                            }
+                            compute_skip_reason__ = map_.next_value()?;
+                        }
+                        GeneratedField::ActionResultCode => {
+                            if action_result_code__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("actionResultCode"));
+                            }
+                            action_result_code__ = 
+                                Some(map_.next_value::<::pbjson::private::NumberDeserialize<_>>()?.0)
+                            ;
+                        }
+                    }
+                }
+                Ok(TonAdditionalDataFull {
+                    account: account__.unwrap_or_default(),
+                    lt: lt__.unwrap_or_default(),
+                    prev_tx_hash: prev_tx_hash__.unwrap_or_default(),
+                    prev_tx_lt: prev_tx_lt__.unwrap_or_default(),
+                    workchain: workchain__.unwrap_or_default(),
+                    shard: shard__.unwrap_or_default(),
+                    shard_seqno: shard_seqno__.unwrap_or_default(),
+                    aborted: aborted__.unwrap_or_default(),
+                    exit_code: exit_code__.unwrap_or_default(),
+                    compute_skip_reason: compute_skip_reason__,
+                    action_result_code: action_result_code__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("eproxy.transactions.v2.TonAdditionalDataFull", FIELDS, GeneratedVisitor)
+    }
+}
 impl serde::Serialize for Transaction {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
@@ -4388,6 +4910,9 @@ impl serde::Serialize for Transaction {
         if self.created_at.is_some() {
             len += 1;
         }
+        if self.comment.is_some() {
+            len += 1;
+        }
         let mut struct_ser = serializer.serialize_struct("eproxy.transactions.v2.Transaction", len)?;
         if !self.hash.is_empty() {
             struct_ser.serialize_field("hash", &self.hash)?;
@@ -4438,6 +4963,9 @@ impl serde::Serialize for Transaction {
         if let Some(v) = self.created_at.as_ref() {
             struct_ser.serialize_field("createdAt", v)?;
         }
+        if let Some(v) = self.comment.as_ref() {
+            struct_ser.serialize_field("comment", v)?;
+        }
         struct_ser.end()
     }
 }
@@ -4470,6 +4998,7 @@ impl<'de> serde::Deserialize<'de> for Transaction {
             "additionalData",
             "created_at",
             "createdAt",
+            "comment",
         ];
 
         #[allow(clippy::enum_variant_names)]
@@ -4489,6 +5018,7 @@ impl<'de> serde::Deserialize<'de> for Transaction {
             Events,
             AdditionalData,
             CreatedAt,
+            Comment,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -4525,6 +5055,7 @@ impl<'de> serde::Deserialize<'de> for Transaction {
                             "events" => Ok(GeneratedField::Events),
                             "additionalData" | "additional_data" => Ok(GeneratedField::AdditionalData),
                             "createdAt" | "created_at" => Ok(GeneratedField::CreatedAt),
+                            "comment" => Ok(GeneratedField::Comment),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -4559,6 +5090,7 @@ impl<'de> serde::Deserialize<'de> for Transaction {
                 let mut events__ = None;
                 let mut additional_data__ = None;
                 let mut created_at__ = None;
+                let mut comment__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
                         GeneratedField::Hash => {
@@ -4657,6 +5189,12 @@ impl<'de> serde::Deserialize<'de> for Transaction {
                             }
                             created_at__ = map_.next_value()?;
                         }
+                        GeneratedField::Comment => {
+                            if comment__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("comment"));
+                            }
+                            comment__ = map_.next_value()?;
+                        }
                     }
                 }
                 Ok(Transaction {
@@ -4675,6 +5213,7 @@ impl<'de> serde::Deserialize<'de> for Transaction {
                     events: events__.unwrap_or_default(),
                     additional_data: additional_data__,
                     created_at: created_at__,
+                    comment: comment__,
                 })
             }
         }

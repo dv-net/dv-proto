@@ -28,6 +28,7 @@ type AdditionalData struct {
 	Evm           *EVMAdditionalDataFull         `protobuf:"bytes,2,opt,name=evm,proto3,oneof" json:"evm,omitempty"`
 	Btclike       *BitcoinLikeAdditionalDataFull `protobuf:"bytes,3,opt,name=btclike,proto3,oneof" json:"btclike,omitempty"`
 	Monero        *MoneroAdditionalDataFull      `protobuf:"bytes,4,opt,name=monero,proto3,oneof" json:"monero,omitempty"`
+	Ton           *TonAdditionalDataFull         `protobuf:"bytes,5,opt,name=ton,proto3,oneof" json:"ton,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -86,6 +87,13 @@ func (x *AdditionalData) GetBtclike() *BitcoinLikeAdditionalDataFull {
 func (x *AdditionalData) GetMonero() *MoneroAdditionalDataFull {
 	if x != nil {
 		return x.Monero
+	}
+	return nil
+}
+
+func (x *AdditionalData) GetTon() *TonAdditionalDataFull {
+	if x != nil {
+		return x.Ton
 	}
 	return nil
 }
@@ -167,8 +175,10 @@ type Transaction struct {
 	Events          []*Event               `protobuf:"bytes,13,rep,name=events,proto3" json:"events,omitempty"`
 	AdditionalData  *AdditionalData        `protobuf:"bytes,14,opt,name=additional_data,json=additionalData,proto3,oneof" json:"additional_data,omitempty"`
 	CreatedAt       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	// Text comment (memo) of the main transfer, if the blockchain supports it (TON)
+	Comment       *string `protobuf:"bytes,16,opt,name=comment,proto3,oneof" json:"comment,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Transaction) Reset() {
@@ -306,27 +316,36 @@ func (x *Transaction) GetCreatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *Transaction) GetComment() string {
+	if x != nil && x.Comment != nil {
+		return *x.Comment
+	}
+	return ""
+}
+
 var File_eproxy_transactions_v2_transaction_proto protoreflect.FileDescriptor
 
 const file_eproxy_transactions_v2_transaction_proto_rawDesc = "" +
 	"\n" +
-	"(eproxy/transactions/v2/transaction.proto\x12\x16eproxy.transactions.v2\x1a#eproxy/transactions/v2/monero.proto\x1a eproxy/transactions/v2/evm.proto\x1a!eproxy/transactions/v2/tron.proto\x1a%eproxy/transactions/v2/btc_like.proto\x1a\"eproxy/transactions/v2/event.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xec\x02\n" +
+	"(eproxy/transactions/v2/transaction.proto\x12\x16eproxy.transactions.v2\x1a#eproxy/transactions/v2/monero.proto\x1a eproxy/transactions/v2/evm.proto\x1a!eproxy/transactions/v2/tron.proto\x1a%eproxy/transactions/v2/btc_like.proto\x1a eproxy/transactions/v2/ton.proto\x1a\"eproxy/transactions/v2/event.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xba\x03\n" +
 	"\x0eAdditionalData\x12G\n" +
 	"\x04tron\x18\x01 \x01(\v2..eproxy.transactions.v2.TronAdditionalDataFullH\x00R\x04tron\x88\x01\x01\x12D\n" +
 	"\x03evm\x18\x02 \x01(\v2-.eproxy.transactions.v2.EVMAdditionalDataFullH\x01R\x03evm\x88\x01\x01\x12T\n" +
 	"\abtclike\x18\x03 \x01(\v25.eproxy.transactions.v2.BitcoinLikeAdditionalDataFullH\x02R\abtclike\x88\x01\x01\x12M\n" +
-	"\x06monero\x18\x04 \x01(\v20.eproxy.transactions.v2.MoneroAdditionalDataFullH\x03R\x06monero\x88\x01\x01B\a\n" +
+	"\x06monero\x18\x04 \x01(\v20.eproxy.transactions.v2.MoneroAdditionalDataFullH\x03R\x06monero\x88\x01\x01\x12D\n" +
+	"\x03ton\x18\x05 \x01(\v2-.eproxy.transactions.v2.TonAdditionalDataFullH\x04R\x03ton\x88\x01\x01B\a\n" +
 	"\x05_tronB\x06\n" +
 	"\x04_evmB\n" +
 	"\n" +
 	"\b_btclikeB\t\n" +
-	"\a_monero\"k\n" +
+	"\a_moneroB\x06\n" +
+	"\x04_ton\"k\n" +
 	"\x05Error\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12\x17\n" +
 	"\x04code\x18\x02 \x01(\tH\x00R\x04code\x88\x01\x01\x12\x1b\n" +
 	"\x06detail\x18\x03 \x01(\tH\x01R\x06detail\x88\x01\x01B\a\n" +
 	"\x05_codeB\t\n" +
-	"\a_detail\"\xb2\x05\n" +
+	"\a_detail\"\xdd\x05\n" +
 	"\vTransaction\x12\x12\n" +
 	"\x04hash\x18\x01 \x01(\tR\x04hash\x12!\n" +
 	"\fblock_height\x18\x02 \x01(\x04R\vblockHeight\x12$\n" +
@@ -346,12 +365,15 @@ const file_eproxy_transactions_v2_transaction_proto_rawDesc = "" +
 	"\x06events\x18\r \x03(\v2\x1d.eproxy.transactions.v2.EventR\x06events\x12T\n" +
 	"\x0fadditional_data\x18\x0e \x01(\v2&.eproxy.transactions.v2.AdditionalDataH\x04R\x0eadditionalData\x88\x01\x01\x129\n" +
 	"\n" +
-	"created_at\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAtB\x0f\n" +
+	"created_at\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x1d\n" +
+	"\acomment\x18\x10 \x01(\tH\x05R\acomment\x88\x01\x01B\x0f\n" +
 	"\r_address_fromB\r\n" +
 	"\v_address_toB\x13\n" +
 	"\x11_asset_identifierB\b\n" +
 	"\x06_errorB\x12\n" +
-	"\x10_additional_dataB\xf1\x01\n" +
+	"\x10_additional_dataB\n" +
+	"\n" +
+	"\b_commentB\xf1\x01\n" +
 	"\x1acom.eproxy.transactions.v2B\x10TransactionProtoP\x01ZGgithub.com/dv-net/dv-proto/gen/go/eproxy/transactions/v2;transactionsv2\xa2\x02\x03ETX\xaa\x02\x16Eproxy.Transactions.V2\xca\x02\x16Eproxy\\Transactions\\V2\xe2\x02\"Eproxy\\Transactions\\V2\\GPBMetadata\xea\x02\x18Eproxy::Transactions::V2b\x06proto3"
 
 var (
@@ -375,23 +397,25 @@ var file_eproxy_transactions_v2_transaction_proto_goTypes = []any{
 	(*EVMAdditionalDataFull)(nil),         // 4: eproxy.transactions.v2.EVMAdditionalDataFull
 	(*BitcoinLikeAdditionalDataFull)(nil), // 5: eproxy.transactions.v2.BitcoinLikeAdditionalDataFull
 	(*MoneroAdditionalDataFull)(nil),      // 6: eproxy.transactions.v2.MoneroAdditionalDataFull
-	(*Event)(nil),                         // 7: eproxy.transactions.v2.Event
-	(*timestamppb.Timestamp)(nil),         // 8: google.protobuf.Timestamp
+	(*TonAdditionalDataFull)(nil),         // 7: eproxy.transactions.v2.TonAdditionalDataFull
+	(*Event)(nil),                         // 8: eproxy.transactions.v2.Event
+	(*timestamppb.Timestamp)(nil),         // 9: google.protobuf.Timestamp
 }
 var file_eproxy_transactions_v2_transaction_proto_depIdxs = []int32{
 	3, // 0: eproxy.transactions.v2.AdditionalData.tron:type_name -> eproxy.transactions.v2.TronAdditionalDataFull
 	4, // 1: eproxy.transactions.v2.AdditionalData.evm:type_name -> eproxy.transactions.v2.EVMAdditionalDataFull
 	5, // 2: eproxy.transactions.v2.AdditionalData.btclike:type_name -> eproxy.transactions.v2.BitcoinLikeAdditionalDataFull
 	6, // 3: eproxy.transactions.v2.AdditionalData.monero:type_name -> eproxy.transactions.v2.MoneroAdditionalDataFull
-	1, // 4: eproxy.transactions.v2.Transaction.error:type_name -> eproxy.transactions.v2.Error
-	7, // 5: eproxy.transactions.v2.Transaction.events:type_name -> eproxy.transactions.v2.Event
-	0, // 6: eproxy.transactions.v2.Transaction.additional_data:type_name -> eproxy.transactions.v2.AdditionalData
-	8, // 7: eproxy.transactions.v2.Transaction.created_at:type_name -> google.protobuf.Timestamp
-	8, // [8:8] is the sub-list for method output_type
-	8, // [8:8] is the sub-list for method input_type
-	8, // [8:8] is the sub-list for extension type_name
-	8, // [8:8] is the sub-list for extension extendee
-	0, // [0:8] is the sub-list for field type_name
+	7, // 4: eproxy.transactions.v2.AdditionalData.ton:type_name -> eproxy.transactions.v2.TonAdditionalDataFull
+	1, // 5: eproxy.transactions.v2.Transaction.error:type_name -> eproxy.transactions.v2.Error
+	8, // 6: eproxy.transactions.v2.Transaction.events:type_name -> eproxy.transactions.v2.Event
+	0, // 7: eproxy.transactions.v2.Transaction.additional_data:type_name -> eproxy.transactions.v2.AdditionalData
+	9, // 8: eproxy.transactions.v2.Transaction.created_at:type_name -> google.protobuf.Timestamp
+	9, // [9:9] is the sub-list for method output_type
+	9, // [9:9] is the sub-list for method input_type
+	9, // [9:9] is the sub-list for extension type_name
+	9, // [9:9] is the sub-list for extension extendee
+	0, // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_eproxy_transactions_v2_transaction_proto_init() }
@@ -403,6 +427,7 @@ func file_eproxy_transactions_v2_transaction_proto_init() {
 	file_eproxy_transactions_v2_evm_proto_init()
 	file_eproxy_transactions_v2_tron_proto_init()
 	file_eproxy_transactions_v2_btc_like_proto_init()
+	file_eproxy_transactions_v2_ton_proto_init()
 	file_eproxy_transactions_v2_event_proto_init()
 	file_eproxy_transactions_v2_transaction_proto_msgTypes[0].OneofWrappers = []any{}
 	file_eproxy_transactions_v2_transaction_proto_msgTypes[1].OneofWrappers = []any{}
