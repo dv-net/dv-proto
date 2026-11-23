@@ -1,0 +1,28 @@
+syntax = "proto3";
+package eproxy.transactions.v2;
+
+// TonAdditionalDataFull is TON-specific transaction data.
+// A TON transaction is identified by (account, lt, hash).
+message TonAdditionalDataFull {
+  // Account (raw address "wc:hex") the transaction belongs to
+  string account = 1;
+  // Logical time of the transaction
+  uint64 lt = 2;
+  string prev_tx_hash = 3;
+  uint64 prev_tx_lt = 4;
+  // Block that contains the transaction (block_height of the transaction is the masterchain seqno)
+  int32 workchain = 5;
+  // Shard id as unsigned hex, e.g. "8000000000000000"
+  string shard = 6;
+  uint32 shard_seqno = 7;
+  // Raw TL-B flag: compute phase failed or was skipped, or action phase failed.
+  // It does not mean a failure by itself: a message with too little value for gas
+  // skips the compute phase and is aborted, yet its value is credited (see status).
+  bool aborted = 8;
+  // Compute phase exit code (0 if the compute phase was skipped)
+  int32 exit_code = 9;
+  // Reason of the skipped compute phase: NO_GAS, NO_STATE, BAD_STATE, SUSPENDED
+  optional string compute_skip_reason = 10;
+  // Action phase result code (0 if there was no action phase)
+  int32 action_result_code = 11;
+}

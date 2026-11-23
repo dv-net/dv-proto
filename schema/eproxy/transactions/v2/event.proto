@@ -4,6 +4,14 @@ package eproxy.transactions.v2;
 enum EventType {
   EVENT_TYPE_UNSPECIFIED = 0;
   EVENT_TYPE_TRANSFER = 1;
+  // Service value movements that are not payments (TON). They carry real value but must not be
+  // credited as deposits:
+  // jetton wallet notifies its owner about received jettons (usually 1 nanogram attached)
+  EVENT_TYPE_JETTON_NOTIFICATION = 2;
+  // unused fees returned to the sender after a jetton transfer or another contract call
+  EVENT_TYPE_EXCESS = 3;
+  // value returned to the sender because the receiver failed (bounced message)
+  EVENT_TYPE_BOUNCE = 4;
 }
 enum EventStatus {
   EVENT_STATUS_UNSPECIFIED = 0;
@@ -21,4 +29,8 @@ message Event {
   optional string address_to = 8;
   optional string value = 9;
   optional EventStatus status = 10;
+  // Text comment (memo) attached to the transfer (TON: message body / jetton forward_payload)
+  optional string comment = 11;
+  // The transfer returns value to the original sender (TON bounced message)
+  optional bool is_bounced = 12;
 }

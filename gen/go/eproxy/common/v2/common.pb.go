@@ -38,6 +38,7 @@ const (
 	Blockchain_BLOCKCHAIN_OPTIMISM            Blockchain = 11
 	Blockchain_BLOCKCHAIN_LINEA               Blockchain = 12
 	Blockchain_BLOCKCHAIN_MONERO              Blockchain = 13
+	Blockchain_BLOCKCHAIN_TON                 Blockchain = 14
 )
 
 // Enum value maps for Blockchain.
@@ -57,6 +58,7 @@ var (
 		11: "BLOCKCHAIN_OPTIMISM",
 		12: "BLOCKCHAIN_LINEA",
 		13: "BLOCKCHAIN_MONERO",
+		14: "BLOCKCHAIN_TON",
 	}
 	Blockchain_value = map[string]int32{
 		"BLOCKCHAIN_UNSPECIFIED":         0,
@@ -73,6 +75,7 @@ var (
 		"BLOCKCHAIN_OPTIMISM":            11,
 		"BLOCKCHAIN_LINEA":               12,
 		"BLOCKCHAIN_MONERO":              13,
+		"BLOCKCHAIN_TON":                 14,
 	}
 )
 
@@ -165,7 +168,7 @@ const file_eproxy_common_v2_common_proto_rawDesc = "" +
 	"\tpage_size\x18\x02 \x01(\rH\x01R\bpageSize\x88\x01\x01B\a\n" +
 	"\x05_pageB\f\n" +
 	"\n" +
-	"_page_size*\xee\x02\n" +
+	"_page_size*\x82\x03\n" +
 	"\n" +
 	"Blockchain\x12\x1a\n" +
 	"\x16BLOCKCHAIN_UNSPECIFIED\x10\x00\x12\x16\n" +
@@ -182,7 +185,8 @@ const file_eproxy_common_v2_common_proto_rawDesc = "" +
 	"\x12\x17\n" +
 	"\x13BLOCKCHAIN_OPTIMISM\x10\v\x12\x14\n" +
 	"\x10BLOCKCHAIN_LINEA\x10\f\x12\x15\n" +
-	"\x11BLOCKCHAIN_MONERO\x10\rB\xc2\x01\n" +
+	"\x11BLOCKCHAIN_MONERO\x10\r\x12\x12\n" +
+	"\x0eBLOCKCHAIN_TON\x10\x0eB\xc2\x01\n" +
 	"\x14com.eproxy.common.v2B\vCommonProtoP\x01Z;github.com/dv-net/dv-proto/gen/go/eproxy/common/v2;commonv2\xa2\x02\x03ECX\xaa\x02\x10Eproxy.Common.V2\xca\x02\x10Eproxy\\Common\\V2\xe2\x02\x1cEproxy\\Common\\V2\\GPBMetadata\xea\x02\x12Eproxy::Common::V2b\x06proto3"
 
 var (

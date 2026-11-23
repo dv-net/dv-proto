@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file eproxy/transactions/v2/event.proto.
  */
 export const file_eproxy_transactions_v2_event: GenFile = /*@__PURE__*/
-  fileDesc("CiJlcHJveHkvdHJhbnNhY3Rpb25zL3YyL2V2ZW50LnByb3RvEhZlcHJveHkudHJhbnNhY3Rpb25zLnYyItUDCgVFdmVudBI0CgR0eXBlGAEgASgOMiEuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5FdmVudFR5cGVIAIgBARIaCg1vcmlnaW5hbF9kYXRhGAIgASgJSAGIAQESDgoGdG9waWNzGAMgAygJEhkKDGVuY29kZWRfZGF0YRgEIAEoDEgCiAEBEiAKE2Jsb2NrY2hhaW5fdW5pcV9rZXkYBSABKAlIA4gBARIdChBhc3NldF9pZGVudGlmaWVyGAYgASgJSASIAQESGQoMYWRkcmVzc19mcm9tGAcgASgJSAWIAQESFwoKYWRkcmVzc190bxgIIAEoCUgGiAEBEhIKBXZhbHVlGAkgASgJSAeIAQESOAoGc3RhdHVzGAogASgOMiMuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5FdmVudFN0YXR1c0gIiAEBQgcKBV90eXBlQhAKDl9vcmlnaW5hbF9kYXRhQg8KDV9lbmNvZGVkX2RhdGFCFgoUX2Jsb2NrY2hhaW5fdW5pcV9rZXlCEwoRX2Fzc2V0X2lkZW50aWZpZXJCDwoNX2FkZHJlc3NfZnJvbUINCgtfYWRkcmVzc190b0IICgZfdmFsdWVCCQoHX3N0YXR1cypACglFdmVudFR5cGUSGgoWRVZFTlRfVFlQRV9VTlNQRUNJRklFRBAAEhcKE0VWRU5UX1RZUEVfVFJBTlNGRVIQASpeCgtFdmVudFN0YXR1cxIcChhFVkVOVF9TVEFUVVNfVU5TUEVDSUZJRUQQABIYChRFVkVOVF9TVEFUVVNfU1VDQ0VTUxABEhcKE0VWRU5UX1NUQVRVU19GQUlMRUQQAkLrAQoaY29tLmVwcm94eS50cmFuc2FjdGlvbnMudjJCCkV2ZW50UHJvdG9QAVpHZ2l0aHViLmNvbS9kdi1uZXQvZHYtcHJvdG8vZ2VuL2dvL2Vwcm94eS90cmFuc2FjdGlvbnMvdjI7dHJhbnNhY3Rpb25zdjKiAgNFVFiqAhZFcHJveHkuVHJhbnNhY3Rpb25zLlYyygIWRXByb3h5XFRyYW5zYWN0aW9uc1xWMuICIkVwcm94eVxUcmFuc2FjdGlvbnNcVjJcR1BCTWV0YWRhdGHqAhhFcHJveHk6OlRyYW5zYWN0aW9uczo6VjJiBnByb3RvMw");
+  fileDesc("CiJlcHJveHkvdHJhbnNhY3Rpb25zL3YyL2V2ZW50LnByb3RvEhZlcHJveHkudHJhbnNhY3Rpb25zLnYyIp8ECgVFdmVudBI0CgR0eXBlGAEgASgOMiEuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5FdmVudFR5cGVIAIgBARIaCg1vcmlnaW5hbF9kYXRhGAIgASgJSAGIAQESDgoGdG9waWNzGAMgAygJEhkKDGVuY29kZWRfZGF0YRgEIAEoDEgCiAEBEiAKE2Jsb2NrY2hhaW5fdW5pcV9rZXkYBSABKAlIA4gBARIdChBhc3NldF9pZGVudGlmaWVyGAYgASgJSASIAQESGQoMYWRkcmVzc19mcm9tGAcgASgJSAWIAQESFwoKYWRkcmVzc190bxgIIAEoCUgGiAEBEhIKBXZhbHVlGAkgASgJSAeIAQESOAoGc3RhdHVzGAogASgOMiMuZXByb3h5LnRyYW5zYWN0aW9ucy52Mi5FdmVudFN0YXR1c0gIiAEBEhQKB2NvbW1lbnQYCyABKAlICYgBARIXCgppc19ib3VuY2VkGAwgASgISAqIAQFCBwoFX3R5cGVCEAoOX29yaWdpbmFsX2RhdGFCDwoNX2VuY29kZWRfZGF0YUIWChRfYmxvY2tjaGFpbl91bmlxX2tleUITChFfYXNzZXRfaWRlbnRpZmllckIPCg1fYWRkcmVzc19mcm9tQg0KC19hZGRyZXNzX3RvQggKBl92YWx1ZUIJCgdfc3RhdHVzQgoKCF9jb21tZW50Qg0KC19pc19ib3VuY2VkKpIBCglFdmVudFR5cGUSGgoWRVZFTlRfVFlQRV9VTlNQRUNJRklFRBAAEhcKE0VWRU5UX1RZUEVfVFJBTlNGRVIQARIiCh5FVkVOVF9UWVBFX0pFVFRPTl9OT1RJRklDQVRJT04QAhIVChFFVkVOVF9UWVBFX0VYQ0VTUxADEhUKEUVWRU5UX1RZUEVfQk9VTkNFEAQqXgoLRXZlbnRTdGF0dXMSHAoYRVZFTlRfU1RBVFVTX1VOU1BFQ0lGSUVEEAASGAoURVZFTlRfU1RBVFVTX1NVQ0NFU1MQARIXChNFVkVOVF9TVEFUVVNfRkFJTEVEEAJC6wEKGmNvbS5lcHJveHkudHJhbnNhY3Rpb25zLnYyQgpFdmVudFByb3RvUAFaR2dpdGh1Yi5jb20vZHYtbmV0L2R2LXByb3RvL2dlbi9nby9lcHJveHkvdHJhbnNhY3Rpb25zL3YyO3RyYW5zYWN0aW9uc3YyogIDRVRYqgIWRXByb3h5LlRyYW5zYWN0aW9ucy5WMsoCFkVwcm94eVxUcmFuc2FjdGlvbnNcVjLiAiJFcHJveHlcVHJhbnNhY3Rpb25zXFYyXEdQQk1ldGFkYXRh6gIYRXByb3h5OjpUcmFuc2FjdGlvbnM6OlYyYgZwcm90bzM");
 
 /**
  * @generated from message eproxy.transactions.v2.Event
@@ -65,6 +65,20 @@ export type Event = Message<"eproxy.transactions.v2.Event"> & {
    * @generated from field: optional eproxy.transactions.v2.EventStatus status = 10;
    */
   status?: EventStatus;
+
+  /**
+   * Text comment (memo) attached to the transfer (TON: message body / jetton forward_payload)
+   *
+   * @generated from field: optional string comment = 11;
+   */
+  comment?: string;
+
+  /**
+   * The transfer returns value to the original sender (TON bounced message)
+   *
+   * @generated from field: optional bool is_bounced = 12;
+   */
+  isBounced?: boolean;
 };
 
 /**
@@ -87,6 +101,29 @@ export enum EventType {
    * @generated from enum value: EVENT_TYPE_TRANSFER = 1;
    */
   TRANSFER = 1,
+
+  /**
+   * Service value movements that are not payments (TON). They carry real value but must not be
+   * credited as deposits:
+   * jetton wallet notifies its owner about received jettons (usually 1 nanogram attached)
+   *
+   * @generated from enum value: EVENT_TYPE_JETTON_NOTIFICATION = 2;
+   */
+  JETTON_NOTIFICATION = 2,
+
+  /**
+   * unused fees returned to the sender after a jetton transfer or another contract call
+   *
+   * @generated from enum value: EVENT_TYPE_EXCESS = 3;
+   */
+  EXCESS = 3,
+
+  /**
+   * value returned to the sender because the receiver failed (bounced message)
+   *
+   * @generated from enum value: EVENT_TYPE_BOUNCE = 4;
+   */
+  BOUNCE = 4,
 }
 
 /**

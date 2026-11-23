@@ -2134,7 +2134,8 @@
         "BLOCKCHAIN_ARBITRUM",
         "BLOCKCHAIN_OPTIMISM",
         "BLOCKCHAIN_LINEA",
-        "BLOCKCHAIN_MONERO"
+        "BLOCKCHAIN_MONERO",
+        "BLOCKCHAIN_TON"
       ],
       "default": "BLOCKCHAIN_UNSPECIFIED"
     },
@@ -2864,6 +2865,9 @@
         },
         "monero": {
           "$ref": "#/definitions/eproxy.transactions.v2.MoneroAdditionalDataFull"
+        },
+        "ton": {
+          "$ref": "#/definitions/eproxy.transactions.v2.TonAdditionalDataFull"
         }
       }
     },
@@ -3077,6 +3081,14 @@
         },
         "status": {
           "$ref": "#/definitions/eproxy.transactions.v2.EventStatus"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Text comment (memo) attached to the transfer (TON: message body / jetton forward_payload)"
+        },
+        "is_bounced": {
+          "type": "boolean",
+          "title": "The transfer returns value to the original sender (TON bounced message)"
         }
       }
     },
@@ -3093,9 +3105,13 @@
       "type": "string",
       "enum": [
         "EVENT_TYPE_UNSPECIFIED",
-        "EVENT_TYPE_TRANSFER"
+        "EVENT_TYPE_TRANSFER",
+        "EVENT_TYPE_JETTON_NOTIFICATION",
+        "EVENT_TYPE_EXCESS",
+        "EVENT_TYPE_BOUNCE"
       ],
-      "default": "EVENT_TYPE_UNSPECIFIED"
+      "default": "EVENT_TYPE_UNSPECIFIED",
+      "title": "- EVENT_TYPE_JETTON_NOTIFICATION: Service value movements that are not payments (TON). They carry real value but must not be\ncredited as deposits:\njetton wallet notifies its owner about received jettons (usually 1 nanogram attached)\n - EVENT_TYPE_EXCESS: unused fees returned to the sender after a jetton transfer or another contract call\n - EVENT_TYPE_BOUNCE: value returned to the sender because the receiver failed (bounced message)"
     },
     "eproxy.transactions.v2.FindRequest": {
       "type": "object",
@@ -3341,6 +3357,9 @@
         },
         "bitcoin_like_data": {
           "$ref": "#/definitions/eproxy.transactions.v2.SuggestTxFeeResponse.BitcoinLikeFeeData"
+        },
+        "ton_data": {
+          "$ref": "#/definitions/eproxy.transactions.v2.SuggestTxFeeResponse.TonFeeData"
         }
       }
     },
@@ -3410,6 +3429,32 @@
         }
       }
     },
+    "eproxy.transactions.v2.SuggestTxFeeResponse.TonFeeData": {
+      "type": "object",
+      "properties": {
+        "storage_fee": {
+          "type": "string",
+          "description": "Storage fee of the sender wallet",
+          "title": "All values are in nanograms"
+        },
+        "gas_fee": {
+          "type": "string",
+          "title": "Compute (gas) fee of the sender wallet"
+        },
+        "fwd_fee": {
+          "type": "string",
+          "title": "Forwarding fee of outgoing messages"
+        },
+        "in_fwd_fee": {
+          "type": "string",
+          "title": "Import fee of the external message"
+        },
+        "attached_amount": {
+          "type": "string",
+          "title": "Amount attached to a jetton transfer message, the excess is returned"
+        }
+      }
+    },
     "eproxy.transactions.v2.SuggestTxFeeResponse.TronFeeData": {
       "type": "object",
       "properties": {
@@ -3448,6 +3493,59 @@
           "type": "string"
         }
       }
+    },
+    "eproxy.transactions.v2.TonAdditionalDataFull": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string",
+          "title": "Account (raw address \"wc:hex\") the transaction belongs to"
+        },
+        "lt": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Logical time of the transaction"
+        },
+        "prev_tx_hash": {
+          "type": "string"
+        },
+        "prev_tx_lt": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "workchain": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Block that contains the transaction (block_height of the transaction is the masterchain seqno)"
+        },
+        "shard": {
+          "type": "string",
+          "title": "Shard id as unsigned hex, e.g. \"8000000000000000\""
+        },
+        "shard_seqno": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "aborted": {
+          "type": "boolean",
+          "description": "Raw TL-B flag: compute phase failed or was skipped, or action phase failed.\nIt does not mean a failure by itself: a message with too little value for gas\nskips the compute phase and is aborted, yet its value is credited (see status)."
+        },
+        "exit_code": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Compute phase exit code (0 if the compute phase was skipped)"
+        },
+        "compute_skip_reason": {
+          "type": "string",
+          "title": "Reason of the skipped compute phase: NO_GAS, NO_STATE, BAD_STATE, SUSPENDED"
+        },
+        "action_result_code": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Action phase result code (0 if there was no action phase)"
+        }
+      },
+      "description": "TonAdditionalDataFull is TON-specific transaction data.\nA TON transaction is identified by (account, lt, hash)."
     },
     "eproxy.transactions.v2.Transaction": {
       "type": "object",
@@ -3504,6 +3602,10 @@
         "created_at": {
           "type": "string",
           "format": "date-time"
+        },
+        "comment": {
+          "type": "string",
+          "title": "Text comment (memo) of the main transfer, if the blockchain supports it (TON)"
         }
       }
     },

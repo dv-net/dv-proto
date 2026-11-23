@@ -26,6 +26,14 @@ type EventType int32
 const (
 	EventType_EVENT_TYPE_UNSPECIFIED EventType = 0
 	EventType_EVENT_TYPE_TRANSFER    EventType = 1
+	// Service value movements that are not payments (TON). They carry real value but must not be
+	// credited as deposits:
+	// jetton wallet notifies its owner about received jettons (usually 1 nanogram attached)
+	EventType_EVENT_TYPE_JETTON_NOTIFICATION EventType = 2
+	// unused fees returned to the sender after a jetton transfer or another contract call
+	EventType_EVENT_TYPE_EXCESS EventType = 3
+	// value returned to the sender because the receiver failed (bounced message)
+	EventType_EVENT_TYPE_BOUNCE EventType = 4
 )
 
 // Enum value maps for EventType.
@@ -33,10 +41,16 @@ var (
 	EventType_name = map[int32]string{
 		0: "EVENT_TYPE_UNSPECIFIED",
 		1: "EVENT_TYPE_TRANSFER",
+		2: "EVENT_TYPE_JETTON_NOTIFICATION",
+		3: "EVENT_TYPE_EXCESS",
+		4: "EVENT_TYPE_BOUNCE",
 	}
 	EventType_value = map[string]int32{
-		"EVENT_TYPE_UNSPECIFIED": 0,
-		"EVENT_TYPE_TRANSFER":    1,
+		"EVENT_TYPE_UNSPECIFIED":         0,
+		"EVENT_TYPE_TRANSFER":            1,
+		"EVENT_TYPE_JETTON_NOTIFICATION": 2,
+		"EVENT_TYPE_EXCESS":              3,
+		"EVENT_TYPE_BOUNCE":              4,
 	}
 )
 
@@ -128,8 +142,12 @@ type Event struct {
 	AddressTo         *string                `protobuf:"bytes,8,opt,name=address_to,json=addressTo,proto3,oneof" json:"address_to,omitempty"`
 	Value             *string                `protobuf:"bytes,9,opt,name=value,proto3,oneof" json:"value,omitempty"`
 	Status            *EventStatus           `protobuf:"varint,10,opt,name=status,proto3,enum=eproxy.transactions.v2.EventStatus,oneof" json:"status,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	// Text comment (memo) attached to the transfer (TON: message body / jetton forward_payload)
+	Comment *string `protobuf:"bytes,11,opt,name=comment,proto3,oneof" json:"comment,omitempty"`
+	// The transfer returns value to the original sender (TON bounced message)
+	IsBounced     *bool `protobuf:"varint,12,opt,name=is_bounced,json=isBounced,proto3,oneof" json:"is_bounced,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Event) Reset() {
@@ -232,11 +250,25 @@ func (x *Event) GetStatus() EventStatus {
 	return EventStatus_EVENT_STATUS_UNSPECIFIED
 }
 
+func (x *Event) GetComment() string {
+	if x != nil && x.Comment != nil {
+		return *x.Comment
+	}
+	return ""
+}
+
+func (x *Event) GetIsBounced() bool {
+	if x != nil && x.IsBounced != nil {
+		return *x.IsBounced
+	}
+	return false
+}
+
 var File_eproxy_transactions_v2_event_proto protoreflect.FileDescriptor
 
 const file_eproxy_transactions_v2_event_proto_rawDesc = "" +
 	"\n" +
-	"\"eproxy/transactions/v2/event.proto\x12\x16eproxy.transactions.v2\"\xc9\x04\n" +
+	"\"eproxy/transactions/v2/event.proto\x12\x16eproxy.transactions.v2\"\xa7\x05\n" +
 	"\x05Event\x12:\n" +
 	"\x04type\x18\x01 \x01(\x0e2!.eproxy.transactions.v2.EventTypeH\x00R\x04type\x88\x01\x01\x12(\n" +
 	"\roriginal_data\x18\x02 \x01(\tH\x01R\foriginalData\x88\x01\x01\x12\x16\n" +
@@ -249,7 +281,11 @@ const file_eproxy_transactions_v2_event_proto_rawDesc = "" +
 	"address_to\x18\b \x01(\tH\x06R\taddressTo\x88\x01\x01\x12\x19\n" +
 	"\x05value\x18\t \x01(\tH\aR\x05value\x88\x01\x01\x12@\n" +
 	"\x06status\x18\n" +
-	" \x01(\x0e2#.eproxy.transactions.v2.EventStatusH\bR\x06status\x88\x01\x01B\a\n" +
+	" \x01(\x0e2#.eproxy.transactions.v2.EventStatusH\bR\x06status\x88\x01\x01\x12\x1d\n" +
+	"\acomment\x18\v \x01(\tH\tR\acomment\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"is_bounced\x18\f \x01(\bH\n" +
+	"R\tisBounced\x88\x01\x01B\a\n" +
 	"\x05_typeB\x10\n" +
 	"\x0e_original_dataB\x0f\n" +
 	"\r_encoded_dataB\x16\n" +
@@ -258,10 +294,16 @@ const file_eproxy_transactions_v2_event_proto_rawDesc = "" +
 	"\r_address_fromB\r\n" +
 	"\v_address_toB\b\n" +
 	"\x06_valueB\t\n" +
-	"\a_status*@\n" +
+	"\a_statusB\n" +
+	"\n" +
+	"\b_commentB\r\n" +
+	"\v_is_bounced*\x92\x01\n" +
 	"\tEventType\x12\x1a\n" +
 	"\x16EVENT_TYPE_UNSPECIFIED\x10\x00\x12\x17\n" +
-	"\x13EVENT_TYPE_TRANSFER\x10\x01*^\n" +
+	"\x13EVENT_TYPE_TRANSFER\x10\x01\x12\"\n" +
+	"\x1eEVENT_TYPE_JETTON_NOTIFICATION\x10\x02\x12\x15\n" +
+	"\x11EVENT_TYPE_EXCESS\x10\x03\x12\x15\n" +
+	"\x11EVENT_TYPE_BOUNCE\x10\x04*^\n" +
 	"\vEventStatus\x12\x1c\n" +
 	"\x18EVENT_STATUS_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14EVENT_STATUS_SUCCESS\x10\x01\x12\x17\n" +

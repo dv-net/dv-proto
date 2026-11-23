@@ -20,6 +20,7 @@ impl serde::Serialize for Blockchain {
             Self::Optimism => "BLOCKCHAIN_OPTIMISM",
             Self::Linea => "BLOCKCHAIN_LINEA",
             Self::Monero => "BLOCKCHAIN_MONERO",
+            Self::Ton => "BLOCKCHAIN_TON",
         };
         serializer.serialize_str(variant)
     }
@@ -45,6 +46,7 @@ impl<'de> serde::Deserialize<'de> for Blockchain {
             "BLOCKCHAIN_OPTIMISM",
             "BLOCKCHAIN_LINEA",
             "BLOCKCHAIN_MONERO",
+            "BLOCKCHAIN_TON",
         ];
 
         struct GeneratedVisitor;
@@ -99,6 +101,7 @@ impl<'de> serde::Deserialize<'de> for Blockchain {
                     "BLOCKCHAIN_OPTIMISM" => Ok(Blockchain::Optimism),
                     "BLOCKCHAIN_LINEA" => Ok(Blockchain::Linea),
                     "BLOCKCHAIN_MONERO" => Ok(Blockchain::Monero),
+                    "BLOCKCHAIN_TON" => Ok(Blockchain::Ton),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
                 }
             }

@@ -16,6 +16,7 @@ enum Blockchain {
   BLOCKCHAIN_OPTIMISM = 11;
   BLOCKCHAIN_LINEA = 12;
   BLOCKCHAIN_MONERO = 13;
+  BLOCKCHAIN_TON = 14;
 }
 
 message FindRequestCommon {

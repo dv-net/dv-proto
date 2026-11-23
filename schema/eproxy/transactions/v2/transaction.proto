@@ -5,6 +5,7 @@ import "eproxy/transactions/v2/monero.proto";
 import "eproxy/transactions/v2/evm.proto";
 import "eproxy/transactions/v2/tron.proto";
 import "eproxy/transactions/v2/btc_like.proto";
+import "eproxy/transactions/v2/ton.proto";
 import "eproxy/transactions/v2/event.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -13,6 +14,7 @@ message AdditionalData {
   optional EVMAdditionalDataFull evm = 2;
   optional BitcoinLikeAdditionalDataFull btclike = 3;
   optional MoneroAdditionalDataFull monero = 4;
+  optional TonAdditionalDataFull ton = 5;
 }
 
 message Error {
@@ -37,4 +39,6 @@ message Transaction {
   repeated Event events = 13;
   optional AdditionalData additional_data = 14;
   google.protobuf.Timestamp created_at = 15;
+  // Text comment (memo) of the main transfer, if the blockchain supports it (TON)
+  optional string comment = 16;
 }
